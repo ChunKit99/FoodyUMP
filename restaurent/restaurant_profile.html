@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="/assets/css/global.css">
         <link rel="stylesheet" href="/assets/css/restaurant.css">
         <script src="/assets/js/xxx.js"></script>
+        <script src="/assets/js/restaurant.js"></script>
+
         <title>Foody UMP</title>
     </head>
 
@@ -38,28 +40,50 @@
             <div class="page-main-content">
                 <h1>RESTAURANT PROFILE</h1>
 
-                <div id="res_profile">
-                    <p>Restaurant Name: </p>
-                            <input type="text" id="res_name" name="r_name" value="Roti Canai Ali">
-                    
-                    <p>Restaurant Location: </p>
-                            <input type="text" id="res_location" name="r_location" value="GERAI 1">
-                    
-                    <p>Operation Time: </p>
-                            <input type="text" id="res_operation" name="r_operation" value="MON-FRI 8AM-8PM, SAT-SUN 8AM-6PM">
+                <form action="">
+                <table class="res_profile">
+                    <tr>
+                        <th>Restaurant Name:</th>
+                        </tr>
+                        <tr>
+                        <td><input type="text" id="res_name" name="r_name" value="Roti Canai Ali" class='res_input'></td>
+                        <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                    </tr>
+                    <tr>
+                        <th>Restaurant Location:</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="res_location" name="r_location" value="GERAI 1" class='res_input' ></td>
+                        <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                    </tr>
+                    <tr>
+                        <th>Operation Time: </th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="res_operation" name="r_operation" value="MON-FRI 8AM-8PM, SAT-SUN 8AM-6PM" class='res_input'></td>
+                        <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                    </tr>
+                    <tr>
+                        <th>Contact Numner:</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="res_contact" name="r_contact" value="09-5145478" class='res_input'></td>
+                        <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                    </tr>
+                     <tr>
+                         <th>Instagram:</th>
+                     </tr>
+                     <tr>
+                        <td><input type="text" id="res_insta" name="r_insta" value="@roticanaiAli" class='res_input'></td>
+                         <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                     </tr>
+                            
+                </table>
             
-                    <p>Contact Numner: </p>
-                            <input type="text" id="res_contact" name="r_contact" value="09-5145478">
-            
-                    <p>Instagram: </p>
-                            <input type="text" id="res_insta" name="r_insta" value="@roticanaiAli">
-
-                            <br><br>
-
-                    <button class="btn_edit" onclick="alert('Are you sure to edit?')">Edit</button>
-                    <button class="btn_delete" onclick="alert('Are you sure to delete?')">Delete</button>
-                        </div>
-
+                    <button class="btn_edit" onclick="res_edit()">Edit</button>
+                    <button class="btn_delete" onclick="res_delete()">Delete</button>
+                
+</form>
             </div>
         </div>
         
