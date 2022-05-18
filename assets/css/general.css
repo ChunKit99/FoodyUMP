@@ -1,0 +1,59 @@
+.menu {
+    display: flex;
+}
+
+.filter {
+    text-align: center;
+    font-family: arial, sans-serif;
+    background-color: #bbb;
+    flex: 10%;
+    padding: 15px 0;
+}
+
+.filter h2 {
+    padding-left: 8px;
+}
+
+#mySearch {
+    width: 70%;
+    font-size: 15px;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+#myMenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#myMenu li a {
+    padding: 12px;
+    text-decoration: none;
+    color: black;
+    display: block
+}
+
+#myMenu li a:hover {
+    background-color: #eee;
+}
+
+.cuisine {
+    flex: 65%;
+    padding: 15px;
+    background-color: #ddd;
+    font-family: arial, sans-serif;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #dddddd;
+}
