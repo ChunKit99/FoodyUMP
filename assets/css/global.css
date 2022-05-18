@@ -1,0 +1,137 @@
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.container-width {
+    width: 1200px;
+}
+
+#logo {
+    width: 100%;
+    height: 100px;
+    background: #2ef3fe;
+}
+
+.logo {
+    display: block;
+    width: 200px;
+    height: 100px;
+}
+
+.topright-container {
+    width: 300px;
+    height: 40px;
+    background-color: #ffffff;
+    margin-top: 35px;
+    position: relative;
+}
+
+.logout {
+    position: absolute;
+    background: #ddd;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+#nav-container {
+    width: 100%;
+    line-height: 52px;
+    height: 52px;
+    background-color: #04aab3;
+    position: relative;
+}
+
+.nav-container {
+    position: relative;
+}
+
+.nav-container .topright-container {
+    position: absolute;
+    top: 1px;
+    right: 20px;
+    background: transparent;
+    margin-top: 0;
+
+}
+
+.nav-container .topright-container{
+    top: 17px;
+}
+
+.nav-container a {
+    width: 10%;
+    display: block;
+    height: 52px;
+    line-height: 52px;
+    font-size: 18px;
+    color: #ffffff;
+    float: left;
+    text-align: center;
+}
+
+.nav-container a.checked {
+    background: #11767ca6;
+}
+
+#page-container {
+    margin: auto;
+    width: 1200px;
+    overflow: hidden;
+}
+
+#page-content {
+    padding: 10px 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: whitesmoke;
+    position: relative;
+}
+
+.page-content .page-main-content {
+    line-height: 30px;
+    padding: 20px 0;
+    font-size: 16px;
+    color: #444444;
+}
+
+#footer-container {
+    width: 100%;
+    background: rgb(51, 51, 51);
+    margin: 50px auto 0;
+    color: white;
+    font-size: 12px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+#footer-container .footer-content {
+    width: 1200px;
+    margin: auto;
+}
+
+.footer-links-a a {
+    word-break: keep-all;
+    font-size: 12px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.copyright-info p {
+    font-size: 12px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+
+.copyright-info {
+    margin: 10px auto;
+}
