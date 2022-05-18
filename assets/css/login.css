@@ -146,3 +146,13 @@ input[type="submit"]:hover {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
+
+select{
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 4px;
+}
