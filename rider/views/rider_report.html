@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/css/global.css">
+        <link rel="stylesheet" href="/assets/css/rider.css">
+        <script src="/assets/js/rider_qr.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <title>Foody UMP</title>
+    </head>
+
+    <!--body-->
+    <body>
+        <div id="logo">
+            <div class="container-width">
+                <div class="fl logo">
+                    <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
+                </div>
+                <div class="topright-container fr">
+                    <p>Username</p>
+                    <button class="logout"> Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="nav-container">
+            <div class="container-width nav-container">
+                <a href="rider_home.html" class="">Home</a>
+                <a href="rider_order.html">Order</a>
+                <a href="rider_report.html" class="" style="background: #11767ca6;">Report</a>
+                <a href="rider_record.html" class="" class="">Record</a>
+                <a href="rider_complaint.html" class="">Complaint</a>
+            </div>
+        </div>
+
+        <!--content-->
+        <div id="page-content">
+            <div class="page-main-content">
+                <h1>Report</h1>
+                <form>
+                    <h2>Total Commission</h2>
+                    <label for="timeframe">Timeframe</label>
+                    <select name="timeframe" id="timeframe">
+                        <option value="">Select Option</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <br>
+                    <label for="total_commission">Total Commission: </label>
+                    <input type="text" id="total_commission" name="total_commission" value="">
+                    <br>
+                    <button type="button" onclick="graph(myChart)">Click Me!</button>
+                </form>
+
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+        
+    </body>
+
+    <!--footer-->
+    <div id="footer-container">
+        <div class="footer-content">
+            <div class="footer-links-a" style="margin-top: 20px"></div>
+            <div class="copyright-info">
+                <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Please scan the QR Code to confirm the delivery.</p>
+      <img src="QR2.jpg" alt="QR Code" width="100" height="100">
+    </div>
+  
+  </div>
+
+  
+</html>
