@@ -99,5 +99,51 @@ th {
     background-color: #dddddd;
     border: 1px solid #dddddd;
     width: 100%;
-    height: 300px;
+    height: 200px;
+}
+
+.orderlist{
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #bbb;
+    width: 50%;
+    background-color: #bbb;
+    margin: auto;
+
+}
+
+.orderlist th,td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    width: 5%;
+    height: 50px;
+
+}
+
+.exp{
+    font-family: arial, sans-serif;
+    text-align: center;
+    background-color: #dddddd;
+    border: 1px solid #dddddd;
+    width: 100%;
+    height: 200px;
+}
+
+.expenses{
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #bbb;
+    width: 50%;
+    background-color: #bbb;
+    margin: auto;
+
+}
+
+.expenses th,td{
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    width: 5%;
+    height: 50px;
 }
