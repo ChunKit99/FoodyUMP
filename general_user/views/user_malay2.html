@@ -28,56 +28,52 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="" style="background: #11767ca6;">Order</a>
+            <a href="user_home.html" class="" style="background: #11767ca6;">Home</a>
+            <a href="user_order.html" class="">Order</a>
             <a href="user_expenses.html" class="">Expenses</a>
             <a href="user_report.html" class="">Report</a>
             <a href="user_complaint.html" class="">Complaint</a>
         </div>
     </div>
-
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
-            <!--woeichi-->
-            <div class="ordering">
+            <!--woei chi-->
+            <div class="restaurant">
                 <br><br><br>
-                <h1>My Order List</h1>
+                <h1>ALONG</h1>
             </div>
-            <br><br>
 
-            <div class="orderlist">
+            <div class="category-container">
+                <a href="user_malay.html">Nasi</a>
+                <a href="user_malay2.html">Mee</a>
+                <a href="user_malay3.html">Ayam</a>
+            </div>
+
+            <div class="cat2">
                 <table>
                     <tr>
-                        <th>Food Name: </th>
-                        <td></td>
+                        <td><a href="user_malay.html"><img src="" alt="Mee Goreng"
+                                    style="width:100px;height:100px;"></a></td>
+                        <td>Mee Goreng</td>
+                        <td>Mee + Isi Ayam + Telur Mata</td>
+                        <td>RM 6.00</td>
+                        <td>Quantity:<input type="number" id="quantity"></td>
+                        <td><button type="button" onclick="order()">ADD</button></td>
+
                     </tr>
                     <tr>
-                        <th>Food Description:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Price Per Item:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Quantity:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Price:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Total Price:</th>
-                        <td></td>
+                        <td><a href="user_malay.html"><img src="" alt="Mee Hoon Soup"
+                                    style="width:100px;height:100px;"></a></td>
+                        <td>Mee Hoon Soup</td>
+                        <td>Mee Hoon + Ayam + Sayur</td>
+                        <td>RM 7.00</td>
+                        <td>Quantity:<input type="number" id="quantity"></td>
+                        <td><button type="button" onclick="order()">ADD</button></td>
                     </tr>
                 </table>
             </div>
-
-            <form action="/x.php">
-                <input type="checkbox" id="order1" name="Order1" value="">
-            <!--woeichi-->
+            <!--woei chi-->
         </div>
     </div>
 
