@@ -2,10 +2,9 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>HTML5 Login Form with validation Example</title>
   <link rel="stylesheet" href="assets/css/login.css">
   <link rel="stylesheet" href="assets/css/global.css">
-  <script src="/assets/js/xxx.js"></script>
+  <script src="/assets/js/admin.js"></script>
   <title>Login</title>
 
 </head>
@@ -13,7 +12,7 @@
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
   <h2>Wellcome To Foody UMP</h2>
-  <form id="login-form">
+  <form id="login-form" onsubmit="validateUserType()">
     <p>
     <input type="text" id="username" name="username" placeholder="Username..." required><i class="validation"><span></span><span></span></i>
     </p>
@@ -30,7 +29,7 @@
       <i class="validation"><span></span><span></span></i>
     </p>
     <p>
-    <input type="submit" id="login" value="Login">
+    <input type="submit" id="login" value="Login" onclick="validateUserType()">
     </p>
     <br>
   </form>
