@@ -78,3 +78,9 @@ tr td:last-of-type {
     cursor: pointer;
   }
   
+  .select {
+    position: relative;
+    min-width: 300px;
+    cursor: pointer;
+    width: 100%;
+  }
