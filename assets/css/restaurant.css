@@ -1,0 +1,50 @@
+.res_profile th{
+    text-align: left;
+}
+
+input {
+    width:100%;
+    height: 50px;
+}
+
+
+#cat_mee, #cat_nasi, #cat_ayam {
+    width:100%;
+    height: 30px;
+    padding-left: auto;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+th,td{
+    width:15%;
+    height: 30px;
+    padding-left: auto;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.btn_edit, .btn_delete, .btn_add, .btn_publish{
+    width: 10%;
+    height: 50px;
+    margin-top: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+    display: inline;
+    text-align: center;
+}
+
+p.under {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+sup {
+    color: red;
+}
+
+.food_frame {
+    width:100%;
+}

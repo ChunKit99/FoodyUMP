@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/css/global.css">
+        <link rel="stylesheet" href="/assets/css/restaurant.css">
+        <script src="/assets/js/xxx.js"></script>
+        <script src="/assets/js/restaurant.js"></script>
+        <title>Foody UMP</title>
+    </head>
+
+    <!--body-->
+    <body>
+        <div id="logo">
+            <div class="container-width">
+                <div class="fl logo">
+                    <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
+                </div>
+                <div class="topright-container fr">
+                    <p>Username</p>
+                    <button class="logout"> Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="nav-container">
+            <div class="container-width nav-container">
+                <a href="restaurant_profile.html" class="" >Home</a>
+                <a href="restaurant_food.html" class="" style="background: #11767ca6;">Food</a>
+                <a href="restaurant_order.html" class="">Order</a>
+                <a href="restaurant_report.html" class="">Report</a>
+            </div>
+        </div>
+
+        <!--content-->
+        <div id="page-content">
+            <div class="page-main-content">
+                <h1>CATAGORIES</h1><sup class="red">*Minimum 10 foods must be published</sup> <br> <sup class="red">*Minimum 3 catagories</sup>
+
+                <form action="" method="post">
+                
+                    <h2>Mee</h2>
+                    <table id="cat_mee">
+                    <tr>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price (RM)</th>
+                        <th>Select</th>
+                    </tr>
+                    <tr>
+                        <td><img src="https://images.saymedia-content.com/.image/c_limit%2Ccs_srgb%2Cq_auto:eco%2Cw_700/MTc0ODU3OTI4ODYyNjA3MTE5/malay-style-rice-noodles-soup-bihun-sup.webp" alt="ACER" width="100" height="100"></td>
+                        <td>Mee Hoon Soup</td>
+                        <td>Mee Hoon, Ayam, Sayur.</td>
+                        <td>7.00</td>
+                        <td><input type="checkbox" name="foot_cat[]" class="check_respro"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><img src="https://www.unileverfoodsolutions.com.my/dam/global-ufs/mcos/SEA/calcmenu/recipes/MY-recipes/vegetables-&-vegetable-dishes/mee-goreng-mamak/main-header.jpg/jcr:content/renditions/cq5dam.thumbnail.desktop.jpeg" alt="ACER" width="100" height="100"></td>
+                        <td>Mee Goreng</td>
+                        <td>Mee, Telur Mata, Isi Ayam.</td>
+                        <td>6.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+                    </table>
+
+                    <h2>Nasi</h2> 
+                    <table id="cat_nasi">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price (RM)</th>
+                            <th>Select</th>
+                        </tr>
+                    <tr>
+                        <td></td>
+                        <td>Nasi Lemak</td>
+                        <td>Nasi, Timun, Kacang, Telur.</td>
+                        <td>5.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>Nasi Goreng</td>
+                        <td>Nasi, Ayam, Sayur.</td>
+                        <td>5.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>Nasi Ayam</td>
+                        <td>Nasi, Ayam, Timun, Sayur.</td>
+                        <td>5.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>Nasi Goreng Cendawan</td>
+                        <td>Nasi, Cendawan, Sayur.</td>
+                        <td>5.50</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>Nasi Goreng USA</td>
+                        <td>Nasi, Ayam, Bawang, Sayur.</td>
+                        <td>7.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>Nasi Campur</td>
+                        <td>Sayur, Daging.</td>
+                        <td>6.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>Nasi Goreng Ayam Kunyit</td>
+                        <td>Nasi, Ayam Kunyit.</td>
+                        <td>7.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>Nasi Goreng Kampung</td>
+                        <td>Nasi, Ayam, Kangkung, Ikan Bilis.</td>
+                        <td>6.00</td>
+                        <td><input type="checkbox" name="food_cat[]" class="check_respro"></td>
+                    </tr>
+                      </table>
+
+                      <h2>Ayam</h2>
+                      <table id="cat_ayam">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price (RM)</th>
+                            <th>Select</th>
+                        </tr>
+                    <tr> 
+                        <td></td>
+                        <td>Ayam Goreng Biasa</td>
+                        <td>Ayam Goreng</td>
+                        <td>3.00</td>
+                        <td><input type="checkbox" name="res_pro[]" class="check_respro"></td>
+                    </tr>
+                    </table>
+                </form>
+
+
+                <button class="btn_add" onclick="add_func()">Add</button>
+                <button class="btn_edit" onclick="alert('Are you sure to edit?')">Edit</button>
+                <button class="btn_delete" onclick="alert('Are you sure to delete?')">Delete</button>
+                <button class="btn_publish" onclick="alert('Are you sure to publish?')">Publish</button>
+
+            </div>
+        </div>
+
+    </body>
+
+    <!--footer-->
+    <div id="footer-container">
+        <div class="footer-content">
+            <div class="footer-links-a" style="margin-top: 20px"></div>
+            <div class="copyright-info">
+                <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
+            </div>
+        </div>
+    </div>
+</html>
