@@ -56,4 +56,41 @@ th {
     text-align: left;
     padding: 8px;
     border: 1px solid #dddddd;
+    width: 20%;
+    height: 50px;
 }
+
+.restaurant {
+    font-family: arial, sans-serif;
+    text-align: center;
+    background-color: #dddddd;
+    border: 1px solid #dddddd;
+    width: 100%;
+    height: 200px;
+}
+
+.category-container {
+    font-family: arial, sans-serif;
+    background-color: #333;
+    width: 100%;
+    height: 10 px;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.category-container a {
+    display: block;
+    font-size: 18px;
+    color:white;
+    padding: 14px 16px;
+    text-align: center;
+    position:relative;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.category-container a:hover:not(.active) {
+    background-color: #111;
+}
+
+
