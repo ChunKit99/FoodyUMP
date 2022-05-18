@@ -24,18 +24,20 @@
 }
 
 .topright-container {
-    width: 300px;
+    width: 400px;
     height: 40px;
+    right: 10px;
     background-color: #ffffff;
     margin-top: 35px;
     position: relative;
 }
 
+
 .logout {
     position: absolute;
     background: #ddd;
     right: 20px;
-    top: 10px;
+    top: 5px;
     cursor: pointer;
 }
 
