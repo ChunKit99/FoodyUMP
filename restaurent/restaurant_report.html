@@ -5,7 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/assets/css/global.css">
+        <link rel="stylesheet" href="/assets/css/restaurant.css">
         <script src="/assets/js/admin.js"></script>
+        <script src="/assets/js/restaurant.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
         <title>Foody UMP</title>
     </head>
 
@@ -35,6 +40,30 @@
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
+                <h1>Report</h1>
+
+                <label for="timeframe">Timeframe</label>
+                    <select name="timeframe" id="timeframe">
+                        <option value="">Select Option</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="others">Others</option>
+                    </select>
+                    
+                    <label for="total_commission">Total Commission: </label>
+                    <input type="text" id="total_commission" name="total_commission" value="">
+                    <p>Total order receive: x</p>
+                    <p>Total income: xxx</p>
+                    <p>Total commission to rider: xx</p>
+                    <p>Total commission to Foody: xx</p>
+                    <p>Accumulate income: xxxxx</p>
+
+
+                    <button type="button" onclick="graph(chart1)">Click Me!</button>
+                </form>
+
+                <canvas id="chart1" style="width:100%;max-width:600px"></canvas>
                 
             </div>
         </div>

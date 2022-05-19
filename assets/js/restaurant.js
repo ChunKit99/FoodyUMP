@@ -1,6 +1,6 @@
+//restaurant_profile.html
 function res_edit(){
 if (confirm("Are you sure to edit?")==true) {
-   
     alert('Saved!');
   } else {
     // Do nothing!
@@ -28,6 +28,7 @@ if (confirm("Are you sure to edit?")==true) {
       }
 }*/
 
+//restaurant_profile.html
 function res_delete(){
     if (confirm('Are you sure to delete?')) {
         var res_profile = document.getElementsByClassName('check_respro');
@@ -68,7 +69,87 @@ function res_delete(){
         }
            alert('Deleted!');
       } else {
-        // Do nothing!
         alert('No item deleted.');
       }
+}
+
+//addFood.html
+function foodAdd(){
+  if (confirm("Are you sure to add?")==true) {
+    alert('Saved!');
+    window.location.href = "restaurant_food.html";
+  } else {
+    alert('No item added.');
+  }
+}
+
+function foodEdit(){
+  if (confirm("Are you sure to edit?")==true) {
+    alert('Edited!');
+    window.location.href = "restaurant_food.html";
+  } else {
+    alert('No item edited.');
+  }
+}
+
+function foodDelete(){
+  if (confirm("Are you sure to delete?")==true) {
+    alert('Deleted!');
+    window.location.href = "restaurant_food.html";
+  } else {
+    alert('No item deleted.');
+  }
+}
+
+function foodPublish(){
+  if (confirm("Are you sure to publish?")==true) {
+    alert('Published!');
+    window.location.href = "restaurant_food.html";
+  } else {
+    alert('No item published.');
+  }
+}
+
+//orderDetail.html
+function orderUpdate(){
+  if (confirm("Are you sure to update?")==true) {
+    alert('Updated!');
+    window.location.href = "restaurant_order.html";
+  } else {
+    alert('No changed done.');
+  }
+}
+
+function orderDelete(){
+  if (confirm("Are you sure to delete?")==true) {
+    alert('Deleted!');
+    window.location.href = "restaurant_order.html";
+  } else {
+    alert('No changed done.');
+  }
+}
+
+function graph(chart1){
+  var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+                var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+                new Chart("chart1", {
+                type: "line",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    scales: {
+                    yAxes: [{ticks: {min: 6, max:16}}],
+                    }
+                }
+                });
 }
