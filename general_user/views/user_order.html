@@ -49,34 +49,38 @@
             <div class="orderlist">
                 <table>
                     <tr>
-                        <th>Food Name: </th>
-                        <td></td>
+                        <th>
+                            <form action="/x.php">
+                                <input type="checkbox" id="order1" name="order1">
+                                <label for="order1"></label><br>
+                            </form>
+                        </th>
+                        <th>Food Name</th>
+                        <th>Food Description</th>
+                        <th>Price Per Item</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+
                     </tr>
                     <tr>
-                        <th>Food Description:</th>
+                        <td>
+                            <form action="/x.php">
+                                <input type="checkbox" id="order1" name="order1">
+                                <label for="order1"></label><br>
+                            </form>
+                        </td>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <th>Price Per Item:</th>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <th>Quantity:</th>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Price:</th>
                         <td></td>
-                    </tr>
-                    <tr>
-                        <th>Total Price:</th>
-                        <td></td>
+                        <td><button class="editbutton" onclick="order()">EDIT</button>
+                            <button class="deletebutton" onclick="order()">DELETE</button>
+                        </td>
                     </tr>
                 </table>
             </div>
 
-            <form action="/x.php">
-                <input type="checkbox" id="order1" name="Order1" value="">
+
             <!--woeichi-->
         </div>
     </div>
