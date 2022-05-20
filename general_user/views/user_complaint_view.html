@@ -60,6 +60,19 @@
                     </div>
                     <div class="card-body">
                         <form>
+                            <!--User id-->
+                            <div class="form-group row">
+                                <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        readonly
+                                        class="form-control-plaintext"
+                                        id="staticUserID"
+                                        value="CA12345"
+                                    >
+                                </div>
+                            </div>
                             <!--Name-->
                             <div class="form-group row">
                                 <label for="staticName" class="col-sm-2 col-form-label">Name</label>
@@ -75,28 +88,43 @@
                             </div>
                             <!--date-->
                             <div class="form-group row">
-                                <label for="staticCurrentDate" class="col-sm-2 col-form-label">Current Date</label>
+                                <label for="staticDate" class="col-sm-2 col-form-label">Date</label>
                                 <div class="col-sm-10">
                                     <input
                                         type="text"
                                         readonly
                                         class="form-control-plaintext"
-                                        id="staticCurrentDate"
+                                        id="staticDate"
                                         value="18-04-2022"
                                     >
                                 </div>
                             </div>
                             <!--time-->
                             <div class="form-group row">
-                                <label for="staticCurrentTime" class="col-sm-2 col-form-label">Current Time</label>
+                                <label for="staticTime" class="col-sm-2 col-form-label">Time</label>
                                 <div class="col-sm-10">
                                     <input
                                         type="text"
                                         readonly
                                         class="form-control-plaintext"
-                                        id="staticCurrentTime"
+                                        id="staticTime"
                                         value="22:20:00"
                                     >
+                                </div>
+                            </div>
+                            <!--choose Order ID-->
+                            <div class="form-group row">
+                                <label for="chooseOrderID" class="col-sm-2 col-form-label">Choose Order ID</label>
+                                <div class="col-sm-10">
+                                    <div class="form-row align-items-center">
+                                        <div class="col-auto my-1">
+                                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                <option disabled>Choose...</option>
+                                                <option disabled selected value="1">1</option>
+                                                <option disabled value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!--choose type-->
@@ -109,6 +137,9 @@
                                                 <option Disabled >Choose...</option>
                                                 <option Disabled selected value="1">Late Delivery</option>
                                                 <option Disabled value="2">Damaged Food</option>
+                                                <option Disabled value="3">Missing Food</option>
+                                                <option Disabled value="4">Incorrectly Charged</option>
+                                                <option Disabled value="5">Other(State in description)</option>
                                             </select>
                                         </div>
                                     </div>

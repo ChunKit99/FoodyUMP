@@ -54,17 +54,23 @@
                 <!--title-->
                 <h1>Report of Complaint</h1>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownGraphMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Choose Graph:
+                    <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownGraphMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Choose Graph:
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownGraphMenuButton">
-                      <a class="dropdown-item" href="#">Type of Complaint</a>
-                      <a class="dropdown-item" href="#">Status of Complaint</a>
-                      <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Type of Complaint</a>
+                        <a class="dropdown-item" href="#">Status of Complaint</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="user_complaint.html">Back to Complaint Page</a>
                     </div>
                 </div>
-               
                 <div class="card">
                     <div class="card-header">
                         Graph of Report
@@ -80,12 +86,11 @@
                                 <canvas id="monthly" style="width:100%;max-width:600px"></canvas>
                             </div>
                         </div>
-                       
-
                         <script>
-                            var xValues = ["Late Delivery", "Damaged Food"];
-                            var yValues = [5, 10];
-                            var barColors = ["red", "green"];
+                            var xValues = ["Late Delivery", "Damaged Food", "Missing Food", "Incorrectly Charged", "Other"];
+                            var yWValues = [5, 10, 7, 15, 8];
+                            var yMValues = [10, 15, 13, 20, 12];
+                            var barColors = ["red", "green", "yellow", "blue", "purple"];
                             
                             new Chart("weekly", {
                                 type: "pie",
@@ -93,7 +98,7 @@
                                     labels: xValues,
                                     datasets: [{
                                     backgroundColor: barColors,
-                                    data: yValues
+                                    data: yWValues
                                     }]
                                 },
                                 options: {
@@ -103,19 +108,14 @@
                                     }
                                 }
                                 });
-                            </script>
-                        <script>
-                            var xValues = ["Late Delivery", "Damaged Food"];
-                            var yValues = [25, 15];
-                            var barColors = ["red", "green"];
-                            
+
                             new Chart("monthly", {
                                 type: "pie",
                                 data: {
                                     labels: xValues,
                                     datasets: [{
                                     backgroundColor: barColors,
-                                    data: yValues
+                                    data: yMValues
                                     }]
                                 },
                                 options: {
@@ -125,7 +125,7 @@
                                     }
                                 }
                                 });
-                            </script>    
+                        </script>
                     </div>
                 </div>
             </div>
