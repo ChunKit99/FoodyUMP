@@ -185,9 +185,11 @@
                         </thead>
                         <tbody>
                             <?php
+                            $count = 0;
                             if (mysqli_num_rows($resultList) > 0) {
                                 // output data of each row
                                 while ($row1 = mysqli_fetch_assoc($resultList)) {
+                                    $count++;
                                     $complaintid = $row1["complaint_id"];
                                     $type = $row1["complaint_type"];
                                     $status = $row1["complaint_status"];
@@ -199,18 +201,45 @@
                                     echo "<td>$status</td>";
                                     echo "<td>$date</td>";
                                     echo "<td>$time</td>";
-                            
                                     echo "<td>";
                                     echo "<div class='btn-group' role='group'>";
-                                    echo "<a href='user_complaint_edit.php?cid=".$complaintid."'><button type='button' class='btn btn-warning'>Edit</button></a>";
-                                   
-                                    echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmDelete'>Delete</button>";
-                                    echo "<a href='user_complaint_view.php?cid=".$complaintid."'>";
+                                    echo "<a href='user_complaint_edit.php?cid=" . $complaintid . "'><button type='button' class='btn btn-warning'>Edit</button></a>";
+                            ?>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete<?php echo $count ?>">Delete</button>
+                                    <?php
+                                    //echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmDelete'>Delete</button>";
+                                    //echo "<button type='button' class='btn btn-danger deletebtn' name ='deletedata'>Delete</button>"
+                                    echo "<a href='user_complaint_view.php?cid=" . $complaintid . "'>";
                                     echo "<button type='button' class='btn btn-info'>View</button></a>";
-                                            
                                     echo "</div>";
                                     echo "</td>";
                                     echo "</tr>";
+                                    ?>
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="confirmDelete<?php echo $count ?>" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Record</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your record?</p>
+                                                    <div class="alert alert-danger" role="alert">
+                                                        Deleted record cannot undo.
+                                                    </div>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <a type="button" class="btn btn-danger" href="complaint_delete.php?cid=<?php echo $row1['complaint_id'] ?>">Confirm</a>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" class="cancelbtn">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
                                 }
                             }
                             ?>
@@ -220,27 +249,7 @@
                 </div>
             </div>
         </div>
-        <!-- The Modal -->
-        <div class="modal fade" id="confirmDelete">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete Record</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete your record?</p>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" class="confirmbtn">Confirm</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </body>
 <!--footer-->
