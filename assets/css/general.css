@@ -69,6 +69,7 @@ th {
     height: 200px;
 }
 
+
 .category-container {
     font-family: arial, sans-serif;
     background-color: #333;
@@ -102,26 +103,108 @@ th {
     height: 200px;
 }
 
-.orderlist{
+.orderlist {
     text-align: center;
     padding: 8px;
-    border: 1px solid #bbb;
-    width: 50%;
-    background-color: #bbb;
+    width: 100%;
     margin: auto;
-
 }
 
-.orderlist th,td {
+.orderlist th,
+td {
     text-align: center;
     padding: 8px;
     border: 1px solid #dddddd;
     width: 5%;
     height: 50px;
-
 }
 
-.exp{
+.payment {
+    font-family: arial, sans-serif;
+    text-align: center;
+    background-color: #dddddd;
+    width: 100%;
+    height: 200px;
+}
+
+.pay {
+    font-family: arial, sans-serif;
+    padding: 8px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.pay th {
+    text-align: center;
+    background-color: #8fcbff;
+    padding: 8px;
+    width: 10%;
+    height: 50px;
+}
+
+.pay td {
+    text-align: left;
+    padding: 8px;
+    width: 10%;
+    height: 50px;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    text-align: center;
+    width: 40 px;
+}
+
+.custom-select select {
+    display: none;
+}
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 5;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+.select-items div,
+.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;   
+}
+
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tracking {
     font-family: arial, sans-serif;
     text-align: center;
     background-color: #dddddd;
@@ -130,20 +213,170 @@ th {
     height: 200px;
 }
 
-.expenses{
+.track {
     text-align: center;
     padding: 8px;
-    border: 1px solid #bbb;
     width: 50%;
-    background-color: #bbb;
     margin: auto;
 
 }
 
-.expenses th,td{
-    text-align: center;
+.track th {
+    text-align: left;
     padding: 8px;
     border: 1px solid #dddddd;
-    width: 5%;
+    width: 2%;
     height: 50px;
+}
+
+.exp {
+    font-family: arial, sans-serif;
+    text-align: center;
+    background-color: #dddddd;
+    border: 1px solid #dddddd;
+    width: 100%;
+    height: 200px;
+}
+
+.expenses {
+    text-align: left;
+    padding: 8px;
+    width: 50%;
+    margin: auto;
+
+}
+
+.expenses th {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    width: 2%;
+    height: 50px;
+}
+
+
+.button {
+    background-color: #0096FF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.editbutton {
+    background-color: #FFC000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.deletebutton {
+    background-color: #DC143C;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.checkbutton {
+    background-color: #4169E1;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.savebutton {
+    background-color: #FFC000;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.cancelbutton {
+    background-color: #DC143C;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.confirmbutton {
+    background-color: #28B463;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.backbutton {
+    background-color: #4169E1;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn .btn-default{
+    background-color: #4169E1;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
 }
