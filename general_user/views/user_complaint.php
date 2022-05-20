@@ -47,7 +47,41 @@
     include_once($path);
     $userid = "ca1";
     $name = "Ahmed Bin Ali";
+
+    //get current week start and end
+    $monday = strtotime('last monday', strtotime('tomorrow'));
+    $sunday = strtotime('+6 days', $monday);
+    $monday = date('Y-m-d', $monday);
+    $sunday = date('Y-m-d', $sunday);
+    //echo $monday;
+    //echo $sunday;
+    
+    //get current month start and end
+    $df = new DateTime('first day of this month');
+    $df = $df->format('Y-m-d');
+    //echo $df;
+    $dl = new DateTime('last day of this month');
+    $dl = $dl->format('Y-m-d');
+    //echo $dl;
+
+
+    $query = "SELECT * FROM complaint WHERE `user_id` LIKE '$userid'  ";
+    $resultList = mysqli_query($conn, $query);
+
+    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS LateDelivery, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS DamagedFood, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS MissingFood, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS IncorrectlyCharged, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS Other FROM complaint WHERE complaint_date  between '$monday' and '$sunday' ";
+    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS LateDelivery, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS DamagedFood, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS MissingFood, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS IncorrectlyCharged, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS Other FROM complaint WHERE complaint_date  between '$df' and '$dl' ";
+    $querystatus = "SELECT SUM(CASE WHEN complaint_status = 'In Investigation' THEN 1 ELSE 0 END) AS InInvestigation, SUM(CASE WHEN complaint_status = 'Resolved' THEN 1 ELSE 0 END) AS Resolved FROM complaint";
+    $resultweek = mysqli_query($conn, $queryweek);
+    $resultmonth = mysqli_query($conn, $querymonth);
+    $resultstatus = mysqli_query($conn, $querystatus);
+
+    
+    $roww = mysqli_fetch_assoc($resultweek);
+    $rowm = mysqli_fetch_assoc($resultmonth);
+    $rows = mysqli_fetch_assoc($resultstatus);
+
     ?>
+
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
@@ -77,7 +111,10 @@
                                 <tbody>
                                     <tr>
                                         <td>Late Delivery</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['LateDelivery'];
+                                         echo "<td>$temp</td>";
+                                         ?>
                                     </tr>
                                     <tr>
                                         <td>Damaged Food</td>
@@ -151,24 +188,6 @@
                     </div>
                 </div>
             </div>
-
-            <?php
-            $query = "SELECT * FROM complaint WHERE `user_id` LIKE '$userid'  ";
-            $resultList = mysqli_query($conn, $query);
-
-            //get current week start and end
-            $monday = strtotime('last monday', strtotime('tomorrow'));
-            $sunday = strtotime('+6 days', $monday);
-            //echo "<P>". date('d-M-Y', $monday) . " to " . date('d-M-Y', $sunday) . "</P>";
-
-            //get current month start and end
-            $df = new DateTime('first day of this month');
-            //echo $df->format('Y-m-d');
-            $dl = new DateTime('last day of this month');
-            //echo $dl->format('Y-m-d');
-            ?>
-
-
             <!--user list-->
             <div class="container-width">
                 <div class="text-center">
@@ -207,48 +226,47 @@
                             ?>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete<?php echo $count ?>">Delete</button>
                                     <?php
-                                    //echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmDelete'>Delete</button>";
-                                    //echo "<button type='button' class='btn btn-danger deletebtn' name ='deletedata'>Delete</button>"
                                     echo "<a href='user_complaint_view.php?cid=" . $complaintid . "'>";
                                     echo "<button type='button' class='btn btn-info'>View</button></a>";
-                                    echo "</div>";
-                                    echo "</td>";
-                                    echo "</tr>";
                                     ?>
-                                    <!-- The Modal -->
-                                    <div class="modal fade" id="confirmDelete<?php echo $count ?>" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Delete Record</h4>
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <!-- Modal body -->
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your record?</p>
-                                                    <div class="alert alert-danger" role="alert">
-                                                        Deleted record cannot undo.
-                                                    </div>
-                                                </div>
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                    <a type="button" class="btn btn-danger" href="complaint_delete.php?cid=<?php echo $row1['complaint_id'] ?>">Confirm</a>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
+                </div>
+                </td>
+                </tr>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="confirmDelete<?php echo $count ?>" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Record</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete your record?</p>
+                                <div class="alert alert-danger" role="alert">
+                                    Deleted record cannot undo.
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-danger" href="complaint_delete.php?cid=<?php echo $row1['complaint_id'] ?>">Confirm</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" class="cancelbtn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <?php
                                 }
                             }
-                            ?>
-                        </tbody>
-                    </table>
+        ?>
+        </tbody>
+        </table>
 
-                </div>
             </div>
         </div>
+    </div>
 
     </div>
 </body>
