@@ -15,7 +15,6 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <script src="/assets/js/complaint.js"></script>
     <title>Foody UMP</title>
 </head>
 <!--body-->
@@ -41,76 +40,77 @@
             <a href="user_complaint.php" class="" style="background: #11767ca6;">Complaint</a>
         </div>
     </div>
-    <!--to include the dbase.php-->
+    <!--content-->
     <?php
+
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
+    $complaintid = $_GET['cid'];
     $userid = "ca1";
     $name = "Ahmed Bin Ali";
+
+    $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) > 0) {
+        // output data
+        while ($row1 = mysqli_fetch_assoc($result)) {
+            $complaintid = $row1["complaint_id"];
+            $typeSelected = $row1["complaint_type"];
+            $status = $row1["complaint_status"];
+            $date = $row1["complaint_date"];
+            $time = $row1["complaint_time"];
+        }
+    }    
+
     ?>
-
-
-    <!--content-->
     <div id="page-content">
         <div class="page-main-content">
             <!--title-->
-            <h1>Apply New Complaint</h1>
+            <h1>Edit Complaint</h1>
             <div class="card">
                 <div class="card-header">
                     Application Information
                 </div>
                 <div class="card-body">
-                    <form method="post" action="complaint_insert.php">
+                    <form>
                         <!--User id-->
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' name='staticUserID' value='$userid'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>"?>
+                                
                             </div>
                         </div>
                         <!--Name-->
                         <div class="form-group row">
                             <label for="staticName" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>"?>
                             </div>
                         </div>
                         <!--date-->
                         <div class="form-group row">
                             <label for="staticDate" class="col-sm-2 col-form-label">Date</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" name="staticDate" value=<?php echo date("Y-m-d", time()); ?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value=<?php echo $date?>>
                             </div>
                         </div>
-
                         <!--time-->
                         <div class="form-group row">
                             <label for="staticTime" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" name="staticTime" value=<?php echo date("H:i:s", time()); ?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticTime" value=<?php echo $time?>>
                             </div>
                         </div>
                         <!--choose Order ID-->
                         <div class="form-group row">
-                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Choose Order ID</label>
+                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Order ID</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseOrderID">
-                                            <option>Choose...</option>
-                                            <?php
-
-                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
-
-                                            $orderlist = mysqli_query($conn, $sql);
-                                            
-                                            if(mysqli_num_rows($orderlist)>0){
-                                                while($row=mysqli_fetch_array($orderlist)){
-                                                    echo "<option value ='$row[0]'>$row[0]</option>";
-                                                }
-                                            }
-                                            ?>
+                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                            <option selected disabled><?php echo $complaintid?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -122,13 +122,13 @@
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseType">
-                                            <option >Choose...</option>
-                                            <option value="Late Delivery">Late Delivery</option>
-                                            <option value="Damaged Food">Damaged Food</option>
-                                            <option value="Missing Food">Missing Food</option>
-                                            <option value="Incorrectly Charged">Incorrectly Charged</option>
-                                            <option value="Other">Other</option>
+                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Late Delivery</option>
+                                            <option value="2">Damaged Food</option>
+                                            <option value="3">Missing Food</option>
+                                            <option value="4">Incorrectly Charged</option>
+                                            <option value="5">Other(State in description)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -138,12 +138,12 @@
                         <div class="form-group row">
                             <label for="descriptionComplaint" class="col-sm-2 col-form-label">Discription</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" name="descriptionComplaint"></textarea>
+                                <textarea class="form-control" rows="5" id="discriptionComplaint"></textarea>
                             </div>
                         </div>
-                        <!--button submikt and cancel-->
-                        <div class="btn-group fr" role="group" aria-label="submit cancel button">
-                            <input type="submit" class="btn btn-primary" value="Submit"></input>
+                        <!--button save and cancel-->
+                        <div class="btn-group fr" role="group" aria-label="submit back button">
+                            <button type="button" class="btn btn-primary">Save</button>
                             <a href="user_complaint.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
                         </div>
                     </form>

@@ -45,7 +45,7 @@
                 <a href="user_order.html" class="">Order</a>
                 <a href="user_expenses.html" class="">Expenses</a>
                 <a href="user_report.html" class="">Report</a>
-                <a href="user_complaint.html" class="" style="background: #11767ca6;">Complaint</a>
+                <a href="user_complaint.php" class="" style="background: #11767ca6;">Complaint</a>
             </div>
         </div>
         <!--content-->
@@ -68,7 +68,7 @@
                         <a class="dropdown-item" href="#">Type of Complaint</a>
                         <a class="dropdown-item" href="#">Status of Complaint</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="user_complaint.html">Back to Complaint Page</a>
+                        <a class="dropdown-item" href="user_complaint.php">Back to Complaint Page</a>
                     </div>
                 </div>
                 <div class="card">
