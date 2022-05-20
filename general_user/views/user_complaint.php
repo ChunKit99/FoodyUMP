@@ -205,7 +205,7 @@
                                     echo "<a href='user_complaint_edit.php?cid=".$complaintid."'><button type='button' class='btn btn-warning'>Edit</button></a>";
                                    
                                     echo "<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#confirmDelete'>Delete</button>";
-                                    echo "<a href='user_complaint_view.html'>";
+                                    echo "<a href='user_complaint_view.php?cid=".$complaintid."'>";
                                     echo "<button type='button' class='btn btn-info'>View</button></a>";
                                             
                                     echo "</div>";
