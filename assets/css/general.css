@@ -254,9 +254,6 @@ td {
     height: 50px;
 }
 
-.piechart{
-    text-align: center;
-}
 
 .button {
     background-color: #0096FF;
@@ -357,6 +354,20 @@ td {
 }
 
 .backbutton {
+    background-color: #4169E1;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn .btn-default{
     background-color: #4169E1;
     border: none;
     color: white;
