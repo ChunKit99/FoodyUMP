@@ -55,7 +55,7 @@
     $sunday = date('Y-m-d', $sunday);
     //echo $monday;
     //echo $sunday;
-    
+
     //get current month start and end
     $df = new DateTime('first day of this month');
     $df = $df->format('Y-m-d');
@@ -68,14 +68,14 @@
     $query = "SELECT * FROM complaint WHERE `user_id` LIKE '$userid'  ";
     $resultList = mysqli_query($conn, $query);
 
-    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$monday' and '$sunday' ";
-    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$df' and '$dl' ";
-    $querystatus = "SELECT SUM(CASE WHEN complaint_status = 'In Investigation' THEN 1 ELSE 0 END) AS iv, SUM(CASE WHEN complaint_status = 'Resolved' THEN 1 ELSE 0 END) AS rs FROM complaint";
+    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE (complaint_date  between '$monday' and '$sunday') AND (user_id = '$userid') ";
+    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$df' and '$dl' AND (user_id = '$userid') ";
+    $querystatus = "SELECT SUM(CASE WHEN complaint_status = 'In Investigation' THEN 1 ELSE 0 END) AS iv, SUM(CASE WHEN complaint_status = 'Resolved' THEN 1 ELSE 0 END) AS rs FROM complaint WHERE (user_id = '$userid')";
     $resultweek = mysqli_query($conn, $queryweek);
     $resultmonth = mysqli_query($conn, $querymonth);
     $resultstatus = mysqli_query($conn, $querystatus);
 
-    
+
     $roww = mysqli_fetch_assoc($resultweek);
     $rowm = mysqli_fetch_assoc($resultmonth);
     $rows = mysqli_fetch_assoc($resultstatus);
@@ -109,7 +109,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Weekly(<?php echo "$monday until $sunday"?>)</th>
+                                        <th colspan="2">Weekly(<?php echo "$monday until $sunday" ?>)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,46 +118,46 @@
                                         <?php
                                         $temp = $roww['ld'];
                                         $totalw = $totalw + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Damaged Food</td>
                                         <?php
                                         $temp = $roww['df'];
                                         $totalw = $totalw + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Missing Food</td>
                                         <?php
                                         $temp = $roww['mf'];
                                         $totalw = $totalw + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Incorrectly Charged</td>
                                         <?php
                                         $temp = $roww['ic'];
                                         $totalw = $totalw + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Other</td>
                                         <?php
                                         $temp = $roww['ot'];
                                         $totalw = $totalw + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
                                         <?php
-                                         echo "<th>$totalw</th>";
-                                         ?>
+                                        echo "<th>$totalw</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -166,55 +166,55 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Monthly(<?php echo "$df until $dl"?>)</th>
+                                        <th colspan="2">Monthly(<?php echo "$df until $dl" ?>)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+                                    <tr>
                                         <td>Late Delivery</td>
                                         <?php
                                         $temp = $rowm['ld'];
                                         $totalm = $totalm + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Damaged Food</td>
                                         <?php
                                         $temp = $rowm['df'];
                                         $totalm = $totalm + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Missing Food</td>
                                         <?php
                                         $temp = $rowm['mf'];
                                         $totalm = $totalm + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Incorrectly Charged</td>
                                         <?php
                                         $temp = $rowm['ic'];
                                         $totalm = $totalm + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Other</td>
                                         <?php
                                         $temp = $rowm['ot'];
                                         $totalm = $totalm + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
                                         <?php
-                                         echo "<th>$totalm</th>";
-                                         ?>
+                                        echo "<th>$totalm</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -232,22 +232,22 @@
                                         <?php
                                         $temp = $rows['iv'];
                                         $totals = $totals + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Resolved</td>
                                         <?php
                                         $temp = $rows['rs'];
                                         $totals = $totals + $temp;
-                                         echo "<td>$temp</td>";
-                                         ?>
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
                                         <?php
-                                         echo "<th>$totals</th>";
-                                         ?>
+                                        echo "<th>$totals</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
