@@ -56,12 +56,14 @@
         // output data
         while ($row1 = mysqli_fetch_assoc($result)) {
             $complaintid = $row1["complaint_id"];
+            $orderid = $row1["order_id"];
             $typeSelected = $row1["complaint_type"];
             $status = $row1["complaint_status"];
+            $desc = $row1["complaint_desc"];
             $date = $row1["complaint_date"];
             $time = $row1["complaint_time"];
         }
-    }    
+    }
 
     ?>
     <div id="page-content">
@@ -73,34 +75,34 @@
                     Application Information
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="complaint_update.php?cid=<?php echo $complaintid ?>">
                         <!--User id-->
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
-                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>"?>
-                                
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>" ?>
+
                             </div>
                         </div>
                         <!--Name-->
                         <div class="form-group row">
                             <label for="staticName" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>" ?>
                             </div>
                         </div>
                         <!--date-->
                         <div class="form-group row">
                             <label for="staticDate" class="col-sm-2 col-form-label">Date</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value=<?php echo $date?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value=<?php echo $date ?>>
                             </div>
                         </div>
                         <!--time-->
                         <div class="form-group row">
                             <label for="staticTime" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticTime" value=<?php echo $time?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticTime" value=<?php echo $time ?>>
                             </div>
                         </div>
                         <!--choose Order ID-->
@@ -109,8 +111,8 @@
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                            <option selected disabled><?php echo $complaintid?></option>
+                                        <select class="custom-select mr-sm-2" id="chooseOrderID">
+                                            <option selected disabled><?php echo $orderid ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -122,13 +124,18 @@
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                            <option selected>Choose...</option>
-                                            <option value="1">Late Delivery</option>
-                                            <option value="2">Damaged Food</option>
-                                            <option value="3">Missing Food</option>
-                                            <option value="4">Incorrectly Charged</option>
-                                            <option value="5">Other(State in description)</option>
+                                        <select class="custom-select mr-sm-2" name="chooseType">
+                                            <?php
+                                            $optionTypes = array('Late Delivery', 'Damaged Food', 'Missing Food', 'Incorrectly Charged', 'Other');
+
+                                            foreach ($optionTypes as $optionType) {
+                                                if ($typeSelected == $optionType) {
+                                                    echo "<option selected value='$optionType'>$optionType</option>";
+                                                } else {
+                                                    echo "<option value='$optionType'>$optionType</option>";
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -138,12 +145,12 @@
                         <div class="form-group row">
                             <label for="descriptionComplaint" class="col-sm-2 col-form-label">Discription</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="discriptionComplaint"></textarea>
+                                <textarea class="form-control" rows="5" name="discriptionComplaint" maxlength='250' placeholder="Type in your message"><?php echo $desc ?></textarea>
                             </div>
                         </div>
                         <!--button save and cancel-->
                         <div class="btn-group fr" role="group" aria-label="submit back button">
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <input type="submit" class="btn btn-primary" value="Save"></input>
                             <a href="user_complaint.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
                         </div>
                     </form>

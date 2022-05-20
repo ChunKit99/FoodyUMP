@@ -56,6 +56,7 @@
     if (mysqli_num_rows($result) > 0) {
         // output data
         while ($row1 = mysqli_fetch_assoc($result)) {
+            $orderid = $row1["order_id"];
             $typeSelected = $row1["complaint_type"];
             $status = $row1["complaint_status"];
             $date = $row1["complaint_date"];
@@ -111,7 +112,7 @@
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
                                         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected disabled><?php echo $complaintid?></option>
+                                        <option selected disabled><?php echo $orderid?></option>
                                         </select>
                                     </div>
                                 </div>

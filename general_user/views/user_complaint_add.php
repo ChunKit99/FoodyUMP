@@ -66,14 +66,14 @@
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' name='staticUserID' value='$userid'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' name='staticUserID' value='$userid'>" ?>
                             </div>
                         </div>
                         <!--Name-->
                         <div class="form-group row">
                             <label for="staticName" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>" ?>
                             </div>
                         </div>
                         <!--date-->
@@ -98,15 +98,13 @@
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
                                         <select class="custom-select mr-sm-2" name="chooseOrderID">
-                                            <option>Choose...</option>
                                             <?php
-
                                             $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
 
                                             $orderlist = mysqli_query($conn, $sql);
-                                            
-                                            if(mysqli_num_rows($orderlist)>0){
-                                                while($row=mysqli_fetch_array($orderlist)){
+
+                                            if (mysqli_num_rows($orderlist) > 0) {
+                                                while ($row = mysqli_fetch_array($orderlist)) {
                                                     echo "<option value ='$row[0]'>$row[0]</option>";
                                                 }
                                             }
@@ -123,7 +121,6 @@
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
                                         <select class="custom-select mr-sm-2" name="chooseType">
-                                            <option >Choose...</option>
                                             <option value="Late Delivery">Late Delivery</option>
                                             <option value="Damaged Food">Damaged Food</option>
                                             <option value="Missing Food">Missing Food</option>
@@ -138,7 +135,7 @@
                         <div class="form-group row">
                             <label for="descriptionComplaint" class="col-sm-2 col-form-label">Discription</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" name="descriptionComplaint"></textarea>
+                                <textarea class="form-control" rows="5" name="descriptionComplaint" placeholder="Type in your message" maxlength='250'></textarea>
                             </div>
                         </div>
                         <!--button submikt and cancel-->
