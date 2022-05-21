@@ -9,9 +9,15 @@
 
 </head>
 <body>
+<?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+
+    ?>
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
-  <h2>Wellcome To Foody UMP</h2>
+  <h2>Welcome To Foody UMP</h2>
   <form id="login-form" onsubmit="validateUserType()">
     <p>
     <input type="text" id="username" name="username" placeholder="Username..." required><i class="validation"><span></span><span></span></i>
