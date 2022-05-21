@@ -95,11 +95,12 @@
                         </div>
                         <!--choose Order ID-->
                         <div class="form-group row">
-                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Choose Order ID</label>
+                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Order ID</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseOrderID">
+                                        <select class="custom-select mr-sm-2" name="chooseOrderID" required>
+                                            <option value="" disabled selected hidden>Choose Order ID</option>
                                             <?php
                                             $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
 
@@ -118,11 +119,12 @@
                         </div>
                         <!--choose type-->
                         <div class="form-group row">
-                            <label for="chooseType" class="col-sm-2 col-form-label">Choose Type</label>
+                            <label for="chooseType" class="col-sm-2 col-form-label">Type</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseType">
+                                        <select class="custom-select mr-sm-2" name="chooseType" required>
+                                            <option value="" disabled selected hidden>Choose Type of Complaint</option>
                                             <option value="Late Delivery">Late Delivery</option>
                                             <option value="Damaged Food">Damaged Food</option>
                                             <option value="Missing Food">Missing Food</option>
@@ -142,7 +144,7 @@
                         </div>
                         <!--button submikt and cancel-->
                         <div class="btn-group fr" role="group" aria-label="submit cancel button">
-                            <input type="submit" class="btn btn-primary" value="Submit"></input>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
                             <a href="user_complaint.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
                         </div>
                     </form>

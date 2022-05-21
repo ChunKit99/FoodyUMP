@@ -45,7 +45,7 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "ca2";
+    $userid = "1";
 
     //find user name base on userid
     $name = "Ahmed Bin Ali";
@@ -274,6 +274,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Complaint ID</th>
+                                <th scope="col">Order ID</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Date</th>
@@ -289,12 +290,14 @@
                                 while ($row1 = mysqli_fetch_assoc($resultList)) {
                                     $count++;
                                     $complaintid = $row1["complaint_id"];
+                                    $orderid = $row1["order_id"];
                                     $type = $row1["complaint_type"];
                                     $status = $row1["complaint_status"];
                                     $date = $row1["complaint_date"];
                                     $time = $row1["complaint_time"];
                                     echo "<tr>";
                                     echo "<th scope='row'>$complaintid</th>";
+                                    echo "<td>$orderid</td>";
                                     echo "<td>$type</td>";
                                     echo "<td>$status</td>";
                                     echo "<td>$date</td>";

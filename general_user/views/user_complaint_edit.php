@@ -47,7 +47,7 @@
     $path .= "/dbase.php";
     include_once($path);
     $complaintid = $_GET['cid'];
-    
+
     $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
@@ -77,6 +77,13 @@
                 </div>
                 <div class="card-body">
                     <form method="post" action="complaint_update.php?cid=<?php echo $complaintid ?>">
+                        <!--Complaint id-->
+                        <div class="form-group row">
+                            <label for="complaintID" class="col-sm-2 col-form-label">Complaint ID</label>
+                            <div class="col-sm-10">
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='complaintID' value='$complaintid'>" ?>
+                            </div>
+                        </div>
                         <!--User id-->
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
@@ -109,18 +116,12 @@
                         <div class="form-group row">
                             <label for="chooseOrderID" class="col-sm-2 col-form-label">Order ID</label>
                             <div class="col-sm-10">
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="chooseOrderID">
-                                            <option selected disabled><?php echo $orderid ?></option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='chooseOrderID' value='$orderid'>" ?>
                             </div>
                         </div>
                         <!--choose type-->
                         <div class="form-group row">
-                            <label for="chooseType" class="col-sm-2 col-form-label">Choose Type</label>
+                            <label for="chooseType" class="col-sm-2 col-form-label">Type</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
