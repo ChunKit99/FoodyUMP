@@ -12,7 +12,7 @@ function validateUserType() {
     } else if (selectedValue == "generalUser") {
         location.replace('/general_user/views/user_home.html');
     } else if (selectedValue == "rider") {
-        location.replace('/rider/views/rider_home.html');
+        location.replace('/rider/rider_home.html');
     }else{
         alert("Error");
     }

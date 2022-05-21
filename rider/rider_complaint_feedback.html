@@ -44,7 +44,6 @@
                 <a href="rider_home.html" class="">Home</a>
                 <a href="rider_order.html" class="">Order</a>
                 <a href="rider_report.html" class="">Report</a>
-                <a href="rider_record.html" class="">Record</a>
                 <a href="rider_complaint.html" class="" style="background: #11767ca6;">Complaint</a>
             </div>
         </div>
@@ -52,7 +51,7 @@
         <div id="page-content">
             <div class="page-main-content">
                 <!--title-->
-                <h1>View Complaint From User</h1>
+                <h1>Feedback to Complaint From User</h1>
                 <div class="card">
                     <div class="card-header">
                         Application Information
@@ -155,9 +154,9 @@
                                     <div class="form-row align-items-center">
                                         <div class="col-auto my-1">
                                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                                <option disabled>Choose...</option>
-                                                <option disabled value="1">In Investigation</option>
-                                                <option disabled selected value="2">Resolved</option>
+                                                <option >Choose...</option>
+                                                <option value="1">In Investigation</option>
+                                                <option selected value="2">Resolved</option>
                                             </select>
                                         </div>
                                     </div>
@@ -167,11 +166,12 @@
                             <div class="form-group row">
                                 <label for="descriptionComplaint" class="col-sm-2 col-form-label">Comment</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" rows="5" id="discriptionComplaint" readonly></textarea>
+                                    <textarea class="form-control" rows="5" id="discriptionComplaint"></textarea>
                                 </div>
                             </div>
                             <!--button back-->
-                            <div class="btn-group fr" role="group" aria-label="cancel button">
+                            <div class="btn-group fr" role="group" aria-label="submit cancel button">
+                                <button type="button" class="btn btn-primary">Submit</button>
                                 <a href="rider_complaint.html"><button type="button" class="btn btn-secondary">Back</button></a>
                             </div>
                              
