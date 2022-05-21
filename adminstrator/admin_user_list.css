@@ -32,7 +32,7 @@ td, th{
     border-bottom:1px solid #E3F1D5 ;
 }
 
-.a1{
+.button1{
     background-color: #04aab3;
     color: black;
     padding: 14px 25px;
@@ -41,8 +41,13 @@ td, th{
     display: inline-block;
     align-items: center;
     font-style: bold;
-    border-radius: 5px;
+    border-radius: 50px;
     position: relative;
+    width: 6%;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+
 }
 
 .div1{
