@@ -45,7 +45,9 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "ca1";
+    $userid = "ca2";
+
+    //find user name base on userid
     $name = "Ahmed Bin Ali";
 
     //get current week start and end
@@ -94,12 +96,10 @@
                 <h1>User Complaint List</h1>
             </div>
             <div class="fr">
-                <a href="user_complaint_add.php">
-                    <button type="button" class="btn btn-primary">New Complaint</button>
-                </a>
-                <a href="user_complaint_report.php">
-                    <button type="button" class="btn btn-info">View Report</button>
-                </a>
+                <?php
+                echo "<a href='user_complaint_add.php?id=" . $userid . "'><button type='button' class='btn btn-primary'>New Complaint</button></a>";
+                echo "<a href='user_complaint_report.php?id=" . $userid . "'><button type='button' class='btn btn-info'>View Report</button></a>";
+                ?>
             </div>
             <!--table with summary-->
             <div class="container-width fl">
@@ -117,6 +117,7 @@
                                         <td>Late Delivery</td>
                                         <?php
                                         $temp = $roww['ld'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalw = $totalw + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -125,6 +126,7 @@
                                         <td>Damaged Food</td>
                                         <?php
                                         $temp = $roww['df'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalw = $totalw + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -133,6 +135,7 @@
                                         <td>Missing Food</td>
                                         <?php
                                         $temp = $roww['mf'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalw = $totalw + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -141,6 +144,7 @@
                                         <td>Incorrectly Charged</td>
                                         <?php
                                         $temp = $roww['ic'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalw = $totalw + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -149,6 +153,7 @@
                                         <td>Other</td>
                                         <?php
                                         $temp = $roww['ot'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalw = $totalw + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -174,6 +179,7 @@
                                         <td>Late Delivery</td>
                                         <?php
                                         $temp = $rowm['ld'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalm = $totalm + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -182,6 +188,7 @@
                                         <td>Damaged Food</td>
                                         <?php
                                         $temp = $rowm['df'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalm = $totalm + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -190,6 +197,7 @@
                                         <td>Missing Food</td>
                                         <?php
                                         $temp = $rowm['mf'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalm = $totalm + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -198,6 +206,7 @@
                                         <td>Incorrectly Charged</td>
                                         <?php
                                         $temp = $rowm['ic'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalm = $totalm + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -206,6 +215,7 @@
                                         <td>Other</td>
                                         <?php
                                         $temp = $rowm['ot'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totalm = $totalm + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -231,6 +241,7 @@
                                         <td>In Investigation</td>
                                         <?php
                                         $temp = $rows['iv'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totals = $totals + $temp;
                                         echo "<td>$temp</td>";
                                         ?>
@@ -239,6 +250,7 @@
                                         <td>Resolved</td>
                                         <?php
                                         $temp = $rows['rs'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
                                         $totals = $totals + $temp;
                                         echo "<td>$temp</td>";
                                         ?>

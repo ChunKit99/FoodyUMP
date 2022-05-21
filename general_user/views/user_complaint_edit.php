@@ -47,15 +47,14 @@
     $path .= "/dbase.php";
     include_once($path);
     $complaintid = $_GET['cid'];
-    $userid = "ca1";
-    $name = "Ahmed Bin Ali";
-
+    
     $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
         // output data
         while ($row1 = mysqli_fetch_assoc($result)) {
             $complaintid = $row1["complaint_id"];
+            $userid = $row1["user_id"];
             $orderid = $row1["order_id"];
             $typeSelected = $row1["complaint_type"];
             $status = $row1["complaint_status"];
@@ -64,6 +63,8 @@
             $time = $row1["complaint_time"];
         }
     }
+    //find name user base on userid
+    $name = "Ahmed Bin Ali";
 
     ?>
     <div id="page-content">
@@ -81,7 +82,6 @@
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
                                 <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>" ?>
-
                             </div>
                         </div>
                         <!--Name-->

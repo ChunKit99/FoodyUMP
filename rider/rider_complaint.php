@@ -46,6 +46,9 @@
     include_once($path);
     $riderid = "1";
 
+    //get rider name base on rider id
+    $ridername = "Abu";
+
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));
     $sunday = strtotime('+6 days', $monday);
@@ -92,9 +95,9 @@
                 <h1>Rider Complaint List</h1>
             </div>
             <div class="fr">
-                <a href="rider_complaint_report.php">
-                    <button type="button" class="btn btn-info">View Report</button>
-                </a>
+                <?php
+                echo "<a href='rider_complaint_report.php?id=" . $riderid . "'><button type='button' class='btn btn-info'>View Report</button></a>";
+                ?>
             </div>
             <!--table with summary-->
             <div class="container-width fl">
@@ -104,29 +107,60 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Weekly</th>
+                                        <th colspan="2">Weekly(<?php echo "$monday until $sunday" ?>)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Late Delivery</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['ld'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalw = $totalw + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Damaged Food</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['df'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalw = $totalw + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Missing Food</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['mf'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalw = $totalw + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Incorrectly Charged</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['ic'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalw = $totalw + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Other</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $roww['ot'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalw = $totalw + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <?php
+                                        echo "<th>$totalw</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -135,29 +169,60 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Monthly</th>
+                                        <th colspan="2">Monthly(<?php echo "$df until $dl" ?>)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Late Delivery</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rowm['ld'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalm = $totalm + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Damaged Food</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rowm['df'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalm = $totalm + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Missing Food</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rowm['mf'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalm = $totalm + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Incorrectly Charged</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rowm['ic'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalm = $totalm + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Other</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rowm['ot'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totalm = $totalm + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <?php
+                                        echo "<th>$totalm</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -166,17 +231,33 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Status</th>
+                                        <th colspan="2">Status(Overall)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>In Investigation</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rows['iv'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totals = $totals + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
                                     </tr>
                                     <tr>
                                         <td>Resolved</td>
-                                        <td>12</td>
+                                        <?php
+                                        $temp = $rows['rs'];
+                                        ($temp <= 0) ? $temp = 0 : $temp;
+                                        $totals = $totals + $temp;
+                                        echo "<td>$temp</td>";
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <?php
+                                        echo "<th>$totals</th>";
+                                        ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -199,39 +280,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Late Delivery</td>
-                                <td>In Investigation</td>
-                                <td>2022-04-19</td>
-                                <td>20:00:00</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <div class="btn-group" role="group">
-                                            <a href="rider_complaint_feedback.html"><button type="button" class="btn btn-primary">Feedback</button></a>
-                                            <a href="rider_complaint_view.html"><button type="button" class="btn btn-info">View</button></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Late Delivery</td>
-                                <td>Resolved</td>
-                                <td>2022-04-18</td>
-                                <td>12:00:00</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-primary">Feedback</button>
-                                        <button type="button" class="btn btn-info">View</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <?php
+                            $count = 0;
+                            if (mysqli_num_rows($resultList) > 0) {
+                                // output data of each row
+                                while ($row1 = mysqli_fetch_assoc($resultList)) {
+                                    $count++;
+                                    $complaintid = $row1["complaint_id"];
+                                    $type = $row1["complaint_type"];
+                                    $status = $row1["complaint_status"];
+                                    $date = $row1["complaint_date"];
+                                    $time = $row1["complaint_time"];
+                                    echo "<tr>";
+                                    echo "<th scope='row'>$complaintid</th>";
+                                    echo "<td>$type</td>";
+                                    echo "<td>$status</td>";
+                                    echo "<td>$date</td>";
+                                    echo "<td>$time</td>";
+                                    echo "<td>";
+                                    echo "<div class='btn-group' role='group'>";
+                                    echo "<a href='rider_complaint_feedback.php?cid=" . $complaintid . "'><button type='button' class='btn btn-primary'>Feedback</button></a>";
+                            ?>
+                                    <?php
+                                    echo "<a href='rider_complaint_view.php?cid=" . $complaintid . "'>";
+                                    echo "<button type='button' class='btn btn-info'>View</button></a>";
+                                    ?>
                 </div>
+                </td>
+                </tr>
+        <?php
+                                }
+                            }
+        ?>
+        </tbody>
+        </table>
             </div>
         </div>
+    </div>
     </div>
     </div>
 </body>

@@ -45,7 +45,9 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "ca1";
+    $userid = $_GET['id'];
+
+    //get user name base on userid
     $name = "Ahmed Bin Ali";
 
     //get current week start and end
@@ -63,9 +65,6 @@
     $dl = new DateTime('last day of this month');
     $dl = $dl->format('Y-m-d');
     //echo $dl;
-
-    $query = "SELECT * FROM complaint WHERE `user_id` LIKE '$userid'  ";
-    $resultList = mysqli_query($conn, $query);
 
     $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$monday' and '$sunday' AND (user_id = '$userid') ";
     $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$df' and '$dl' AND (user_id = '$userid')";
@@ -95,14 +94,14 @@
                     <!--Graph-->
                     <script src="/assets/js/complaint_report_pie.js"></script>
                     <div class="col">
-                            <canvas id="weekly" style="width:100%;max-width:600px"></canvas>
-                        </div>
-                        <div class="col">
-                            <canvas id="monthly" style="width:100%;max-width:600px"></canvas>
-                        </div>
-                        <div class="col">
-                            <canvas id="overall" style="width:100%;max-width:600px"></canvas>
-                        </div>
+                        <canvas id="weekly" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="monthly" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="overall" style="width:100%;max-width:600px"></canvas>
+                    </div>
 
                     <script>
                         var xValues = ["Late Delivery", "Damaged Food", "Missing Food", "Incorrectly Charged", "Other"];

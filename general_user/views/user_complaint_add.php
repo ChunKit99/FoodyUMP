@@ -46,7 +46,9 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "ca1";
+    $userid = $_GET['id'];
+
+    //find user name base on user id
     $name = "Ahmed Bin Ali";
     ?>
 

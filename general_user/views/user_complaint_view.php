@@ -48,8 +48,6 @@
     $path .= "/dbase.php";
     include_once($path);
     $complaintid = $_GET['cid'];
-    $userid = "ca1";
-    $name = "Ahmed Bin Ali";
 
     $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
     $result = mysqli_query($conn, $query);
@@ -57,6 +55,7 @@
         // output data
         while ($row1 = mysqli_fetch_assoc($result)) {
             $orderid = $row1["order_id"];
+            $userid = $row1["user_id"];
             $typeSelected = $row1["complaint_type"];
             $status = $row1["complaint_status"];
             $date = $row1["complaint_date"];
@@ -65,6 +64,8 @@
             $comment = $row1["complaint_comment"];
         }
     }
+    //find name user base on userid
+    $name = "Ahmed Bin Ali";
 
     ?>
     <div id="page-content">
@@ -153,9 +154,9 @@
                         </div>
                         <!--comment-->
                         <div class="form-group row">
-                            <label for="descriptionComplaint" class="col-sm-2 col-form-label">Comment</label>
+                            <label for="commentComplaint" class="col-sm-2 col-form-label">Comment</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="discriptionComplaint" readonly><?php echo $comment?></textarea>
+                                <textarea class="form-control" rows="5" id="commentComplaint" readonly><?php echo $comment?></textarea>
                             </div>
                         </div>
                         <!--button back-->
