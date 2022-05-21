@@ -5,12 +5,12 @@
 
 .res_profile {
     width:50%;
-    margin-left: 600px;
+    margin-left: 500px;
     margin-right: auto;
 }
 
 .two_button {
-    margin-left: 500px;
+    margin-left: 400px;
 }
 .res_input {
     width:80%;
@@ -39,12 +39,12 @@ th,td{
 }
 
 
-.btn_edit, .btn_delete, .btn_add, .btn_publish, .btn_cancel, .btn_update{
+.btn_edit, .btn_delete, .btn_add, .btn_publish, .btn_cancel, .btn_update, .btn_addCatagory,.btn_addFood{
     width: 10%;
     height: 50px;
     margin-top: 50px;
-    margin-right: 120px;
-    margin-left: 120px;
+    margin-right: 100px;
+    margin-left: 100px;
     display: inline;
     text-align: center;
 }
@@ -65,13 +65,17 @@ sup {
 /*addFood.html*/
 .newCatagory th, td{
     text-align: left;
-    width:10%;
 }
 
 .newCatagory {
-    width:60%;
-    margin-left: auto;
+    width:100%;
+    margin-left: 550px;
     margin-right: auto;
+}
+
+#food_catagory{
+    width:20%;
+    height: 30px;
 }
 
 .foodClass{
@@ -105,4 +109,20 @@ sup {
 
 .three_button{
     margin-left: 200px;
+}
+
+.four_button {
+    margin-left:100px;
+}
+
+/*restaurant_report*/
+.calculateReport{
+    margin-left: 500px;
+    margin-right: auto;
+    width:50%;
+    
+}
+
+.calculateReport th,td{
+    text-align: left;
 }

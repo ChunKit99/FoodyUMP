@@ -28,7 +28,7 @@
         <div id="nav-container">
             <div class="container-width nav-container">
                 <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="">Food</a>
+                <a href="restaurant_food.html" class="" style="background: #11767ca6;">Food</a>
                 <a href="restaurant_order.html" class="">Order</a>
                 <a href="restaurant_report.html" class="">Report</a>
             </div>
@@ -37,56 +37,13 @@
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>Order Details</h1>
+                <h1>Add Catagory / Food</h1>
 
-                <form action="">
-                <table class="orderDetail">
-                    <tr>
-                        <th>Order Number:</th>
-                    </tr>
-
-                        <tr>
-                           <td>AAAA11111X</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Food Order:</th>
-                            <th>Quantity</th>
-                        </tr>
-
-                        <tr>
-                            <td>Nasi Ayam</td>
-                            <td>2</td>
-                        </tr>
-
-                        <tr>
-                            <th>Deliver Address:</th>
-                        </tr>
-
-                        <tr>
-                            <td>40,JALAN DAMAI,TAMAN DAMAI,PEKAN,PAHANG.</td>
-                        </tr>
-
-                    <tr>
-                        <th>Status:</th>
-                    </tr>
-
-                    <tr>
-                        <td><select name="f_Status" id="food_status">
-                            <option value="received">Ordered</option>
-                            <option value="prepared">Prepared</option>
-                        </td>
-                    </tr>
-
-                </table>
-                </form>
-
-                <div class="three_button">
-                <button class="btn_update" onclick="orderUpdate()">Update</button>
-                <button class="btn_cancel" onclick="document.location='restaurant_order.html'">Cancel</button>
-                <button class="btn_delete" onclick="orderDelete()">Delete</button>
-                </div>
-
+            <div class="two_button">
+                <button class="btn_addCatagory" onclick="document.location='addCatagory.html'">Catagory</button>
+                <button class="btn_addFood" onclick="document.location='addFood.html'">Food</button>
+            </div>
+            
             </div>
         </div>
 
