@@ -16,7 +16,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 

@@ -16,7 +16,7 @@
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
     <script src="/assets/js/complaint.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -99,7 +99,7 @@
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseOrderID" required>
+                                        <select class="custom-select mr-sm-2" id="chooseOrderID" name="chooseOrderID" required>
                                             <option value="" disabled selected hidden>Choose Order ID</option>
                                             <?php
                                             $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
@@ -110,6 +110,8 @@
                                                 while ($row = mysqli_fetch_array($orderlist)) {
                                                     echo "<option value ='$row[0]'>$row[0]</option>";
                                                 }
+                                            } else {
+                                                echo "<option value ='' disabled>No results found</option>";
                                             }
                                             ?>
                                         </select>

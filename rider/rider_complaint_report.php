@@ -15,7 +15,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -83,7 +83,17 @@
         <div class="page-main-content">
             <!--title-->
             <h1>Report of Complaint</h1>
-            <a type="button" class="btn btn-info" href="rider_complaint.php">Back</a>
+            <div class="btn-group">
+                <a type="button" class="btn btn-info" href="user_complaint.php">Back</a>
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#weekly">Weekly</a>
+                    <a class="dropdown-item" href="#monthly">Monthly</a>
+                    <a class="dropdown-item" href="#overall">Overall</a>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     Graph of Total Number Complaint
