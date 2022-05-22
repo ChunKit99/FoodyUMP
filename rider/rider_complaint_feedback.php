@@ -47,14 +47,13 @@
     include_once($path);
     $complaintid = $_GET['cid'];
 
-    $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
+    $query = "SELECT complaint.*, orderlist.user_id FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE complaint_id = '$complaintid'; ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
         // output data
         while ($row1 = mysqli_fetch_assoc($result)) {
             $complaintid = $row1["complaint_id"];
             $userid = $row1["user_id"];
-            $riderid = $row1["rider_id"];
             $orderid = $row1["order_id"];
             $typeSelected = $row1["complaint_type"];
             $status = $row1["complaint_status"];

@@ -49,7 +49,7 @@
     include_once($path);
     $complaintid = $_GET['cid'];
 
-    $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
+    $query = "SELECT complaint.*, orderlist.user_id FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE complaint_id = '$complaintid'; ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
         // output data

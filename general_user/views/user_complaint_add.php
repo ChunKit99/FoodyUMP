@@ -102,7 +102,7 @@
                                         <select class="custom-select mr-sm-2" id="chooseOrderID" name="chooseOrderID" required>
                                             <option value="" disabled selected hidden>Choose Order ID</option>
                                             <?php
-                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
+                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` = '$userid' ";
 
                                             $orderlist = mysqli_query($conn, $sql);
 
