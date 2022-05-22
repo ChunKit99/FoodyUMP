@@ -49,7 +49,17 @@
     $userid = $_GET['id'];
 
     //find user name base on user id
-    $name = "Ahmed Bin Ali";
+
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $name = $row['name'];
+        }
+    } else {
+        $name = "Undefine name, an error on database";
+    }
+   
     ?>
 
 

@@ -64,7 +64,15 @@
         }
     }
     //search user name baso no userid
-    $nameuser = "Ahmed Bin Ali";
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $nameuser = $row['name'];
+        }
+    } else {
+        $nameuser = "Undefine name, an error on database";
+    }
 
     ?>
     <div id="page-content">

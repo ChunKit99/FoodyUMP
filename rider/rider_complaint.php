@@ -44,10 +44,18 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $riderid = "1";
+    $riderid = "5";
 
     //get rider name base on rider id
-    $ridername = "Abu";
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$riderid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $ridername = $row['name'];
+        }
+    } else {
+        $ridername = "Undefine name, an error on database";
+    }
 
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));

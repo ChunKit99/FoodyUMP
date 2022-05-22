@@ -48,7 +48,15 @@
     $userid = "1";
 
     //find user name base on userid
-    $name = "Ahmed Bin Ali";
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $name = $row['name'];
+        }
+    } else {
+        $name = "Undefine name, an error on database";
+    }
 
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));
