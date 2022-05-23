@@ -1,57 +1,66 @@
-table{
-    border-spacing: 1; 
-    border-collapse: collapse; 
-    background:white;
-    border-radius:6px;
-    overflow:hidden;
-    max-width:1500px; 
-    width:100%;
-    margin:0 auto;
-    position:relative;
+table {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 
-th{
+th {
     font-style: bold;
     text-align: left;
 }
 
-td, th{
+td,
+th {
     position: relative;
     padding-left: 8px;
-    
 }
 
-.tr1{ 
-    height:60px;
-    background:#04aab3;
-    font-size:16px;
+.tr1 {
+    height: 60px;
+    background: #04aab3;
+    font-size: 16px;
 }
 
-.tr2{ 
-    height:48px; 
-    border-bottom:1px solid #E3F1D5 ;
+.tr2 {
+    height: 48px;
+    border-bottom: 1px solid #E3F1D5;
 }
 
-.button1{
+.button1 {
     background-color: #04aab3;
-    color: black;
+    color: white;
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     align-items: center;
     font-style: bold;
-    border-radius: 50px;
+    border-radius: 5px;
     position: relative;
     width: 6%;
     margin-top: 10px;
     margin-right: 20px;
     margin-left: 20px;
-
+    border: none;
 }
 
-.div1{
-    text-align: center;   
-    padding-top: 40px; 
-    position: relative; 
+.div1 {
+    text-align: center;
+    padding-top: 40px;
+    position: relative;
+}
+
+.text1 {
+    color: white;
+}
+
+.h1 {
+    font-style: bold;
+    font-family: cursive;
 }

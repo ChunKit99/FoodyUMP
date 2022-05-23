@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="admin_add_user.css">
+    <script src="/assets/js/admin.js"></script>
+    <title>Add User Foody UMP</title>
+</head>
+
+<!--body-->
+
+<body>
+    <div id="logo">
+        <div class="container-width">
+            <div class="fl logo">
+                <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
+            </div>
+            <div class="topright-container fr">
+                <p>Username</p>
+                <button class="logout" onclick="logout()"> Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="nav-container">
+        <div class="container-width nav-container">
+            <a href="admin_home.html" class="">Home</a>
+            <a href="admin_user_list.html" class="">User List</a>
+            <a href="admin_report.html" class="">Report</a>
+        </div>
+    </div>
+
+    <?php
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            $path .= "/dbase.php";
+            include_once($path);
+            ?>
+
+        <!--content-->
+        <div id="page-content">
+            <div class="page-main-content">
+
+                <h1 class="h2">Add User</h1>
+
+                <form method="post" action="admin_insert_user.php">
+                    <table>
+
+                        <tr>
+                            <td><label for="name">Name: </label></td>
+                            <td><input type="text" id="name" name="name" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="userEmail">Email:</label></td>
+                            <td><input type="text" id="userEmail" name="userEmail" required></td>
+
+                        </tr>
+
+                        <tr>
+                            <td><label for="contactNum">Phone Number:</label></td>
+                            <td><input type="text" id="contactNum" name="contactNum" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="state">State:</label></td>
+                            <td><input type="text" id="state" name="state" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="district">District:</label></td>
+                            <td><input type="text" id="district" name="district" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="postalCode">Postal Code:</label></td>
+                            <td><input type="text" id="postalCode" name="postalCode" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="detailsAdd">Details Address:</label></td>
+                            <td><input type="text" id="detailsAdd" name="detailsAdd" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="userName">Username:</label></td>
+                            <td><input type="text" id="userName" name="userName" required></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="password">Password:</label></td>
+                            <td><input type="text" id="password" name="password" required></td>
+                        </tr>
+
+
+                        <tr>
+                            <td><label for="userType">User Type:</label></td>
+                            <td>
+                                <select name="userType" id="userType">
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Restaurant Owner">Restaurant Owner</option> 
+                                    <option value="General User">General User</option>
+                                    <option value="Rider">Rider</option>
+                            </td>
+                            </select>
+                        </tr>
+
+                        <tr>
+                            <td><label for="gender">Gender:</label></td>
+                            <td>
+                            <select name="gender" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option> 
+                            </td>
+                            </select>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="div1 ">
+                        <input type="submit" class="button2" value="Add"></input>
+                        <a href="admin_user_list.php"><button type="button" class="button2">Cancel</button></a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+</body>
+
+<!--footer-->
+<div id="footer-container">
+    <div class="footer-content">
+        <div class="footer-links-a" style="margin-top: 20px"></div>
+        <div class="copyright-info">
+            <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
+        </div>
+
+    </div>
+</div>
+
+</html>

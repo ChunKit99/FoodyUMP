@@ -1,15 +1,14 @@
-form{
-    margin-left: 40%;
+form {
+    width: 100%;
 }
 
-
-.h2{
+.h2 {
     font-family: cursive;
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
 }
 
-.button2{
+.button2 {
     background-color: #04aab3;
     color: black;
     padding: 14px 25px;
@@ -18,22 +17,21 @@ form{
     display: inline-block;
     align-items: center;
     font-style: bold;
-    border-radius: 50px;
+    border-radius: 10px;
     position: relative;
     width: 6%;
     margin-top: 10px;
     margin-right: 20px;
     margin-left: 20px;
-
 }
 
-.div1{
-    text-align: center;   
-    padding-top: 40px; 
-    position: relative; 
+.div1 {
+    text-align: center;
+    padding-top: 40px;
+    position: relative;
 }
 
-.div2{ 
-    padding-top: 40px; 
-    position: relative; 
+table {
+    margin-left: auto;
+    margin-right: auto;
 }
