@@ -15,7 +15,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -66,9 +66,9 @@
     $dl = $dl->format('Y-m-d');
     //echo $dl;
 
-    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$monday' and '$sunday' AND (user_id = '$userid') ";
-    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$df' and '$dl' AND (user_id = '$userid')";
-    $querytotal = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint Where (user_id = '$userid')";
+    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (complaint_date  between '$monday' and '$sunday') AND (orderlist.user_id = '$userid'); ";
+    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (complaint_date  between '$df' and '$dl') AND (orderlist.user_id = '$userid'); ";
+    $querytotal = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (orderlist.user_id = '$userid'); ";
     $resultweek = mysqli_query($conn, $queryweek);
     $resultmonth = mysqli_query($conn, $querymonth);
     $resulttotal = mysqli_query($conn, $querytotal);
@@ -82,15 +82,25 @@
 
     <!--content-->
     <div id="page-content">
-        <div class="page-main-content">
+        <div class="page-main-content ">
             <!--title-->
             <h1>Report of Complaint</h1>
-            <a type="button" class="btn btn-info" href="user_complaint.php">Back</a>
-            <div class="card">
+            <div class="btn-group">
+                <a type="button" class="btn btn-info" href="user_complaint.php">Back</a>
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#weekly">Weekly</a>
+                    <a class="dropdown-item" href="#monthly">Monthly</a>
+                    <a class="dropdown-item" href="#overall">Overall</a>
+                </div>
+            </div>
+            <div class="card ">
                 <div class="card-header">
                     Graph of Total Number Complaint
                 </div>
-                <div class="card-body">
+                <div class="card-body ">
                     <!--Graph-->
                     <script src="/assets/js/complaint_report_pie.js"></script>
                     <div class="col">

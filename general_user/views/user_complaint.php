@@ -15,7 +15,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -45,10 +45,18 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "ca2";
+    $userid = "1";
 
     //find user name base on userid
-    $name = "Ahmed Bin Ali";
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $name = $row['name'];
+        }
+    } else {
+        $name = "Undefine name, an error on database";
+    }
 
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));
@@ -67,12 +75,12 @@
     //echo $dl;
 
 
-    $query = "SELECT * FROM complaint WHERE `user_id` LIKE '$userid'  ";
+    $query = "SELECT * FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE orderlist.user_id = '$userid' ORDER BY `complaint_id` ASC;";
     $resultList = mysqli_query($conn, $query);
 
-    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE (complaint_date  between '$monday' and '$sunday') AND (user_id = '$userid') ";
-    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint WHERE complaint_date  between '$df' and '$dl' AND (user_id = '$userid') ";
-    $querystatus = "SELECT SUM(CASE WHEN complaint_status = 'In Investigation' THEN 1 ELSE 0 END) AS iv, SUM(CASE WHEN complaint_status = 'Resolved' THEN 1 ELSE 0 END) AS rs FROM complaint WHERE (user_id = '$userid')";
+    $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (complaint_date  between '$monday' and '$sunday') AND (orderlist.user_id = '$userid'); ";
+    $querymonth = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (complaint_date  between '$df' and '$dl') AND (orderlist.user_id = '$userid');";
+    $querystatus = "SELECT SUM(CASE WHEN complaint_status = 'In Investigation' THEN 1 ELSE 0 END) AS iv, SUM(CASE WHEN complaint_status = 'Resolved' THEN 1 ELSE 0 END) AS rs FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (orderlist.user_id = '$userid');";
     $resultweek = mysqli_query($conn, $queryweek);
     $resultmonth = mysqli_query($conn, $querymonth);
     $resultstatus = mysqli_query($conn, $querystatus);
@@ -274,6 +282,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Complaint ID</th>
+                                <th scope="col">Order ID</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Date</th>
@@ -289,12 +298,14 @@
                                 while ($row1 = mysqli_fetch_assoc($resultList)) {
                                     $count++;
                                     $complaintid = $row1["complaint_id"];
+                                    $orderid = $row1["order_id"];
                                     $type = $row1["complaint_type"];
                                     $status = $row1["complaint_status"];
                                     $date = $row1["complaint_date"];
                                     $time = $row1["complaint_time"];
                                     echo "<tr>";
                                     echo "<th scope='row'>$complaintid</th>";
+                                    echo "<td>$orderid</td>";
                                     echo "<td>$type</td>";
                                     echo "<td>$status</td>";
                                     echo "<td>$date</td>";
