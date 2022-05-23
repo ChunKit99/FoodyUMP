@@ -16,7 +16,7 @@
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
     <script src="/assets/js/complaint.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -49,7 +49,17 @@
     $userid = $_GET['id'];
 
     //find user name base on user id
-    $name = "Ahmed Bin Ali";
+
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $name = $row['name'];
+        }
+    } else {
+        $name = "Undefine name, an error on database";
+    }
+   
     ?>
 
 
@@ -95,13 +105,14 @@
                         </div>
                         <!--choose Order ID-->
                         <div class="form-group row">
-                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Choose Order ID</label>
+                            <label for="chooseOrderID" class="col-sm-2 col-form-label">Order ID</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseOrderID">
+                                        <select class="custom-select mr-sm-2" id="chooseOrderID" name="chooseOrderID" required>
+                                            <option value="" disabled selected hidden>Choose Order ID</option>
                                             <?php
-                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` LIKE '$userid' ";
+                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` = '$userid' ";
 
                                             $orderlist = mysqli_query($conn, $sql);
 
@@ -109,6 +120,8 @@
                                                 while ($row = mysqli_fetch_array($orderlist)) {
                                                     echo "<option value ='$row[0]'>$row[0]</option>";
                                                 }
+                                            } else {
+                                                echo "<option value ='' disabled>No results found</option>";
                                             }
                                             ?>
                                         </select>
@@ -118,11 +131,12 @@
                         </div>
                         <!--choose type-->
                         <div class="form-group row">
-                            <label for="chooseType" class="col-sm-2 col-form-label">Choose Type</label>
+                            <label for="chooseType" class="col-sm-2 col-form-label">Type</label>
                             <div class="col-sm-10">
                                 <div class="form-row align-items-center">
                                     <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" name="chooseType">
+                                        <select class="custom-select mr-sm-2" name="chooseType" required>
+                                            <option value="" disabled selected hidden>Choose Type of Complaint</option>
                                             <option value="Late Delivery">Late Delivery</option>
                                             <option value="Damaged Food">Damaged Food</option>
                                             <option value="Missing Food">Missing Food</option>
@@ -142,7 +156,7 @@
                         </div>
                         <!--button submikt and cancel-->
                         <div class="btn-group fr" role="group" aria-label="submit cancel button">
-                            <input type="submit" class="btn btn-primary" value="Submit"></input>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Submit"></input>
                             <a href="user_complaint.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
                         </div>
                     </form>

@@ -16,7 +16,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Foody UMP</title>
+    <title>Complaint</title>
 </head>
 <!--body-->
 
@@ -49,7 +49,7 @@
     include_once($path);
     $complaintid = $_GET['cid'];
 
-    $query = "SELECT * FROM complaint WHERE `complaint_id` = '$complaintid'  ";
+    $query = "SELECT complaint.*, orderlist.user_id FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE complaint_id = '$complaintid'; ";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
         // output data
@@ -64,8 +64,17 @@
             $comment = $row1["complaint_comment"];
         }
     }
-    //find name user base on userid
-    $name = "Ahmed Bin Ali";
+    //find user name base on user id
+
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $name = $row['name'];
+        }
+    } else {
+        $name = "Undefine name, an error on database";
+    }
 
     ?>
     <div id="page-content">
@@ -78,6 +87,13 @@
                 </div>
                 <div class="card-body">
                     <form>
+                        <!--Complaint id-->
+                        <div class="form-group row">
+                            <label for="complaintID" class="col-sm-2 col-form-label">Complaint ID</label>
+                            <div class="col-sm-10">
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='complaintID' value='$complaintid'>" ?>
+                            </div>
+                        </div>
                         <!--User id-->
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
@@ -110,26 +126,14 @@
                         <div class="form-group row">
                             <label for="chooseOrderID" class="col-sm-2 col-form-label">Order ID</label>
                             <div class="col-sm-10">
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected disabled><?php echo $orderid?></option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='chooseOrderID' value='$orderid'>" ?>
                             </div>
                         </div>
                         <!--choose type-->
                         <div class="form-group row">
                             <label for="chooseType" class="col-sm-2 col-form-label">Type</label>
                             <div class="col-sm-10">
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected disabled><?php echo $typeSelected?></option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='chooseType' value='$typeSelected'>" ?>
                             </div>
                         </div>
                         <!--description-->
@@ -141,15 +145,9 @@
                         </div>
                         <!--status complaint-->
                         <div class="form-group row">
-                            <label for="chooseType" class="col-sm-2 col-form-label">Status Complaint</label>
+                            <label for="statusComplaint" class="col-sm-2 col-form-label">Status Complaint</label>
                             <div class="col-sm-10">
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected disabled><?php echo $status?></option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='statusComplaint' value='$status'>" ?>
                             </div>
                         </div>
                         <!--comment-->
