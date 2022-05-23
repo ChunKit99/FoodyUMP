@@ -44,7 +44,7 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $riderid = "5";
+    $riderid = "2";
 
     //get rider name base on rider id
     $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$riderid' ";
