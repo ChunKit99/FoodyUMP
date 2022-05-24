@@ -27,10 +27,10 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="">Food</a>
-                <a href="restaurant_order.html" class="" style="background: #11767ca6;">Order</a>
-                <a href="restaurant_report.html" class="">Report</a>
+                <a href="restaurant_profile.php" class="" >Home</a>
+                <a href="restaurant_food.php" class="">Food</a>
+                <a href="restaurant_order.php" class="" style="background: #11767ca6;">Order</a>
+                <a href="restaurant_report.php" class="">Report</a>
             </div>
         </div>
 

@@ -27,12 +27,57 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="" style="background: #11767ca6;">Food</a>
-                <a href="restaurant_order.html" class="">Order</a>
-                <a href="restaurant_report.html" class="">Report</a>
+                <a href="restaurant_profile.php" class="" >Home</a>
+                <a href="restaurant_food.php" class="" style="background: #11767ca6;">Food</a>
+                <a href="restaurant_order.php" class="">Order</a>
+                <a href="restaurant_report.php" class="">Report</a>
             </div>
         </div>
+
+    <!--to include the dbase.php-->
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = "3";
+    $restaurantid="1";
+    $menu="1";
+
+    //find menuCatagory using menu id
+
+    $menuCatagory = "SELECT * FROM `menucategory` WHERE `menu_id` = '$menu' ";
+    $resultname = mysqli_query($conn, $menuCatagory);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $menuCategoryId = $row["menu_category_id"];
+            $menuId = $row["menu_id"];
+            $name = $row['name'];//ayam,mee,nasi
+        }
+    } else {
+        $name = "Undefine catagory, an error on database";
+    }   
+    ?>
+
+
+<?php
+//find menuItem using menuCatagory
+$menuItem = "SELECT * FROM `menuitem` WHERE `menu_category_id` = '$menuCategoryId' ";
+$result = mysqli_query($conn, $menuCatagory);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_array($result)) {
+        $menuItemId = $row["menu_item_id"];        
+        $menuCategoryId = $row["menu_category_id"];
+        $name = $row['name'];
+        $price = $row['price'];
+        $photo = $row['photo'];
+        $description = $row['description'];
+        $status_available = $row['status_available'];
+    }
+} else {
+    $name = "Undefine name, an error on database";
+}   
+?>
+    
 
         <!--content-->
         <div id="page-content">
@@ -41,7 +86,7 @@
 
                 <form action="" method="post">
                 
-                    <h2>Mee</h2>
+                    <h2><?php echo "<input type='text' name='name' value='$name' class='res_input'>" ?></h2>
                     <table id="cat_mee">
                     <tr>
                         <th>Picture</th>
