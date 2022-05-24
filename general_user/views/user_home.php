@@ -36,6 +36,26 @@
             <a href="user_complaint.html" class="">Complaint</a>
         </div>
     </div>
+
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = "1";
+
+    //find user name base on userid
+    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+    $resultname = mysqli_query($conn, $sqlname);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+                $name = $row['name'];
+        }
+    } else {
+         $name = "Undefine name, an error on database";
+    }
+    ?>
+
+
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
@@ -56,15 +76,9 @@
                         <h3>Restaurant Profile</h3>
                         <table>
                             <tr>
-                                <td id="1"> <a href="user_rest_profile1.html"><img src="" alt="Along"
-                                            style="width:100px;height:100px;"></a></td>
+                                <td id="1"> <a href="user_rest_profile1.html">Along Restaurant</a></td>
 
-                                <td id="2"><a href="user_rest_profile2.html"><img src="" alt="Farouk Maju "
-                                            style="width:100px;height:100px;"></a></td>
-                            </tr>
-                            <tr>
-                                <td>Along Restaurant</td>
-                                <td>Farouk Maju Restaurant</td>
+                                <td id="2"><a href="user_rest_profile2.html">Farouk Maju Restaurant</a></td>
                             </tr>
                         </table>
                     </div>
@@ -73,8 +87,6 @@
         </div>
 
     </div>
-
-
 
     <script>
         function filtering() {
@@ -93,6 +105,7 @@
             }
         }
     </script>
+
     <!--woei chi-->
     </div>
     </div>
