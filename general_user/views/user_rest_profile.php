@@ -54,8 +54,6 @@
         </div>
     </div>
 
-    
-
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
@@ -66,12 +64,9 @@
                     <input type="text" id="mySearch" onkeyup="filtering()" placeholder="Search.."
                         title="Type in a category">
                     <ul id="myMenu">
-                        <li><?php 
+                        <li><a href="user_rest_profile.php"><?php 
                             // link restaurant table
-                            $restaurant = "SELECT * FROM `restaurant`";   
-                            ?>
-                            <!--link to next profile php-->
-                            <a href="user_rest_profile.php"><?php 
+                            $restaurant = "SELECT * FROM `restaurant`";    
                             //when result(row) more than 1
                             $result = mysqli_query($conn, $restaurant);
                             if (mysqli_num_rows($result) > 0) {  
@@ -82,7 +77,6 @@
                                     }
                                 }
                             ?></a></li>
-
                     </ul>
                 </div>
 
@@ -91,31 +85,82 @@
                         <h3>Restaurant Profile</h3>
                         <table>
                             <tr>
-                            <td>
-                            <?php 
-                            // link restaurant table
-                            $restaurant = "SELECT * FROM `restaurant`";   
-                            ?>
-                            <!--link to next profile php-->
-                            <a href="user_rest_profile.php"><?php 
-                            //when result(row) more than 1
-                            $result = mysqli_query($conn, $restaurant);
-                            if (mysqli_num_rows($result) > 0) { 
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                        $nameshop = $row['name'];
-                                        echo  $nameshop;
-                                    }
-                                }
-                            ?></a>
-                            </td>
+                                <td>Restaurant Name:</td>
+                                <td> <?php     
+                                    //when result(row) more than 1
+                                    $result = mysqli_query($conn, $restaurant);
+                                        if (mysqli_num_rows($result) > 0) { 
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                 $nameshop = $row['name'];
+                                                echo $nameshop ;
+                                             }
+                                        }
+                            ?></td>
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                <td><?php     
+                                    //when result(row) more than 1
+                                    $result = mysqli_query($conn, $restaurant);
+                                        if (mysqli_num_rows($result) > 0) { 
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                 $locashop = $row['location'];
+                                                echo $locashop ;
+                                             }
+                                        }
+                            ?></td>
+                            </tr>
+                            <tr>
+                                <td>Operation Time:</td>
+                                <td><?php     
+                                    //when result(row) more than 1
+                                    $result = mysqli_query($conn, $restaurant);
+                                        if (mysqli_num_rows($result) > 0) { 
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                 $opshop = $row['operation time'];
+                                                echo $opshop ;
+                                             }
+                                        }
+                            ?></td>
+                            </tr>
+                            <tr>
+                                <td>Contact Number:</td>
+                                <td><?php     
+                                    //when result(row) more than 1
+                                    $result = mysqli_query($conn, $restaurant);
+                                        if (mysqli_num_rows($result) > 0) { 
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                 $contactshop = $row['contact_num'];
+                                                echo $contactshop ;
+                                             }
+                                        }
+                            ?></td>
+                            </tr>
+                            <tr>
+                                <td>Instagram:</td>
+                                <td><?php     
+                                    //when result(row) more than 1
+                                    $result = mysqli_query($conn, $restaurant);
+                                        if (mysqli_num_rows($result) > 0) { 
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                 $instashop = $row['instagram'];
+                                                echo $instashop ;
+                                             }
+                                        }
+                            ?></td>
                             </tr>
                         </table>
                     </div>
+                    <br><br>
+                    <a href="user_menu_add.php"><button class="menubutton" class="btn btn-info btn-lg">MENU</button></a>
+                    <a href="user_home.php"><button class="backbutton" class="btn btn-info btn-lg">BACK</button></a>
                 </div>
             </div>
         </div>
 
     </div>
+
+
 
     <script>
         function filtering() {
@@ -134,7 +179,6 @@
             }
         }
     </script>
-
     <!--woei chi-->
     </div>
     </div>
