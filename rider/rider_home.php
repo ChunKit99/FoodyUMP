@@ -130,47 +130,50 @@
                         
                     </table>
                     <hr>
-                    <div>
-                        <table class="rider_profile">
-                            <tr>
-                                <a href="rider_add_bank_account.php"><button type="button" class="fr button1">Add</button></a>
-                            </tr>
-                            <tr>
-                                <th scope="col">Account ID</th>
-                                <th scope="col">Account Number</th>
-                                <th scope="col">Account Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                            <tbody>
-                                <?php
-                                    $count = 0;
-                                    if (mysqli_num_rows($resultBankAccount) > 0) {
-                                        // output data of each row
-                                        while ($row = mysqli_fetch_assoc($resultBankAccount)) {
-                                            $count++;
-                                            $accountID = $row["account_id"];
-                                            $riderID = $row["rider_id"];
-                                            $accountNumber = $row["account_number"];
-                                            $accountName = $row["account_name"];
-                                            echo "<tr>";
-                                            echo "<th scope='row'>$accountID</th>";
-                                            echo "<td>$accountNumber</td>";
-                                            echo "<td>$accountName</td>";
-                                            echo "<td>";
-                                            echo "<div class='btn-group' role='group'>";
-                                            echo "<a href='rider_add_bank_account.php?account_id=" . $accountID . "'><button type='button'>Edit</button></a>";
-                                ?>
-                                            <?php
-                                                echo "<a href='rider_add_bank_account.php?account_id=" . $accountID . "'>";
-                                                echo "<button type='button'>Delete</button></a>";
-                                            ?>
-                                <?php
-                                                        }
-                                                    }
-                                ?>
-                            </tbody>
-                        </table>
+                    
                 </form>
+                <div>
+                    <table class="rider_profile">
+                        <tr>
+                            <a href="rider_add_bank_account.php"><button type="button" class="fr button1">Add</button></a>
+                        </tr>
+                        <tr>
+                            <th scope="col">Account ID</th>
+                            <th scope="col">Account Number</th>
+                            <th scope="col">Account Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        <tbody>
+                            <?php
+                                $count = 0;
+                                if (mysqli_num_rows($resultBankAccount) > 0) {
+                                    // output data of each row
+                                    while ($row = mysqli_fetch_assoc($resultBankAccount)) {
+                                        $count++;
+                                        $accountID = $row["account_id"];
+                                        $riderID = $row["rider_id"];
+                                        $accountNumber = $row["account_number"];
+                                        $accountName = $row["account_name"];
+                                        echo "<tr>";
+                                        echo "<th scope='row'>$accountID</th>";
+                                        echo "<td>$accountNumber</td>";
+                                        echo "<td>$accountName</td>";
+                                        echo "<td>";
+                                        echo "<div class='btn-group' role='group'>";
+                                        echo "<a href='rider_edit_bank_account.php?account_id=" . $accountID . "'><button type='button'>Edit</button></a>";
+                            ?>
+                                        <?php
+                                            echo "<a href='rider_delete_bank_account.php?account_id=" . $accountID . "'>";
+                                            echo "<button type='button'>Delete</button></a>";
+                                        ?>
+
+                            <?php
+                                                    }
+                                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         

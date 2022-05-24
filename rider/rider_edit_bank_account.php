@@ -39,45 +39,49 @@
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);
-            $riderID = "2";
+            $accountID = $_GET['account_id'];
 
-            //find rider base on rider id
-            $query = "SELECT `rider_id` FROM `rider` WHERE `rider_id` = '$riderID' ";
+            $query = "SELECT * FROM bankaccount";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0){
-                while ($row = mysqli_fetch_array($result)){
-                    $riderID = $row['rider_id'];
+                //output data
+                while ($row = mysqli_fetch_assoc($result)){
+                    $accountID = $row["account_id"];
+                    $riderID = $row["rider_id"];
+                    $accountNumber = $row["account_number"];
+                    $accountName = $row["account_name"];
                 }
-            } else {
-                $riderID = "Undefine name, an error on database";
             }
-            
         ?>
 
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
 
-                <h1>Add Bank Account</h1>
+                <h1>Edit Bank Account</h1>
 
-                <form method="post" action="rider_insert_bank_account.php">
+                <form method="post" action="rider_update_bank_account.php">
                     <table class="rider_profile">
                         <tr>
-                        <td><label for="riderID">Rider ID:</label></td>
+                            <td><label for="accountID">Account ID:</label></td>
+                            <td><input type="text" readonly class='rider_input' id="accountID" name="accountID" value="<?php echo $accountID;?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="riderID">Rider ID:</label></td>
                             <td><input type="text" readonly class='rider_input' id="riderID" name="riderID" value="<?php echo $riderID;?>"></td>
                         </tr>
                         <tr>
                             <td><label for="accountNumber">Account Number:</label></td>
-                            <td><input type="text" class='rider_input' id="accountNumber" name="accountNumber" required></td>
+                            <td><input type="text" class='rider_input' id="accountNumber" name="accountNumber" value="<?php echo $accountNumber ?>" required></td>
                         </tr>
                         <tr>
                             <td><label for="accountName">Account Name: </label></td>
-                            <td><input type="text" class='rider_input' id="accountName" name="accountName" required></td>
+                            <td><input type="text" class='rider_input' id="accountName" name="accountName" value="<?php echo $accountName ?>" required></td>
                         </tr>
                         
                     </table>
                     <div class="div1">
-                        <input type="submit" class="button1" value="Add"></input>
+                        <input type="submit" class="button1" value="Update"></input>
                         <a href="rider_home.php"><button type="button" class="button1">Cancel</button></a>
                     </div>
                 </form>
