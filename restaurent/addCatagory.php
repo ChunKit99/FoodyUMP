@@ -34,28 +34,76 @@
             </div>
         </div>
 
+        <!--to include the dbase.php-->
+  <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = "3";
+    $restaurantid="1";
+    $menu="1";
+
+    //find menuCatagory using menu id
+
+    $menuCatagory = "SELECT * FROM `menucategory` WHERE `menu_id` = '$menu' ";
+    $resultname = mysqli_query($conn, $menuCatagory);
+    if (mysqli_num_rows($resultname) > 0) {
+        while ($row = mysqli_fetch_array($resultname)) {
+            $menuCategoryId1 = $row["menu_category_id"];
+            $menuId = $row["menu_id"];
+            $name = $row['name'];//ayam,mee,nasi
+        }
+    } else {
+        $name = "Undefine catagory, an error on database";
+    }   
+    ?>
+    
+<?php
+                //find menuItem using menuCatagory
+                $menuItem = "SELECT * FROM `menuitem`";
+                $result = mysqli_query($conn, $menuItem);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+                      $menuItemId = $row["menu_item_id"];        
+                      $menuCategoryId = $row["menu_category_id"];
+                      $name = $row['name'];
+                      $price = $row['price'];
+                      $photo = $row['photo'];
+                      $description = $row['description'];
+                      $status_available = $row['status_available'];
+                  }
+                } else {
+                      $name = "Undefine name, an error on database";
+                }   
+                ?>
+
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
                 <h1>Add Category</h1>
 
-                <form action="">
+                <form action="catagory_insert.php" method="post">
                 <table class="newCatagory">
                     <tr>
                         <th>Category:</th>
                         
                         <tr>
-                           <td><input type="text" id="cat_new" class="foodClass"></td>
+                           <?php 
+                           echo "<td>";
+                           echo "<input type='text' id='cat_new' class='foodClass'>";
+                           echo "</td>";
+                           ?>
                         </tr>
 
                 </table>
-            </form>
+            
 
             <div class="two_button">
-                <button class="btn_add" onclick="foodAdd()">Add</button>
-                <button class="btn_cancel" onclick="document.location='restaurant_food.html'">Cancel</button>
+                <input type="submit" value="Add" class=btn_add></input>
+                <input type="submit" formaction="restaurant_food.php" method="post" value="Cancel" class=btn_cancel></input>
+
             </div>
-            
+            </form>
             </div>
         </div>
 

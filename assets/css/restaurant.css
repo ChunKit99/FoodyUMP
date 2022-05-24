@@ -83,6 +83,11 @@ sup {
     height: 30px;
 }
 
+.img {
+    width: 40;
+    height: 40;
+}
+
 /*restaurant_order.html*/
 .orderList td{
     text-align: center;

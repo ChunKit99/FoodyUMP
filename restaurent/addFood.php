@@ -39,58 +39,10 @@
             <div class="page-main-content">
                 <h1>Add Food</h1>
 
-                <form action="">
-                <table class="newCatagory">
-                    <tr>
-                        <th>Category:</th>
-                        
-                        <tr>
-                           <td> 
-                               <select name="f_Catagory" id="food_catagory">
-                                <option value="Mee">Mee</option>
-                                <option value="Nasi">Nasi</option>
-                                <option value="Ayam">Ayam</option>
-                            </td>
-                        
-                        </tr>
-
-                    </tr>
-
-                    <tr>
-                        <th>
-                            Food:
-                        </th>
-                    </tr>
-                    <tr>
-                        <td ><input type="text" id="new_foodAdd" class="foodClass"></td>
-                    </tr>
-
-                    <tr>
-                        <th>
-                            Description:
-                        </th>
-                        </tr>
-                        <tr>
-                        <td >
-                            <input type="text" id="new_descAdd" class="foodClass">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th>Price:</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" id="new_priceAdd" class="foodClass"></td>
-                    </tr>
-
-                    <tr>
-                        <th>Picture:</th>
-                    </tr>
-                    <tr>
-                        <td ><input type="file" id="myFile" name="filename" class="foodClass"></td>
-                    </tr>
-
-                </table>
+                <form action="upload.php" method="post">
+                <label>Select Image File:</label>
+    <input type="file" name="image">
+    <input type="submit" name="submit" value="Upload">
             </form>
 
             <div class="two_button">
