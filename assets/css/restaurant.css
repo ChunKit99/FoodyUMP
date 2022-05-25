@@ -12,6 +12,11 @@
 .two_button {
     margin-left: 400px;
 }
+
+.one_button {
+    text-align: center;  
+}
+
 .res_input {
     width:80%;
     height: 50px;
@@ -131,3 +136,4 @@ sup {
 .calculateReport th,td{
     text-align: left;
 }
+

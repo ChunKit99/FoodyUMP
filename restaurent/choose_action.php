@@ -40,21 +40,36 @@
     $path .= "/dbase.php";
     include_once($path);
     $userid = "3";
-    $restaurantid=$_GET['cid'];
+    $restaurantid="1";
+    $menuItemId=$_GET['id'];
+
+    
+                                     $menuItem = "SELECT * FROM `menuitem` WHERE `menu_item_id` = '$menuItemId' ";
+                                     $resultname = mysqli_query($conn, $menuItem);
+                                        if (mysqli_num_rows($resultname) > 0) {
+                                            while ($row = mysqli_fetch_array($resultname)) {
+                                                $menuCategoryId1 = $row["menu_category_id"];
+                                                $name = $row['name'];
+                                                $description = $row['description'];
+                                                $price =$row['price'];
+
+                                                
+                                               
+                                                  }
+                                            }
+                                        
+                            
 
     ?>
     
 
-
-
-
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>Add Food</h1>
+                <h1>Edit / Delete Food</h1>
 
         <?php
-                echo "<form action='Food_insert.php?cid=' . $restaurantid . '' method='post'>";
+                echo "<form action='' method='post'>";
                 echo "<table class='newCatagory'>";?>
 
                     <tr>
@@ -62,22 +77,8 @@
                         
                         <tr>
                             <td> 
-                           <?php
-                                    echo "<select name='f_Catagory' id='food_catagory' >";
-                                    $menuCatagory = "SELECT * FROM `menucategory` WHERE `restaurant_id` = '$restaurantid' ";
-                                     $resultname = mysqli_query($conn, $menuCatagory);
-                                        if (mysqli_num_rows($resultname) > 0) {
-                                            while ($row = mysqli_fetch_array($resultname)) {
-                                                $menuCategoryId1 = $row["menu_category_id"];
-                                                $name = $row['name'];//ayam,mee,nasi
-                                                
-                                                echo "<option value='$menuCategoryId1'>$name</option>";
+                            <?php echo "<input type='text' readonly value='$menuCategoryId1' class='foodClass'></input>";?>
 
-                                                  }
-                                            }
-                                            echo "</select>";
-                                        
-                            ?>
                              </td>
                          </tr>
  
@@ -87,7 +88,7 @@
                          </th>
                      </tr>
                      <tr>
-                         <td><?php echo "<input type='text' id='new_foodAdd' name='f_name' class='foodClass'>";?></td>
+                         <td><?php echo "<input type='text' id='new_foodAdd' name='name' class='foodClass' value='$name'>";?></td>
                      </tr>
  
                      <tr>
@@ -96,14 +97,14 @@
                          </th>
                          </tr>
                          <tr>
-                         <td><?php echo "<input type='text' id='new_descAdd' name='description' class='foodClass'>";?></td>
+                         <td><?php echo "<input type='text' id='new_descAdd' name='description' class='foodClass' value='$description'>";?></td>
                      </tr>
  
                      <tr>
                          <th>Price:</th>
                      </tr>
                      <tr>
-                         <td><?php echo "<input type='text' id='new_priceAdd' name='price' class='foodClass'>";?></td>
+                         <td><?php echo "<input type='text' id='new_priceAdd' name='price' class='foodClass' value='$price'>";?></td>
                      </tr>
 
                      <tr>
@@ -121,8 +122,8 @@
                     
 
             <div class="two_button">
-                <input type="submit" value="Add" class="btn_add">
-                <input type="submit" class="btn_cancel" formaction="restaurant_food.php" value="Cancel" method="post">
+                <input type="submit" formaction="food_edit_action.php?id=<?php echo $menuItemId ?>" method="post" value="Update" class="btn_edit">
+                <input type="submit" class="btn_delete" formaction="food_delete_action.php?id=<?php echo $menuItemId ?>" value="Delete" method="post">
             </div>
             </form>
             </div>

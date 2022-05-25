@@ -40,7 +40,7 @@
     $path .= "/dbase.php";
     include_once($path);
     $userid = "3";
-    $restaurantid="5";
+    $restaurantid="1";
 
     //find menuCatagory using menu id
 
@@ -102,8 +102,8 @@
                            echo "<th>Name</th>";
                            echo "<th>Description</th>";
                            echo "<th>Price (RM)</th>";
-                           echo "<th>Select</th>";
                            echo "<th>Publish</th>";
+                           echo "<th>Publish Status</th>";
                             echo "</tr>";
 
                      $menuItem = "SELECT * FROM `menuitem`";
@@ -122,10 +122,13 @@
 
                           echo "<tr>";
                         echo "<td><img src=$photo alt='Mee Hoon Soup' width='100' height='100'></td>";
-                        echo "<td>$name</td>";
+                        echo "<td><a href='choose_action.php?id=".$menuItemId."'>$name</a></td>";
                         echo "<td>$description</td>";
                         echo "<td>$price</td>";
-                        echo "<td><input type='checkbox' name='foot_cat[$menuItemId]' class='check_respro'></td>";
+                        echo "<td>";
+                        echo "<input type='submit' name='foot_cat[]'  value='Publish' formaction='foodPublish.php?id=" . $menuItemId . "' method='post'></input>";
+                        echo "<input type='submit' name='foot_cat2[]'  value='Unpublish' formaction='foodUnpublish.php?id=" . $menuItemId . "' method='post'></input>";
+                        echo "</td>";
                         echo "<td>$status_available</td>";
 
                        }}
@@ -136,16 +139,14 @@
                  
                     echo "</table>";
                     ?>
+                    
+<!--Stuck at how to pass array of publish-->
                 
-
-                <div class="four_button">
-                <input type="submit" formaction="resAdd.php" method="post" class="btn_add" value="Add">
-                <input type="submit" formaction="editFood.php" method="post" class="btn_edit" value="Edit">
-                <input type="submit" formaction="foodDelete.php" method="post" class="btn_delete" value="Delete">
-                <input type="submit" formaction="foodPublish.php" method="post" class="btn_publish" value="Publish">
-
-         
-            </div>
+                <?php
+                echo "<div class='one_button'>";
+                echo "<input type='submit' formaction='resAdd.php' method='post' class='btn_add' value='Add'>";
+                echo "</div>";
+                ?>
         </form>
          
     
