@@ -92,28 +92,60 @@
                       }
                     ?></h1>
             </div>
-            <div class="restaurant">
-                <select>
-                <option>Select Category</option>
-                        <?php 
-                        $menucat ="SELECT * FROM `menucategory` WHERE `restaurant_id`='$idshop'";
-                        $result2 = mysqli_query($conn, $menucat);
-                        $count = 0;
-                        if (mysqli_num_rows($result) > 0) { 
-                          while ($row = mysqli_fetch_array($result2)) {
-                            $catid = $row['menu_category_id'];  
-                            $catname = $row['name'];
-                            echo "<option value='$catid'>$catname</option>"; 
-                            $count++;
-                          }
-                          echo " </select>";
-                          echo  "<br><br>";
-                          echo "<a href='user_cat_add.php?idshop=".$idshop."?catid=".$catid."'><button class='continuebutton' class='btn btn-info btn-lg'>CONTINUE</button></a>";
-                      } 
-                      ?> 
-                   
-            </div>
+            <div class="restaurant" >
+            <?php
+            $catid=$_GET['catid'];
+            $status ="yes";
+            $item ="SELECT * FROM `menuitem` WHERE `menu_category_id`='$catid' AND `status_available` = '$status' ";
+            $result3 = mysqli_query($conn, $item);
+            $count = 0;
+            if (mysqli_num_rows($result3) > 0){
+                while ($row = mysqli_fetch_assoc($result3)) {
+                    $count++;
+                    $itemphoto = $row['photo'];
+                    $itemname = $row['name'];
+                    $itemdes = $row['description']; 
+                    $itemprice = $row['price']; 
+                    //$itemquantity=$row['quantity']; 
 
+                    echo "<div class='cat1'>";
+                    echo "<table>";
+                    echo "<tr>";
+                    echo "<td>$itemphoto</td>";
+                    echo "<td>$itemname</td>";
+                    echo "<td>$itemdes</td>";
+                    echo "<td>$itemprice</td>";
+                    //echo "<td>Quantity:<input type='number' id='quantity' value =$itemquantity></td>";
+                    echo "<td><button class='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#add'
+                                onclick='order()'>ADD</button></td>";
+                    echo "</tr>";
+                    echo "</table>";
+                    echo "</div>";
+                }
+            }
+            ?> 
+
+
+            <div class="modal fade" id="add">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Order List</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p>Successfully Added.</p>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                class="cancelbtn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <script>
                 var x, i, j, l, ll, selElmnt, a, b, c;

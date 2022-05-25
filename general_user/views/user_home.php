@@ -66,23 +66,20 @@
                     <input type="text" id="mySearch" onkeyup="filtering()" placeholder="Search.."
                         title="Type in a category">
                     <ul id="myMenu">
-                        <li><?php 
+                    <li><?php 
                             // link restaurant table
                             $restaurant = "SELECT * FROM `restaurant`";   
-                            ?>
-                            <!--link to next profile php-->
-                            <a href="user_rest_profile.php"><?php 
                             //when result(row) more than 1
                             $result = mysqli_query($conn, $restaurant);
                             if (mysqli_num_rows($result) > 0) {  
                                 while ($row = mysqli_fetch_array($result)) {
-                                        $idshop = $row['restaurant_id'];
-                                        $nameshop = $row['name'];
-                                        echo "$nameshop";
+                                            $idshop = $row['restaurant_id'];
+                                            $nameshop = $row['name'];
+                                            echo "<a href='user_rest_profile.php?idshop=".$idshop."'>$nameshop</a>";
+                                            echo "<br>";
                                     }
                                 }
-                            ?></a></li>
-
+                            ?></li>
                     </ul>
                 </div>
 
@@ -95,18 +92,17 @@
                             <?php 
                             // link restaurant table
                             $restaurant = "SELECT * FROM `restaurant`";   
-                            ?>
-                            <!--link to next profile php-->
-                            <a href="user_rest_profile.php"><?php 
                             //when result(row) more than 1
                             $result = mysqli_query($conn, $restaurant);
                             if (mysqli_num_rows($result) > 0) { 
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                        $nameshop = $row['name'];
-                                        echo  $nameshop;
-                                    }
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $idshop = $row['restaurant_id'];
+                                    $nameshop = $row['name'];
+                                    echo "<a href='user_rest_profile.php?idshop=".$idshop."'>$nameshop</a>";
+                                    echo "<br>";
                                 }
-                            ?></a>
+                            }
+                            ?>
                             </td>
                             </tr>
                         </table>

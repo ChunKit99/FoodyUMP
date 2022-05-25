@@ -25,6 +25,7 @@
                     $path .= "/dbase.php";
                     include_once($path);
                     $userid = "1";
+                    
 
                 //find user name base on userid
                     $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
@@ -64,103 +65,76 @@
                     <input type="text" id="mySearch" onkeyup="filtering()" placeholder="Search.."
                         title="Type in a category">
                     <ul id="myMenu">
-                        <li><a href="user_rest_profile.php"><?php 
+                        <li><?php 
                             // link restaurant table
-                            $restaurant = "SELECT * FROM `restaurant`";    
+                            $restaurant = "SELECT * FROM `restaurant`";   
                             //when result(row) more than 1
                             $result = mysqli_query($conn, $restaurant);
                             if (mysqli_num_rows($result) > 0) {  
                                 while ($row = mysqli_fetch_array($result)) {
-                                        $idshop = $row['restaurant_id'];
-                                        $nameshop = $row['name'];
-                                        echo "$nameshop";
+                                            $idshop = $row['restaurant_id'];
+                                            $nameshop = $row['name'];
+                                            echo "<a href='user_rest_profile.php?idshop=".$idshop."'>$nameshop</a>";
+                                            echo "<br>";
                                     }
                                 }
-                            ?></a></li>
+                            ?></li>
                     </ul>
                 </div>
+                
+                <?php 
+                // get rest id
+                $idshop=$_GET['idshop'];
+                $restaurant = "SELECT * FROM `restaurant` WHERE `restaurant_id` = '$idshop'";   
+                //when result(row) more than 1
+                $result = mysqli_query($conn, $restaurant);
+                if (mysqli_num_rows($result) > 0) { 
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $idshop= $row['restaurant_id'];
+                            $nameshop = $row['name'];
+                            $locashop = $row['location'];
+                            $opshop = $row['operation_time'];
+                            $contactshop = $row['contact_num'];
+                            $instashop = $row['instagram'];
 
-                <div class="restaurant">
-                    <div class="profile">
-                        <h3>Restaurant Profile</h3>
-                        <table>
-                            <tr>
-                                <td>Restaurant Name:</td>
-                                <td> <?php     
-                                    //when result(row) more than 1
-                                    $result = mysqli_query($conn, $restaurant);
-                                        if (mysqli_num_rows($result) > 0) { 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                 $nameshop = $row['name'];
-                                                echo $nameshop ;
-                                             }
-                                        }
-                            ?></td>
-                            </tr>
-                            <tr>
-                                <td>Location:</td>
-                                <td><?php     
-                                    //when result(row) more than 1
-                                    $result = mysqli_query($conn, $restaurant);
-                                        if (mysqli_num_rows($result) > 0) { 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                 $locashop = $row['location'];
-                                                echo $locashop ;
-                                             }
-                                        }
-                            ?></td>
-                            </tr>
-                            <tr>
-                                <td>Operation Time:</td>
-                                <td><?php     
-                                    //when result(row) more than 1
-                                    $result = mysqli_query($conn, $restaurant);
-                                        if (mysqli_num_rows($result) > 0) { 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                 $opshop = $row['operation time'];
-                                                echo $opshop ;
-                                             }
-                                        }
-                            ?></td>
-                            </tr>
-                            <tr>
-                                <td>Contact Number:</td>
-                                <td><?php     
-                                    //when result(row) more than 1
-                                    $result = mysqli_query($conn, $restaurant);
-                                        if (mysqli_num_rows($result) > 0) { 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                 $contactshop = $row['contact_num'];
-                                                echo $contactshop ;
-                                             }
-                                        }
-                            ?></td>
-                            </tr>
-                            <tr>
-                                <td>Instagram:</td>
-                                <td><?php     
-                                    //when result(row) more than 1
-                                    $result = mysqli_query($conn, $restaurant);
-                                        if (mysqli_num_rows($result) > 0) { 
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                 $instashop = $row['instagram'];
-                                                echo $instashop ;
-                                             }
-                                        }
-                            ?></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <br><br>
-                    <a href="user_menu_add.php"><button class="menubutton" class="btn btn-info btn-lg">MENU</button></a>
-                    <a href="user_home.php"><button class="backbutton" class="btn btn-info btn-lg">BACK</button></a>
-                </div>
+                        echo "<div class='restaurant'>";
+                        echo "<div class='profile'>";
+                        echo "<h3>Restaurant Profile</h3>";
+                        echo "<table>";
+                        echo "<tr>";
+                        echo "<td>Restaurant Name:</td>";
+                        echo "<td>$nameshop</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Location:</td>";
+                        echo "<td>$locashop</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Operation Time:</td>";
+                        echo "<td>$opshop</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Contact Number:</td>";
+                        echo "<td>$contactshop</td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>Instagram:</td>";
+                        echo "<td>$instashop</td>";
+                        echo "</tr>";
+                        echo "</table>";
+                    }
+                    echo "</div>";
+                    echo  "<br><br>";
+                    echo "<a href='user_menu_add.php?idshop=".$idshop."'><button class='menubutton' class='btn btn-info btn-lg'>MENU</button></a>";
+                    echo "<a href='user_home.php'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
+                    echo "</div>";
+                }
+
+                ?>
             </div>
         </div>
 
     </div>
-
-
 
     <script>
         function filtering() {
