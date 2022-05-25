@@ -74,7 +74,7 @@
                         <td></td>
                         <td></td>
                         <td><input type="number" id="quantity"></td>
-                        <td><a href="user_order.html"><button class="savebutton" onclick="order()">SAVE</button></a>
+                        <td><a href="user_order.php"><button class="savebutton" onclick="order()">SAVE</button></a>
                         </td>
                     </tr>
                 </table>

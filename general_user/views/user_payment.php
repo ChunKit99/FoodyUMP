@@ -102,8 +102,8 @@
                 </table>
 
                 <br><br><br>
-               <a href="user_delivery.html"><button class="confirmbutton" onclick="payment()">CONFIRM</button></a>  
-               <a href="user_order.html"><button class="cancelbutton" onclick="payment()">CANCEL</button></a> 
+               <a href="user_delivery.php"><button class="confirmbutton" onclick="payment()">CONFIRM</button></a>  
+               <a href="user_order.php"><button class="cancelbutton" onclick="payment()">CANCEL</button></a> 
             </div>
             
             <script>

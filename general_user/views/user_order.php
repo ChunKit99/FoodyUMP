@@ -91,7 +91,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><a href="user_order_edit.html"><button class="editbutton"
+                        <td><a href="user_order_edit.php"><button class="editbutton"
                                     onclick="order()">EDIT</button></a>
                             <button class="deletebutton" class="btn btn-danger" data-toggle="modal"
                                 data-target="#confirmDelete" onclick="order()">DELETE</button>
@@ -99,7 +99,7 @@
                     </tr>
                 </table>
                 <br><br><br>
-                <a href="user_payment.html"><button class="checkbutton" onclick="order()">CHECK OUT</button></a>
+                <a href="user_payment.php"><button class="checkbutton" onclick="order()">CHECK OUT</button></a>
             </div>
 
             <div class="modal fade" id="confirmDelete">
