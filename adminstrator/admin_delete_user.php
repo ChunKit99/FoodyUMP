@@ -6,12 +6,13 @@ include_once($path);
 
 extract($_POST);
 
+$userID = $_GET['user_id'];
 
-$userID = $_GET['id'];
-$query = "DELETE FROM `add_user` WHERE `user_id` = '$userID'";
+$query = "DELETE FROM `user` WHERE `user_id`='$userID' ";
+
 if (mysqli_query($conn, $query)) {
 
-    echo "<script type='text/javascript'> window.location='user_complaint.php' </script>";
+    echo "<script type='text/javascript'> window.location='admin_user_list.php' </script>";
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }

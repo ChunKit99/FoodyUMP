@@ -6,7 +6,7 @@ function validateUserType() {
     var ddl = document.getElementById("userType");
     var selectedValue = ddl.options[ddl.selectedIndex].value;
     if (selectedValue == "administrator") {
-        window.location.href = '/adminstrator/admin_home.html';
+        window.location.href = '/adminstrator/admin_home.php';
     } else if (selectedValue == "restaurantOwner") {
         location.replace('/restaurent/restaurant_profile.html');
     } else if (selectedValue == "generalUser") {

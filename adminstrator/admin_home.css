@@ -1,33 +1,38 @@
-table{
-    border-spacing: 1; 
-    border-collapse: collapse; 
-    background:white;
-    border-radius:6px;
-    overflow:hidden;
-    max-width:800px; 
-    width:100%;
-    margin:0 auto;
-    position:relative;
+table {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 
-th{
+th {
     font-style: bold;
     font-size: large;
 }
 
-td, th{
+td,
+th {
     position: relative;
     padding-left: 8px;
     text-align: center;
 }
 
-.tr1{ 
-    height:60px;
-    background:#04aab3;
-    font-size:16px;
+.tr1 {
+    height: 60px;
+    background: #04aab3;
+    font-size: 16px;
 }
 
-.tr2{ 
-    height:48px; 
-    border-bottom:1px solid #E3F1D5 ;
+.tr2 {
+    height: 48px;
+    border-bottom: 1px solid #E3F1D5;
+}
+
+.text2 {
+    color: white;
 }

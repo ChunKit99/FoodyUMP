@@ -35,18 +35,17 @@
     </div>
 
     <?php
-    $count = 0;
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);            
-            $userID =  "1";
+            
+            $userID=$_GET['user_id'];
     
             $query = "SELECT * FROM `user` WHERE `user_id` = '$userID' ";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
                 // output data
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $count++;
                     $userID = $row["user_id"];
                     $name = $row["name"];
                     $userEmail = $row["email"];
@@ -61,10 +60,7 @@
                     $gender = $row["gender"];
 
                 }
-            
-            }else{
-                $userID = "Undefine name, an error on database";
-            }
+            }  
 
         ?>
 
@@ -72,9 +68,9 @@
         <div id="page-content">
             <div class="page-main-content">
 
-                <h1 class="h2">Edit User</h1>
+                <h1 class="h2">Edit User Profile</h1>
 
-                <form method="post" action="admin_update_user.php?userid=<?php echo $userID ?>">
+                <form method="post" action="admin_update_user.php?user_id=<?php echo $userID ?>">
                     <table>
 
                         <tr>
@@ -85,55 +81,69 @@
 
                         <tr>
                             <td><label for="name">Name: </label></td>
-                            <td><input type="text" id="name" value=<?php echo $name ?> required></td>
+                            <td><input type="text" id="name" name="name" value="<?php echo $name; ?>" required></td>
                         </tr>
 
                         <tr>
                             <td><label for="userEmail">Email:</label></td>
-                            <td><input type="text" id="userEmail" value=<?php echo $userEmail ?> required></td>
+                            <td><input type="text" id="userEmail" name="userEmail" value=<?php echo $userEmail; ?> required></td>
 
                         </tr>
 
                         <tr>
                             <td><label for="contactNum">Phone Number:</label></td>
-                            <td><input type="text" id="contactNum" value=<?php echo $contactNum ?>  required></td>
+                            <td><input type="text" id="contactNum" name="contactNum" value=<?php echo $contactNum; ?> required></td>
                         </tr>
 
                         <tr>
                             <td><label for="state">State:</label></td>
-                            <td><input type="text" id="state" value=<?php echo $state ?>  required></td>
+                            <td>
+                                <select name="state" >
+                                <?php
+                                    $selectstates = array('Johor','Kedah','Kelantan','Melaka', 'Negeri Sembilan', 'Pulau Pinang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu', 'Kuala Lumpur', 'Labuan', 'Putrajaya');
+
+                                        foreach ($selectstates as $selectstate) {
+                                            if ($state == $selectstate) {
+                                                echo "<option selected value='$selectstate'>$selectstate</option>";
+                                            } else {
+                                                echo "<option value='$selectstate'>$selectstate</option>";
+                                            }
+                                        }
+                                        ?>
+                                </select>
+                            </td>
                         </tr>
 
                         <tr>
                             <td><label for="district">District:</label></td>
-                            <td><input type="text" id="district" value=<?php echo $district ?> required></td>
+                            <td><input type="text" id="district" name="district" value=<?php echo $district; ?> required></td>
                         </tr>
 
                         <tr>
                             <td><label for="postalCode">Postal Code:</label></td>
-                            <td><input type="text" id="postalCode" value=<?php echo $postalCode ?> required></td>
+                            <td><input type="text" id="postalCode" name="postalCode" value=<?php echo $postalCode; ?> required></td>
                         </tr>
 
                         <tr>
                             <td><label for="detailsAdd">Details Address:</label></td>
-                            <td><input type="text" id="detailsAdd" value=<?php echo $detailsAdd ?>  required></td>
+                            <td><input type="text" id="detailsAdd" name="detailsAdd" value=<?php echo $detailsAdd; ?> required></td>
                         </tr>
 
                         <tr>
                             <td><label for="userName">Username:</label></td>
-                            <td><input type="text" id="userName" value=<?php echo $userName ?>  required></td>
+                            <td><input type="text" id="userName" name="userName" value="<?php echo $userName ?>" required></td>
                         </tr>
 
                         <tr>
                             <td><label for="password">Password:</label></td>
-                            <td><input type="text" id="password" value=<?php echo $password ?> required></td>
+                            <td><input type="text" id="password" name="password" value=<?php echo $password; ?> required></td>
                         </tr>
 
 
                         <tr>
                             <td><label for="userType">User Type:</label></td>
                             <td>
-                                <select name="userType" id="userType" >
+                                <select name="userType" >
                                 <?php
                                     $selectuserTypes = array('Administrator','Rider','General User','Restaurant Owner');
 

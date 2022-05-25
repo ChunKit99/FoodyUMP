@@ -28,9 +28,9 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="admin_home.html" class="">Home</a>
-            <a href="admin_user_list.html" class="">User List</a>
-            <a href="admin_report.html" class="">Report</a>
+            <a href="admin_home.php" class="">Home</a>
+            <a href="admin_user_list.php" class="">User List</a>
+            <a href="admin_report.php" class="">Report</a>
         </div>
     </div>
 
@@ -67,7 +67,25 @@
 
                         <tr>
                             <td><label for="state">State:</label></td>
-                            <td><input type="text" id="state" name="state" required></td>
+                            <td>    
+                            <select name="state" id="state">
+                                    <option value="Johor">Johor</option>
+                                    <option value="Kedah">Kedah</option> 
+                                    <option value="Kelantan">Kelantan</option>
+                                    <option value="Melaka">Melaka</option>   
+                                    <option value="Negeri Sembilan">Negeri Sembilan</option>  
+                                    <option value="Pulau Pinang">Pulau Pinang</option>  
+                                    <option value="Perak">Perak</option>  
+                                    <option value="Perlis">Perlis</option>  
+                                    <option value="Sabah">Sabah</option>  
+                                    <option value="Sarawak">Sarawak</option>  
+                                    <option value="Selangor	">Selangor</option>  
+                                    <option value="Terengganu">Terengganu</option>  
+                                    <option value="Kuala Lumpur">Kuala Lumpur</option>  
+                                    <option value="Labuan">Labuan</option>  
+                                    <option value="Putrajaya">Putrajaya</option>  
+                            </select>
+                            </td>
                         </tr>
 
                         <tr>

@@ -28,9 +28,9 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="admin_home.html" class="">Home</a>
+            <a href="admin_home.php" class="">Home</a>
             <a href="admin_user_list.php" class="">User List</a>
-            <a href="admin_report.html" class="">Report</a>
+            <a href="admin_report.php" class="">Report</a>
         </div>
     </div>
 
@@ -103,12 +103,9 @@
                                     </td>
 
                                     <td>
-                                        <a href="admin_edit_user.php"><button type="button">Edit</button></a>
                                         <?php echo "<a href='admin_edit_user.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>Edit</button></a>"?>
-                                        <a href="admin_delete_user.php?id=<?php echo $id; ?>"><button 
-                                        onClick="adminUserListDelete()">Delete</button></a>
-                                        <a href="admin_delete_user.php?id=<?php echo $id; ?>"><button 
-                                        onClick="adminUserListDelete()">View</button></a>
+                                        <?php echo "<a href='admin_delete_user.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>Delete</button></a>"?>                        
+                                        <?php echo "<a href='admin_view_list.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>View</button></a>"?>
                                     </td>
 
                                 </tr>
