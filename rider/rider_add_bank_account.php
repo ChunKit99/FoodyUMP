@@ -28,7 +28,7 @@
         <div id="nav-container">
         <div class="container-width nav-container">
                 <a href="rider_home.php" class="">Home</a>
-                <a href="rider_order.html">Order</a>
+                <a href="rider_order.php">Order</a>
                 <a href="rider_report.html" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
@@ -63,7 +63,7 @@
                 <form method="post" action="rider_insert_bank_account.php">
                     <table class="rider_profile">
                         <tr>
-                        <td><label for="riderID">Rider ID:</label></td>
+                            <td><label for="riderID">Rider ID:</label></td>
                             <td><input type="text" readonly class='rider_input' id="riderID" name="riderID" value="<?php echo $riderID;?>"></td>
                         </tr>
                         <tr>

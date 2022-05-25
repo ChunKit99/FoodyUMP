@@ -33,8 +33,8 @@
     </div>
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="rider_home.html" class="">Home</a>
-            <a href="rider_order.html" class="">Order</a>
+            <a href="rider_home.php" class="">Home</a>
+            <a href="rider_order.php" class="">Order</a>
             <a href="rider_report.html" class="">Report</a>
             <a href="rider_complaint.php" class="" style="background: #11767ca6;">Complaint</a>
         </div>

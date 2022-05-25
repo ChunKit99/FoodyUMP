@@ -28,11 +28,25 @@
         <div id="nav-container">
             <div class="container-width nav-container">
                 <a href="rider_home.php" class="">Home</a>
-                <a href="rider_order.html" class="" style="background: #11767ca6;">Order</a>
+                <a href="rider_order.php" class="" style="background: #11767ca6;">Order</a>
                 <a href="rider_report.html" class="">Report</a>
-                <a href="rider_complaint.html" class="">Complaint</a>
+                <a href="rider_complaint.php" class="">Complaint</a>
             </div>
         </div>
+
+        <!--to include the dbase.php-->
+        <?php
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            $path .= "/dbase.php";
+            include_once($path);
+            //$orderStatus = "prepared";
+            $orderStatus = "Picked Up";
+
+            $query = "SELECT * FROM `orderlist` 
+                        JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
+                        WHERE orderlist.order_status = '$orderStatus'";
+            $result = mysqli_query($conn, $query);
+        ?>
 
         <!--content-->
         <div id="page-content">
@@ -40,40 +54,37 @@
                 <h1>Delivery Notes</h1>
                 <table class="delivery_notes">
                     <tr>
+                        <th>Order ID</th>
                         <th>Restaurants</th>
                         <th>Order Status</th>
                         <th>Total Payment Amount</th>
-                        <th>Details</th>
                         <th>QR Code</th>
+                        <th>Details</th>
                     </tr>
-                    <tr class="tr">
-                        <td>Abunene Restaurant</td>
-                        <td class="td">Picked Up</td>
-                        <td class="td">RM 53.00</td>
-                        <td class="td"><a href="rider_delivery_notes_details.html">View More</a></td>
-                        <td class="td"><img id="qr" src="QR1.jpg" alt="QR Code" width="100" height="100" onclick="qr(this)"></td>
-                    </tr>
-                    <tr class="tr">
-                        <td>CT Restaurant</td>
-                        <td class="td">Prepared</td>
-                        <td class="td">RM 28.00</td>
-                        <td class="td"><a href="rider_delivery_notes_details.html">View More</a></td>
-                        <td class="td"><img id="qr" src="QR1.jpg" alt="QR Code" width="100" height="100" onclick="qr(this)"></td>
-                    </tr>
-                    <tr class="tr">
-                        <td>KongKang Restaurant</td>
-                        <td class="td">Prepared</td>
-                        <td class="td">RM 115.00</td>
-                        <td class="td"><a href="rider_delivery_notes_details.html">View More</a></td>
-                        <td class="td"><img id="qr" src="QR1.jpg" alt="QR Code" width="100" height="100" onclick="qr(this)"></td>
-                    </tr>
-                    <tr class="tr">
-                        <td>MeMe Restaurant</td>
-                        <td class="td">Completed</td>
-                        <td class="td">RM 91.00</td>
-                        <td class="td"><a href="rider_delivery_notes_details.html">View More</a></td>
-                        <td class="td"><img id="qr" src="QR1.jpg" alt="QR Code" width="100" height="100" onclick="qr(this)"></td>
-                    </tr>
+                    <?php
+                        $count = 0;
+                        if (mysqli_num_rows($result) > 0){
+                            //output data of each row
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $count++;
+                                $orderID = $row['order_id'];
+                                $restaurantName = $row['name'];
+                                $orderStatus = $row['order_status'];
+                                $totalAmount = $row['price'];
+                                echo "<tr>";
+                                echo "<td scope='row'>$orderID</td>";
+                                echo "<td>$restaurantName</td>";
+                                echo "<td>$orderStatus</td>";
+                                echo "<td>$totalAmount</td>";
+                                echo "<td>";
+                                echo "<td>";
+                                echo "<a href='rider_delivery_notes_details.php?order_id=" . $orderID . "'><button type='button'>View More</button></a>";
+                            ?>
+
+                    <?php
+                            }
+                        }
+                    ?>
                 </table>
             </div>
         </div>
