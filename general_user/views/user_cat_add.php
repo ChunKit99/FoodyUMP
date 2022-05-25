@@ -65,10 +65,10 @@
     <div id="nav-container">
         <div class="container-width nav-container">
             <a href="user_home.php" class="" style="background: #11767ca6;">Home</a>
-            <a href="user_order.html" class="">Order</a>
-            <a href="user_delivery.html" class="">Delivery</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
             <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
@@ -96,7 +96,7 @@
             <?php
             $catid=$_GET['catid'];
             $status ="yes";
-            $item ="SELECT * FROM `menuitem` WHERE `menu_category_id`='$catid' AND `status_available` = '$status' ";
+            $item ="SELECT menuitem.* ,cartorder.quantity FROM `menuitem` JOIN `cartorder` ON cartorder.menu_item_id=menuitem.menu_item_id WHERE menuitem.menu_category_id='1' AND menuitem.status_available= '$status'";
             $result3 = mysqli_query($conn, $item);
             $count = 0;
             if (mysqli_num_rows($result3) > 0){
@@ -106,7 +106,7 @@
                     $itemname = $row['name'];
                     $itemdes = $row['description']; 
                     $itemprice = $row['price']; 
-                    //$itemquantity=$row['quantity']; 
+                    $itemquantity=$row['quantity']; 
 
                     echo "<div class='cat1'>";
                     echo "<table>";
@@ -115,7 +115,7 @@
                     echo "<td>$itemname</td>";
                     echo "<td>$itemdes</td>";
                     echo "<td>$itemprice</td>";
-                    //echo "<td>Quantity:<input type='number' id='quantity' value =$itemquantity></td>";
+                    echo "<td>Quantity:<input type='number' id='quantity' value =$itemquantity></td>";
                     echo "<td><button class='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#add'
                                 onclick='order()'>ADD</button></td>";
                     echo "</tr>";

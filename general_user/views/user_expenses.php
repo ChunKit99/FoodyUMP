@@ -28,58 +28,56 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="" style="background: #11767ca6;">Order</a>
-            <a href="user_delivery.html" class="">Delivery</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
-            <a href="user_complaint.html" class="">Complaint</a>
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="" style="background: #11767ca6;">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
+            <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
 
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
-            <!--woeichi-->
-            <div class="ordering">
+            <!--Woeichi-->
+            <div class="exp">
                 <br><br><br>
-                <h1>My Order List</h1>
+                <h1>Expenses</h1>
             </div>
+            
             <br><br>
-
-            <div class="orderlist">
+            <div class="expenses">
                 <table>
                     <tr>
-                        <th>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </th>
-                        <th>Food Name</th>
-                        <th>Food Description</th>
-                        <th>Price Per Item</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
-
+                        <th>Daily Expenses: </th>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </td>
+                        <th>Weekly Expenses:</th>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <th>Monthly Expenses:</th>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <th>Average Expenses</th>
                         <td></td>
-                        <td><input type="number" id="quantity"></td>
-                        <td><a href="user_order.html"><button class="savebutton" onclick="order()">SAVE</button></a>
-                        </td>
+                    </tr>
+                    <tr>
+                        <th>In Week:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>In Month:</th>
+                        <td></td>
                     </tr>
                 </table>
+                
             </div>
-            <!--woeichi-->
+            <!--Woeichi-->
+
         </div>
     </div>
 
