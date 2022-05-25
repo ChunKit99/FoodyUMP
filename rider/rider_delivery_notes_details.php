@@ -29,6 +29,7 @@
             <div class="container-width nav-container">
                 <a href="rider_home.php" class="">Home</a>
                 <a href="rider_order.php" class="" style="background: #11767ca6;">Order</a>
+                <a href="rider_delivery_record.php" class="">Records</a>
                 <a href="rider_report.html" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
@@ -45,7 +46,7 @@
                         JOIN `restaurant` ON orderlist.restaurant_id=restaurant.restaurant_id 
                         JOIN `user` ON orderlist.user_id=user.user_id 
                         JOIN `menuitem` ON orderlist.menu_item_id=menuitem.menu_item_id
-                        WHERE orderlist.order_status = 'Picked Up'";
+                        WHERE orderlist.order_status = 'Prepared'";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0){
                 while ($row = mysqli_fetch_array($result)){

@@ -29,6 +29,7 @@
             <div class="container-width nav-container">
                 <a href="rider_home.php" class="">Home</a>
                 <a href="rider_order.php" class="" style="background: #11767ca6;">Order</a>
+                <a href="rider_delivery_record.php" class="">Records</a>
                 <a href="rider_report.html" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
@@ -39,8 +40,8 @@
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);
-            //$orderStatus = "prepared";
-            $orderStatus = "Picked Up";
+            $orderStatus = "Prepared";
+            //$orderStatus = "Picked Up";
 
             $query = "SELECT * FROM `orderlist` 
                         JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
