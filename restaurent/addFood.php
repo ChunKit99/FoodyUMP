@@ -34,22 +34,100 @@
             </div>
         </div>
 
+    <!--to include the dbase.php-->
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = "3";
+    $restaurantid=$_GET['cid'];
+
+    //find menuCatagory using menu id
+
+     
+    ?>
+    
+
+
+
+
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
                 <h1>Add Food</h1>
 
-                <form action="upload.php" method="post">
-                <label>Select Image File:</label>
-    <input type="file" name="image">
-    <input type="submit" name="submit" value="Upload">
-            </form>
+        <?php
+                echo "<form action='Food_insert.php?cid=' . $restaurantid . '' method='post'>";
+                echo "<table class='newCatagory'>";?>
+
+                    <tr>
+                        <th>Category:</th>
+                        
+                        <tr>
+                            <td> 
+                           <?php
+                                    echo "<select name='f_Catagory' id='food_catagory' >";
+                                    $menuCatagory = "SELECT * FROM `menucategory` WHERE `restaurant_id` = '$restaurantid' ";
+                                     $resultname = mysqli_query($conn, $menuCatagory);
+                                        if (mysqli_num_rows($resultname) > 0) {
+                                            while ($row = mysqli_fetch_array($resultname)) {
+                                                $menuCategoryId1 = $row["menu_category_id"];
+                                                $name = $row['name'];//ayam,mee,nasi
+                                                
+                                                echo "<option value='$menuCategoryId1'>$name</option>";
+
+                                                  }
+                                            }
+                                            echo "</select>";
+                                        
+                            ?>
+                             </td>
+                         </tr>
+ 
+                     <tr>
+                         <th>
+                             Name:
+                         </th>
+                     </tr>
+                     <tr>
+                         <td><?php echo "<input type='text' id='new_foodAdd' name='f_name' class='foodClass'>";?></td>
+                     </tr>
+ 
+                     <tr>
+                         <th>
+                             Description:
+                         </th>
+                         </tr>
+                         <tr>
+                         <td><?php echo "<input type='text' id='new_descAdd' name='description' class='foodClass'>";?></td>
+                     </tr>
+ 
+                     <tr>
+                         <th>Price:</th>
+                     </tr>
+                     <tr>
+                         <td><?php echo "<input type='text' id='new_priceAdd' name='price' class='foodClass'>";?></td>
+                     </tr>
+
+                     <tr>
+                         <td><?php echo "<input type='text' class='foodClass' name='status_available' hidden readonly value='no'";?></td>
+                         <td><?php echo "<input type='text' class='foodClass' name='photo' hidden readonly value='no'";?></td>
+
+                        </tr>
+ 
+
+                <!--    <form action="upload.php" method="post">
+                        <label>Select Image File:</label>
+                             <input type="file" name="image">
+                             <input type="submit" name="submit" value="Upload">!-->
+                    </table>
+                    
 
             <div class="two_button">
-                <button class="btn_add" onclick="foodAdd()">Add</button>
-                <button class="btn_cancel" onclick="document.location='restaurant_food.html'">Cancel</button>
+                <input type="submit" value="Add" class="btn_add">
+                <input type="submit" class="btn_cancel" formaction="restaurant_food.php" value="Cancel" method="post">
             </div>
-            
+            </form>
             </div>
         </div>
 

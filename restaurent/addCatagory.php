@@ -27,10 +27,10 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="" style="background: #11767ca6;">Food</a>
-                <a href="restaurant_order.html" class="">Order</a>
-                <a href="restaurant_report.html" class="">Report</a>
+                <a href="restaurant_profile.php" class="" >Home</a>
+                <a href="restaurant_food.php" class="" style="background: #11767ca6;">Food</a>
+                <a href="restaurant_order.php" class="">Order</a>
+                <a href="restaurant_report.php" class="">Report</a>
             </div>
         </div>
 
@@ -40,17 +40,15 @@
     $path .= "/dbase.php";
     include_once($path);
     $userid = "3";
-    $restaurantid="1";
-    $menu="1";
+    $restaurantid=$_GET['cid'];
 
     //find menuCatagory using menu id
 
-    $menuCatagory = "SELECT * FROM `menucategory` WHERE `menu_id` = '$menu' ";
+    $menuCatagory = "SELECT * FROM `menucategory` WHERE `restaurant_id` = '$restaurantid' ";
     $resultname = mysqli_query($conn, $menuCatagory);
     if (mysqli_num_rows($resultname) > 0) {
         while ($row = mysqli_fetch_array($resultname)) {
             $menuCategoryId1 = $row["menu_category_id"];
-            $menuId = $row["menu_id"];
             $name = $row['name'];//ayam,mee,nasi
         }
     } else {
@@ -58,50 +56,31 @@
     }   
     ?>
     
-<?php
-                //find menuItem using menuCatagory
-                $menuItem = "SELECT * FROM `menuitem`";
-                $result = mysqli_query($conn, $menuItem);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_array($result)) {
-                      $menuItemId = $row["menu_item_id"];        
-                      $menuCategoryId = $row["menu_category_id"];
-                      $name = $row['name'];
-                      $price = $row['price'];
-                      $photo = $row['photo'];
-                      $description = $row['description'];
-                      $status_available = $row['status_available'];
-                  }
-                } else {
-                      $name = "Undefine name, an error on database";
-                }   
-                ?>
-
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
                 <h1>Add Category</h1>
 
-                <form action="catagory_insert.php" method="post">
-                <table class="newCatagory">
-                    <tr>
-                        <th>Category:</th>
+               <?php
+               echo "<form action='catagory_insert.php?cid=" . $restaurantid . "' method='post'>";
+
+               echo "<table class='newCatagory'>";
+               echo "<tr>";
+               echo "<th>Category:</th>";
                         
-                        <tr>
-                           <?php 
-                           echo "<td>";
-                           echo "<input type='text' id='cat_new' class='foodClass'>";
-                           echo "</td>";
-                           ?>
-                        </tr>
+                    echo "<tr>";
+                    echo "<input type='text' name='restaurant_id' hidden readonly value='$restaurantid'>";    
+                    echo "<td>";
+                    echo "<input type='text' name='name' class='foodClass'>";
+                    echo "</td>";
+                    echo "</tr>";
+                    echo "</table>";
+                
 
-                </table>
-            
-
-            <div class="two_button">
-                <input type="submit" value="Add" class=btn_add></input>
-                <input type="submit" formaction="restaurant_food.php" method="post" value="Cancel" class=btn_cancel></input>
-
+            echo "<div class='two_button'>";
+            echo "<input type='submit' class='btn_add' value='Add'>";  
+            echo "<input type='submit' formaction='restaurant_food.php' method='post' value='Cancel' class='btn_cancel'>";
+            ?>
             </div>
             </form>
             </div>

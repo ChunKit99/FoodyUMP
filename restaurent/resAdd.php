@@ -40,16 +40,14 @@
     include_once($path);
     $userid = "3";
     $restaurantid="1";
-    $menu="1";
 
     //find menuCatagory using menu id
 
-    $menuCatagory = "SELECT * FROM `menucategory` WHERE `menu_id` = '$menu' ";
+    $menuCatagory = "SELECT * FROM `menucategory` WHERE `restaurant_id` = '$restaurantid' ";
     $resultname = mysqli_query($conn, $menuCatagory);
     if (mysqli_num_rows($resultname) > 0) {
         while ($row = mysqli_fetch_array($resultname)) {
             $menuCategoryId1 = $row["menu_category_id"];
-            $menuId = $row["menu_id"];
             $name = $row['name'];//ayam,mee,nasi
         }
     } else {
@@ -82,11 +80,12 @@
 
             <div class="two_button">
              
-             <form action="addCatagory.php?cid=' . $menu . '" method="post">
-<?php             echo "<a href='addCatagory.php?cid=" . $menu . "'><button type='button' class='btn_addCategory'>Category</button></a>";?>
-   <input type="submit" class="btn_addCatagory" value="Catagory">
-                <input type="submit" formaction="addFood.php" method="post" class="btn_addFood" value="Food">
-                </form>
+   <?php        
+        echo "<form action='addCatagory.php?cid=" . $restaurantid . "' method='post'>";
+        echo "<input type='submit' class='btn_addFood' value='Category'>";
+        echo "<input type='submit' formaction='addFood.php?cid=" . $restaurantid . "' method='post' class='btn_addFood' value='Food'>";
+        echo "</form>";
+    ?>
         
             </div>
             

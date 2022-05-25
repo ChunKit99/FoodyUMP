@@ -40,17 +40,15 @@
     $path .= "/dbase.php";
     include_once($path);
     $userid = "3";
-    $restaurantid="1";
-    $menu="1";
+    $restaurantid="5";
 
     //find menuCatagory using menu id
 
-    $menuCatagory = "SELECT * FROM `menucategory` WHERE `menu_id` = '$menu' ";
+    $menuCatagory = "SELECT * FROM `menucategory` WHERE `restaurant_id` = '$restaurantid' ";
     $resultname = mysqli_query($conn, $menuCatagory);
     if (mysqli_num_rows($resultname) > 0) {
         while ($row = mysqli_fetch_array($resultname)) {
             $menuCategoryId1 = $row["menu_category_id"];
-            $menuId = $row["menu_id"];
             $name = $row['name'];//ayam,mee,nasi
         }
     } else {
@@ -93,7 +91,6 @@
                     if (mysqli_num_rows($resultname) > 0) {
                         while ($row = mysqli_fetch_array($resultname)) {
                             $menuCategoryId1 = $row["menu_category_id"];
-                            $menuId = $row["menu_id"];
                             $name = $row['name'];//ayam,mee,nasi
 
                            echo "<table id='cat_mee'>";

@@ -75,7 +75,7 @@
                         <th>Restaurant Name:</th>
                         </tr>
                         <tr>
-                        <td><?php echo "<input type='text' name='name' value='$name' class='res_input'>" ?></td>
+                        <td><?php echo "<input type='text' name='name' value='$name' class='res_input' required>" ?></td>
                         <td><input type="checkbox" id="resName"name="res_pro_name" class="check_respro"></td>
                     </tr>
                     <tr>
