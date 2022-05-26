@@ -67,12 +67,6 @@
             <div class="orderlist">
                 <table>
                     <tr>
-                        <th>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </th>
                         <th>Food Name</th>
                         <th>Food Description</th>
                         <th>Price Per Item</th>
@@ -80,26 +74,24 @@
                         <th>Action</th>
 
                     </tr>
-                    <tr>
-                        <td>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="user_order_edit.php"><button class="editbutton"
-                                    onclick="order()">EDIT</button></a>
-                            <button class="deletebutton" class="btn btn-danger" data-toggle="modal"
-                                data-target="#confirmDelete" onclick="order()">DELETE</button>
-                        </td>
-                    </tr>
+                    <?php
+                    //$idshop=$_GET['idshop'];
+                    //$itemid=$_GET['itemid'];
+                    //$quantity=$_GET['quantity'];
+
+                    echo "<tr>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td><a href='user_order_edit.php'><button class='editbutton'>EDIT</button></a>
+                            <button class='deletebutton' class='btn btn-danger' data-toggle='modal'
+                                data-target='#confirmDelete'>DELETE</button>
+                            <a href='user_payment.php'><button class='checkbutton'>CHECK OUT</button></a>";
+                    echo "</td>";
+                    echo "</tr>";
+                    ?>
                 </table>
-                <br><br><br>
-                <a href="user_payment.php"><button class="checkbutton" onclick="order()">CHECK OUT</button></a>
             </div>
 
             <div class="modal fade" id="confirmDelete">

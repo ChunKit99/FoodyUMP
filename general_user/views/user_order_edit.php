@@ -50,12 +50,6 @@
             <div class="orderlist">
                 <table>
                     <tr>
-                        <th>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </th>
                         <th>Food Name</th>
                         <th>Food Description</th>
                         <th>Price Per Item</th>
@@ -64,12 +58,6 @@
 
                     </tr>
                     <tr>
-                        <td>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </td>
                         <td></td>
                         <td></td>
                         <td></td>

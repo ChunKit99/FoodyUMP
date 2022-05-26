@@ -50,34 +50,22 @@
                 <table>
                     <tr>
                         <th>Order Status:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Order Number:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Food Name:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Food Description:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Price Per Item:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Quantity:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Delivery Price:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <th>Total Price:</th>
+                    </tr>
+                    <tr>   
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </table>
