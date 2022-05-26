@@ -28,9 +28,9 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="admin_home.html" class="">Home</a>
-            <a href="admin_user_list.html" class="">User List</a>
-            <a href="admin_report.html" class="">Report</a>
+            <a href="admin_home.php" class="">Home</a>
+            <a href="admin_user_list.php" class="">User List</a>
+            <a href="admin_report.php" class="">Report</a>
         </div>
     </div>
 
