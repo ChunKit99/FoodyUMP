@@ -1,57 +1,69 @@
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse:separate;
-    border-spacing:0 30px;
+.delivery_notes {
+  width: 100%;
+  border-collapse:separate;
+  border-spacing:0 20px;
 }
 
-td {
-    text-align: left;
-    text-align: middle;
-    padding: 8px;
-    background-color: rgba(255, 238, 227, .93);
-  }
-
-.td {
-    text-align: center;
-    text-align: middle;
-    padding: 8px;
-    background-color: rgba(255, 238, 227, .93);
+.delivery_notes td {
+  text-align: center;
+  text-align: middle;
+  padding: 8px;
+  background-color: rgba(117, 199, 231, 0.93);
 }
 
-tr {
-    border-radius: 10px;
+.delivery_notes tr {
+  border-radius: 10px;
 }
 
-tr td:first-of-type {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.delivery_notes tr td:first-of-type {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
   
-tr td:last-of-type {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.delivery_notes tr td:last-of-type {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.tr:hover {background-color: #D6EEEE;}
+.delivery_notes tr:hover {
+  background-color: #808080;
+}
+
+.rider_profile th{
+  text-align: left;
+  width: 20%;
+  
+}
+
+.rider_profile {
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rider_input {
+  width:90%;
+  height:30px;
+}
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
   
   /* Modal Content */
   .modal-content {
@@ -112,4 +124,27 @@ tr td:last-of-type {
 
 .three_button{
   margin-left: 200px;
+}
+
+.button1 {
+  background-color: #04aab3;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  align-items: center;
+  font-style: bold;
+  border-radius: 5px;
+  position: relative;
+  width: 6%;
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border: none;
+}
+
+.div1 {
+  text-align: center;
+  position: relative;
 }

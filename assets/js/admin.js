@@ -13,7 +13,7 @@ function validateUserType() {
         location.replace('/general_user/views/user_home.html');
     } else if (selectedValue == "rider") {
         location.replace('/rider/rider_home.php');
-    } else {
+    }else{
         alert("Error");
     }
 }
