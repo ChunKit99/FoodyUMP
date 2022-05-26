@@ -8,29 +8,17 @@
   <title>Login</title>
 
 </head>
-
 <body>
-  <?php
-    session_start(); 
-
-      $path = $_SERVER['DOCUMENT_ROOT'];
-      $path .= "/dbase.php";
-      include_once($path);
-      
-      // Check if the user is already logged in, if yes then redirect him to welcome page
-      if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: admin_home.php");
-        header("location: rider_home.html");
-        exit;
-      }
+<?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
 
     ?>
-
-
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
   <h2>Welcome To Foody UMP</h2>
-  <form method="post" id="login-form" >
+  <form id="login-form" onsubmit="validateUserType()">
     <p>
     <input type="text" id="username" name="username" placeholder="Username..." required><i class="validation"><span></span><span></span></i>
     </p>
@@ -47,7 +35,7 @@
       <i class="validation"><span></span><span></span></i>
     </p>
     <p>
-    <input type="submit" id="login" value="Login" >
+    <input type="submit" id="login" value="Login" onclick="validateUserType()">
     </p>
     <br>
   </form>
