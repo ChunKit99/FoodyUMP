@@ -20,7 +20,24 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p>Username</p>
+                <p><?php
+                    $path = $_SERVER['DOCUMENT_ROOT'];
+                    $path .= "/dbase.php";
+                    include_once($path);
+                    $userid = "1";
+
+                //find user name base on userid
+                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+                    $resultname = mysqli_query($conn, $sqlname);
+                    if (mysqli_num_rows($resultname) > 0) {
+                        while ($row = mysqli_fetch_array($resultname)) {
+                             $name = $row['name'];
+                            echo "$name";
+                         }
+                    } else {
+                      $name = "Undefine name, an error on database";
+                      }
+                    ?></p>
                 <button class="logout" onclick="logout()"> Logout</button>
             </div>
         </div>
@@ -57,14 +74,29 @@
                         <th>Action</th>
 
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><input type="number" id="quantity"></td>
-                        <td><a href="user_order.php"><button class="savebutton" onclick="order()">SAVE</button></a>
-                        </td>
-                    </tr>
+                    <?php
+                    //$foodquantity=$_GET['foodquantity'];
+                    $cartedit="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
+                    $result= mysqli_query($conn, $cartedit);
+                    if (mysqli_num_rows($result) > 0){
+                        $count = 0;
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $count++;
+                            $foodname = $row['name'];
+                            $fooddes = $row['description']; 
+                            $foodprice = $row['price']; 
+                            $foodquantity=$row['quantity']; 
+                            echo "<tr>";
+                            echo "<td>$foodname</td>";
+                            echo "<td>$fooddes</td>";
+                            echo "<td>$foodprice</td>";
+                            echo "<td><input type='number' id='quantity' value='$foodquantity'></td>";
+                            echo "<td><a href='user_order.php?quantity=".$foodquantity."'><button class='savebutton'>SAVE</button></a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    }            
+                    ?>
                 </table>
             </div>
             <!--woeichi-->

@@ -106,7 +106,7 @@
                           }
                           echo "</select>";
                           echo  "<br><br>";
-                          echo "<a href='user_cat_add.php?idshop=".$idshop."?catid=".$catid."'><button class='continuebutton' class='btn btn-info btn-lg'>CONTINUE</button></a>";
+                          echo "<a href='user_cat_add.php?idshop=".$idshop."&catid=".$catid."'><button class='continuebutton' class='btn btn-info btn-lg'>CONTINUE</button></a>";
                       } 
                       ?> 
                    
