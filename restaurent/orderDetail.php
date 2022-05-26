@@ -29,7 +29,7 @@
             <div class="container-width nav-container">
                 <a href="restaurant_profile.html" class="" >Home</a>
                 <a href="restaurant_food.html" class="">Food</a>
-                <a href="restaurant_order.html" class="" style="background: #11767ca6;">Order</a>
+                <a href="restaurant_order.html" class="">Order</a>
                 <a href="restaurant_report.html" class="">Report</a>
             </div>
         </div>
@@ -37,26 +37,56 @@
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>Order Received</h1>
+                <h1>Order Details</h1>
 
-                <table class="orderList">
+                <form action="">
+                <table class="orderDetail">
                     <tr>
-                        <th>Order number</th>
-                        <th>Status</th>
-                        <th>Price (RM)</th>
+                        <th>Order Number:</th>
                     </tr>
+
+                        <tr>
+                           <td>AAAA11111X</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>Food Order:</th>
+                            <th>Quantity</th>
+                        </tr>
+
+                        <tr>
+                            <td>Nasi Ayam</td>
+                            <td>2</td>
+                        </tr>
+
+                        <tr>
+                            <th>Deliver Address:</th>
+                        </tr>
+
+                        <tr>
+                            <td>40,JALAN DAMAI,TAMAN DAMAI,PEKAN,PAHANG.</td>
+                        </tr>
+
                     <tr>
-                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111111</td>
-                        <td>Prepared</td>
-                        <td>21.00</td>
+                        <th>Status:</th>
                     </tr>
+
                     <tr>
-                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111112</td>
-                        <td>Received</td>
-                        <td>15.00</td>
+                        <td><select name="f_Status" id="food_status">
+                            <option value="received">Ordered</option>
+                            <option value="prepared">Prepared</option>
+                        </td>
                     </tr>
+
                 </table>
-                
+                </form>
+
+                <div class="three_button">
+                <button class="btn_update" onclick="orderUpdate()">Update</button>
+                <button class="btn_cancel" onclick="document.location='restaurant_order.html'">Cancel</button>
+                <button class="btn_delete" onclick="orderDelete()">Delete</button>
+                </div>
+
             </div>
         </div>
 

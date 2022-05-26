@@ -8,9 +8,6 @@
         <link rel="stylesheet" href="/assets/css/restaurant.css">
         <script src="/assets/js/admin.js"></script>
         <script src="/assets/js/restaurant.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-
         <title>Foody UMP</title>
     </head>
 
@@ -30,40 +27,38 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="">Food</a>
-                <a href="restaurant_order.html" class="">Order</a>
-                <a href="restaurant_report.html" class="" style="background: #11767ca6;">Report</a>
+                <a href="restaurant_profile.php" class="" >Home</a>
+                <a href="restaurant_food.php" class="">Food</a>
+                <a href="restaurant_order.php" class="" style="background: #11767ca6;">Order</a>
+                <a href="restaurant_report.php" class="">Report</a>
             </div>
         </div>
 
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>Report</h1>
+                <h1>Order Received</h1>
 
-                <label for="timeframe">Timeframe</label>
-                    <select name="timeframe" id="timeframe">
-                        <option value="">Select Option</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                        <option value="others">Others</option>
-                    </select>
-                    
-                    <label for="total_commission">Total Commission: </label>
-                    <input type="text" id="total_commission" name="total_commission" value="">
-                    <p>Total order receive: x</p>
-                    <p>Total income: xxx</p>
-                    <p>Total commission to rider: xx</p>
-                    <p>Total commission to Foody: xx</p>
-                    <p>Accumulate income: xxxxx</p>
-
-
-                    <button type="button" onclick="graph(chart1)">Click Me!</button>
-                </form>
-
-                <canvas id="chart1" style="width:100%;max-width:600px"></canvas>
+                <table class="orderList">
+                    <tr>
+                        <th>Order number</th>
+                        <th>Status</th>
+                        <th>Price (RM)</th>
+                        <th>Rider</th>
+                    </tr>
+                    <tr>
+                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111111</td>
+                        <td>Prepared</td>
+                        <td>21.00</td>
+                        <td>Ahmad</td>
+                    </tr>
+                    <tr>
+                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111112</td>
+                        <td>Received</td>
+                        <td>15.00</td>
+                        <td>Joy</td>
+                    </tr>
+                </table>
                 
             </div>
         </div>
