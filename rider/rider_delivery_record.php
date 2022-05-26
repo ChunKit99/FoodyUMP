@@ -27,65 +27,57 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="rider_home.html" class="">Home</a>
-                <a href="rider_order.html" class="" style="background: #11767ca6;">Order</a>
+                <a href="rider_home.php" class="">Home</a>
+                <a href="rider_order.php" class="">Order</a>
+                <a href="rider_delivery_record.php" class="" style="background: #11767ca6;">Records</a>
                 <a href="rider_report.html" class="">Report</a>
-                <a href="rider_complaint.html" class="">Complaint</a>
+                <a href="rider_complaint.php" class="">Complaint</a>
             </div>
         </div>
+
+        <!--to include the dbase.php-->
+        <?php
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            $path .= "/dbase.php";
+            include_once($path);
+            $orderStatus = "Completed";
+
+            $query = "SELECT * FROM `orderlist` 
+                        JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
+                        WHERE orderlist.order_status = '$orderStatus'";
+            $result = mysqli_query($conn, $query);
+        ?>
 
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>Order Details</h1>
-
-                <form action="">
-                <table class="orderDetail">
+                <h1>Delivery Notes</h1>
+                <table class="delivery_notes">
                     <tr>
-                        <th>Order Number:</th>
+                        <th>Order ID</th>
+                        <th>Order Status</th>
+                        <th>Complaint</th>
                     </tr>
+                    <?php
+                        $count = 0;
+                        if (mysqli_num_rows($result) > 0){
+                            //output data of each row
+                            while ($row = mysqli_fetch_assoc($result)){
+                                $count++;
+                                $orderID = $row['order_id'];
+                                $orderStatus = $row['order_status'];
+                                echo "<tr>";
+                                echo "<td scope='row'>$orderID</td>";
+                                echo "<td>$orderStatus</td>";
+                                echo "<td>";
+                                echo "<a href='rider_complaint_feedback.php?order_id=" . $orderID . "'><button type='button'>Feedback</button></a>";
+                            ?>
 
-                        <tr>
-                           <td>AAAA11111X</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Food Order:</th>
-                            <th>Quantity</th>
-                        </tr>
-
-                        <tr>
-                            <td>Nasi Ayam</td>
-                            <td>2</td>
-                        </tr>
-
-                        <tr>
-                            <th>Deliver Address:</th>
-                        </tr>
-
-                        <tr>
-                            <td>40,JALAN DAMAI,TAMAN DAMAI,PEKAN,PAHANG.</td>
-                        </tr>
-
-                    <tr>
-                        <th>Status:</th>
-                    </tr>
-
-                    <tr>
-                        <td><select name="f_Status" id="food_status">
-                            <option value="received">Received</option>
-                            <option value="prepared">Prepared</option>
-                        </td>
-                    </tr>
-
+                    <?php
+                            }
+                        }
+                    ?>
                 </table>
-                </form>
-
-                <div class="three_button">
-                <button class="btn_update" onclick="recordsUpdate()">Update</button>
-                <button class="btn_cancel" onclick="document.location='rider_home.html'">Cancel</button>
-                <button class="btn_delete" onclick="recordsDelete()">Delete</button>
-                </div>
             </div>
         </div>
         

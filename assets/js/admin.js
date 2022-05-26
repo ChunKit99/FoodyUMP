@@ -8,12 +8,12 @@ function validateUserType() {
     if (selectedValue == "administrator") {
         window.location.href = '/adminstrator/admin_home.php';
     } else if (selectedValue == "restaurantOwner") {
-        location.replace('/restaurent/restaurant_profile.html');
+        location.replace('/restaurent/restaurant_profile.php');
     } else if (selectedValue == "generalUser") {
-        location.replace('/general_user/views/user_home.html');
+        location.replace('/general_user/views/user_home.php');
     } else if (selectedValue == "rider") {
         location.replace('/rider/rider_home.php');
-    } else {
+    }else{
         alert("Error");
     }
 }

@@ -28,7 +28,8 @@
         <div id="nav-container">
             <div class="container-width nav-container">
                 <a href="rider_home.php" class="" style="background: #11767ca6;">Home</a>
-                <a href="rider_order.html">Order</a>
+                <a href="rider_order.php">Order</a>
+                <a href="rider_delivery_record.php" class="">Records</a>
                 <a href="rider_report.html" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
@@ -168,8 +169,8 @@
                                         ?>
 
                             <?php
-                                                    }
-                                                }
+                                    }
+                                }
                             ?>
                         </tbody>
                     </table>
@@ -187,16 +188,6 @@
                 <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
             </div>
         </div>
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Please scan the QR Code to confirm the delivery.</p>
-      <img src="QR2.jpg" alt="QR Code" width="100" height="100">
     </div>
   
   </div>

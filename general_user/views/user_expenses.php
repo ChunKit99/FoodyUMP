@@ -20,7 +20,24 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p>Username</p>
+                <p><?php
+                    $path = $_SERVER['DOCUMENT_ROOT'];
+                    $path .= "/dbase.php";
+                    include_once($path);
+                    $userid = "1";
+
+                //find user name base on userid
+                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+                    $resultname = mysqli_query($conn, $sqlname);
+                    if (mysqli_num_rows($resultname) > 0) {
+                        while ($row = mysqli_fetch_array($resultname)) {
+                             $name = $row['name'];
+                            echo "$name";
+                         }
+                    } else {
+                      $name = "Undefine name, an error on database";
+                      }
+                    ?></p>
                 <button class="logout" onclick="logout()"> Logout</button>
             </div>
         </div>
@@ -28,64 +45,56 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="" style="background: #11767ca6;">Order</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
-            <a href="user_complaint.html" class="">Complaint</a>
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="" style="background: #11767ca6;">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
+            <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
 
     <!--content-->
     <div id="page-content">
         <div class="page-main-content">
-            <!--woeichi-->
-            <div class="tracking">
+            <!--Woeichi-->
+            <div class="exp">
                 <br><br><br>
-                <h1>Delivery Status</h1>
+                <h1>Expenses</h1>
             </div>
+            
             <br><br>
-            <div class="track">
+            <div class="expenses">
                 <table>
                     <tr>
-                        <th>Order Status:</th>
+                        <th>Daily Expenses: </th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Order Number:</th>
+                        <th>Weekly Expenses:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Food Name:</th>
+                        <th>Monthly Expenses:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Food Description:</th>
+                        <th>Average Expenses</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Price Per Item:</th>
+                        <th>In Week:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Quantity:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Price:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Total Price:</th>
+                        <th>In Month:</th>
                         <td></td>
                     </tr>
                 </table>
-                <br><br><br>
-                <a href="user_order.html"><button class="backbutton" onclick="delivery()">BACK</button></a>
-
+                
             </div>
+            <!--Woeichi-->
 
-            <!--woeichi-->
         </div>
     </div>
 
