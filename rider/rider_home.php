@@ -29,6 +29,7 @@
             <div class="container-width nav-container">
                 <a href="rider_home.php" class="" style="background: #11767ca6;">Home</a>
                 <a href="rider_order.php">Order</a>
+                <a href="rider_delivery_record.php" class="">Records</a>
                 <a href="rider_report.html" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
