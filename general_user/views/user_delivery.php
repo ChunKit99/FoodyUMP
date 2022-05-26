@@ -28,11 +28,12 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="" style="background: #11767ca6;">Order</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
-            <a href="user_complaint.html" class="">Complaint</a>
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="" style="background: #11767ca6; ">Delivery</a>
+            <a href="user_expenses.php" class="">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
+            <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
 
@@ -40,44 +41,36 @@
     <div id="page-content">
         <div class="page-main-content">
             <!--woeichi-->
-            <div class="ordering">
+            <div class="tracking">
                 <br><br><br>
-                <h1>My Order List</h1>
+                <h1>Delivery Status</h1>
             </div>
             <br><br>
-
-            <div class="orderlist">
+            <div class="track">
                 <table>
                     <tr>
-                        <th>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </th>
-                        <th>Food Name</th>
-                        <th>Food Description</th>
-                        <th>Price Per Item</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
-
+                        <th>Order Status:</th>
+                        <th>Order Number:</th>
+                        <th>Food Name:</th>
+                        <th>Food Description:</th>
+                        <th>Price Per Item:</th>
+                        <th>Quantity:</th>
+                        <th>Delivery Price:</th>
+                        <th>Total Price:</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </td>
+                    <tr>   
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input type="number" id="quantity"></td>
-                        <td><a href="user_order.html"><button class="savebutton" onclick="order()">SAVE</button></a>
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
+
             <!--woeichi-->
         </div>
     </div>

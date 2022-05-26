@@ -37,7 +37,24 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p>Username</p>
+                <p><?php
+                    $path = $_SERVER['DOCUMENT_ROOT'];
+                    $path .= "/dbase.php";
+                    include_once($path);
+                    $userid = "1";
+
+                //find user name base on userid
+                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+                    $resultname = mysqli_query($conn, $sqlname);
+                    if (mysqli_num_rows($resultname) > 0) {
+                        while ($row = mysqli_fetch_array($resultname)) {
+                             $name = $row['name'];
+                            echo "$name";
+                         }
+                    } else {
+                      $name = "Undefine name, an error on database";
+                      }
+                    ?></p>
                 <button class="logout" onclick="logout()"> Logout</button>
             </div>
         </div>
@@ -45,11 +62,12 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="" style="background: #11767ca6;">Order</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
-            <a href="user_complaint.html" class="">Complaint</a>
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="" style="background: #11767ca6;">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
+            <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
 
@@ -66,12 +84,6 @@
             <div class="orderlist">
                 <table>
                     <tr>
-                        <th>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </th>
                         <th>Food Name</th>
                         <th>Food Description</th>
                         <th>Price Per Item</th>
@@ -79,26 +91,38 @@
                         <th>Action</th>
 
                     </tr>
-                    <tr>
-                        <td>
-                            <form action="/x.php">
-                                <input type="checkbox" id="order1" name="order1">
-                                <label for="order1"></label><br>
-                            </form>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="user_order_edit.html"><button class="editbutton"
-                                    onclick="order()">EDIT</button></a>
-                            <button class="deletebutton" class="btn btn-danger" data-toggle="modal"
-                                data-target="#confirmDelete" onclick="order()">DELETE</button>
-                        </td>
-                    </tr>
+                    <?php
+                    //$idshop=$_GET['idshop'];
+                    //$itemid=$_GET['itemid'];
+                    //$foodquantity=$_GET['foodquantity'];
+                    $cart="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
+                    $result= mysqli_query($conn, $cart);
+                    if (mysqli_num_rows($result) > 0){
+                        $count = 0;
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $count++;
+                            $foodname = $row['name'];
+                            $fooddes = $row['description']; 
+                            $foodprice = $row['price']; 
+                            $foodquantity=$row['quantity']; 
+                            echo "<tr>";
+                            echo "<td>$foodname </td>";
+                            echo "<td>$fooddes </td>";
+                            echo "<td>$foodprice </td>";
+                            echo "<td><input type='number' readonly id='quantity' value='$foodquantity'></td>";
+                            echo "<td><a href='user_order_edit.php'><button class='editbutton'>EDIT</button></a>
+                                    <button class='deletebutton' class='btn btn-danger' data-toggle='modal'
+                                        data-target='#confirmDelete'>DELETE</button>
+                                    <a href='user_payment.php'><button class='checkbutton'>CHECK OUT</button></a>";
+                            echo "</td>";
+                            echo "</tr>";
+
+                        }
+                    }
+
+                   
+                    ?>
                 </table>
-                <br><br><br>
-                <a href="user_payment.html"><button class="checkbutton" onclick="order()">CHECK OUT</button></a>
             </div>
 
             <div class="modal fade" id="confirmDelete">

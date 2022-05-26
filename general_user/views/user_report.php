@@ -20,7 +20,24 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p>Username</p>
+                <p><?php
+                    $path = $_SERVER['DOCUMENT_ROOT'];
+                    $path .= "/dbase.php";
+                    include_once($path);
+                    $userid = "1";
+
+                //find user name base on userid
+                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
+                    $resultname = mysqli_query($conn, $sqlname);
+                    if (mysqli_num_rows($resultname) > 0) {
+                        while ($row = mysqli_fetch_array($resultname)) {
+                             $name = $row['name'];
+                            echo "$name";
+                         }
+                    } else {
+                      $name = "Undefine name, an error on database";
+                      }
+                    ?></p>
                 <button class="logout" onclick="logout()"> Logout</button>
             </div>
         </div>
@@ -28,11 +45,12 @@
 
     <div id="nav-container">
         <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="">Order</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="" style="background: #11767ca6;">Report</a>
-            <a href="user_complaint.html" class="">Complaint</a>
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="">Expenses</a>
+            <a href="user_report.php" class="" style="background: #11767ca6;">Report</a>
+            <a href="user_complaint.php" class="">Complaint</a>
         </div>
     </div>
 
@@ -50,10 +68,9 @@
 
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ['Category', 'RM'],
-                            ['Malay Cuisine', 8],
-                            ['Indian Cuisine', 2],
-                            ['Drinks', 2],
+                            ['Restaurant', 'Money Spent'],
+                            ['Along Restaurant', 8],
+                            ['Farouk Maju Restaurant', 2],
                         ]);
 
                         // Optional; add a title and set the width and height of the chart
@@ -73,10 +90,9 @@
 
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ['Category', 'RM'],
-                            ['Malay Cuisine', 8],
-                            ['Indian Cuisine', 2],
-                            ['Drinks', 2],
+                            ['Restaurant', 'Money Spent'],
+                            ['Along Restaurant', 8],
+                            ['Farouk Maju Restaurant', 2],
                         ]);
 
                         // Optional; add a title and set the width and height of the chart
@@ -93,13 +109,13 @@
 </body>
 
 <!--footer-->
-    <div id="footer-container">
-        <div class="footer-content">
-            <div class="footer-links-a" style="margin-top: 20px"></div>
-            <div class="copyright-info">
-                <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
-            </div>
+<div id="footer-container">
+    <div class="footer-content">
+        <div class="footer-links-a" style="margin-top: 20px"></div>
+        <div class="copyright-info">
+            <p>CopyRight © 2022 Foody UMP All Right Reserved</p>
         </div>
     </div>
+</div>
 
 </html>
