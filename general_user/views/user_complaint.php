@@ -18,6 +18,13 @@
     <title>Complaint</title>
 </head>
 <!--body-->
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?>
 
 <body>
     <div id="logo">
@@ -26,8 +33,8 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100">
             </div>
             <div class="topright-container fr">
-                <h3>Username</h3>
-                <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -46,18 +53,7 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "1";
-
-    //find user name base on userid
-    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
-    $resultname = mysqli_query($conn, $sqlname);
-    if (mysqli_num_rows($resultname) > 0) {
-        while ($row = mysqli_fetch_array($resultname)) {
-            $name = $row['name'];
-        }
-    } else {
-        $name = "Undefine name, an error on database";
-    }
+    $userid = $_SESSION["user_id"];
 
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));
@@ -105,10 +101,8 @@
                 <h1>User Complaint List</h1>
             </div>
             <div class="fr">
-                <?php
-                echo "<a href='user_complaint_add.php?id=" . $userid . "'><button type='button' class='btn btn-primary'>New Complaint</button></a>";
-                echo "<a href='user_complaint_report.php?id=" . $userid . "'><button type='button' class='btn btn-info'>View Report</button></a>";
-                ?>
+                <a href='user_complaint_add.php'><button type='button' class='btn btn-primary'>New Complaint</button></a>
+                <a href='user_complaint_report.php'><button type='button' class='btn btn-info'>View Report</button></a>
             </div>
             <!--table with summary-->
             <div class="container-width fl">

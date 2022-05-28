@@ -18,7 +18,13 @@
     <title>Complaint</title>
 </head>
 <!--body-->
-
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if ($_SESSION["user_type"] != "rider")
+    header("location:/logout.php");
+?>
 <body>
     <div id="logo">
         <div class="container-width">
@@ -26,8 +32,8 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100">
             </div>
             <div class="topright-container fr">
-                <h3>Username</h3>
-                <button class="logout" onclick="logout()"> Logout</button>
+            <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -46,10 +52,8 @@
     $path .= "/dbase.php";
     include_once($path);
 
-    $riderid = $_GET['id'];
-    //find ridername base on riderid
-    $ridername = "abu";
-
+    $riderid = $_SESSION["user_id"];
+    
     //get current week start and end
     $monday = strtotime('last monday', strtotime('tomorrow'));
     $sunday = strtotime('+6 days', $monday);
@@ -85,7 +89,7 @@
             <!--title-->
             <h1>Report of Complaint</h1>
             <div class="btn-group">
-                <a type="button" class="btn btn-info" href="user_complaint.php">Back</a>
+                <a type="button" class="btn btn-info" href="rider_complaint.php">Back</a>
                 <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
