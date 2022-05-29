@@ -13,6 +13,13 @@
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="restaurant")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -20,8 +27,8 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -40,8 +47,18 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "3";
-    $restaurantid="1";
+    $userid = $_SESSION["user_id"];
+    $restaurantid="";
+    $q="SELECT * FROM `restaurantowner` WHERE `user_id` = '$userid' ";
+    $res = mysqli_query($conn, $q);
+    if (mysqli_num_rows($res) > 0) {
+        while ($row = mysqli_fetch_array($res)) {
+            $restaurantid = $row['restaurant_id'];
+            
+        }
+    } 
+     $_SESSION["restaurant_id"]= $restaurantid;
+
 
     ?>
     

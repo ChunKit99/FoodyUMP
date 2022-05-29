@@ -9,7 +9,7 @@ include_once($path);
 extract($_POST);
 
 
-$query = "INSERT INTO menucategory(restaurant_id, name) VALUES ('$restaurant_id','$name')";
+$query = "INSERT INTO menucategory(`restaurant_id`, `name`) VALUES ('$restaurant_id','$name')";
 
 if (mysqli_query($conn, $query)) {
 

@@ -12,6 +12,13 @@
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="restaurant")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -19,11 +26,12 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
+
 
         <div id="nav-container">
             <div class="container-width nav-container">
@@ -39,8 +47,9 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "3";
-    $restaurantid="1";
+    $userid = $_SESSION["user_id"];
+    $restaurantid= $_SESSION["restaurant_id"];
+    
 
     //find menuCatagory using menu id
 
@@ -86,7 +95,7 @@
                 <form action="" method="post">
 
                 <?php
-                    $menuCatagory = "SELECT * FROM `menucategory` ";
+                    $menuCatagory = "SELECT * FROM `menucategory`  WHERE `restaurant_id` = '$restaurantid' ";
                     $resultname = mysqli_query($conn, $menuCatagory);
                     if (mysqli_num_rows($resultname) > 0) {
                         while ($row = mysqli_fetch_array($resultname)) {
@@ -121,7 +130,7 @@
                         if ($menuCategoryId1 == $menuCategoryId) {
 
                           echo "<tr>";
-                        echo "<td><img src=$photo alt='Mee Hoon Soup' width='100' height='100'></td>";
+                        echo "<td><img src=$photo alt=$name width='100' height='100'></td>";
                         echo "<td><a href='choose_action.php?id=".$menuItemId."'>$name</a></td>";
                         echo "<td>$description</td>";
                         echo "<td>$price</td>";

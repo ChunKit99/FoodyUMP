@@ -12,6 +12,13 @@
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="restaurant")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -19,11 +26,12 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
+
 
         <div id="nav-container">
             <div class="container-width nav-container">
@@ -39,8 +47,8 @@
     $path = $_SERVER['DOCUMENT_ROOT'];
     $path .= "/dbase.php";
     include_once($path);
-    $userid = "3";
-    $restaurantid="1";
+    $userid = $_SESSION["user_id"];
+    $restaurantid= $_SESSION["restaurant_id"];
     $menuItemId=$_GET['id'];
 
     
@@ -52,9 +60,8 @@
                                                 $name = $row['name'];
                                                 $description = $row['description'];
                                                 $price =$row['price'];
+                                                $photo =$row['photo'];
 
-                                                
-                                               
                                                   }
                                             }
                                         
@@ -116,16 +123,22 @@
                      </tr>
 
                      <tr>
-                         <td><?php echo "<input type='text' class='foodClass' name='status_available' hidden readonly value='no'";?></td>
-                         <td><?php echo "<input type='text' class='foodClass' name='photo' hidden readonly value='no'";?></td>
+                         <th>Picture link:</th>
+                     </tr>
+                    
+                     <tr>
+                         <td><?php echo "<input type='text' class='foodClass' name='photo' value='$photo'>";?></td>
+                     </tr>
+                     
+                     <tr>
+                     <td><?php echo "<input type='text' class='foodClass' name='status_available' hidden readonly value='no'";?></td>
+                     </tr>
 
-                        </tr>
+                     
+
  
 
-                <!--    <form action="upload.php" method="post">
-                        <label>Select Image File:</label>
-                             <input type="file" name="image">
-                             <input type="submit" name="submit" value="Upload">!-->
+               
                     </table>
                     
 

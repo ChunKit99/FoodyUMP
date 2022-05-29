@@ -6,8 +6,8 @@ include_once($path);
 
 extract($_POST);
 $menuItemId = $_GET['id'];
-$query = "UPDATE `menuitem` SET `name`='$name',`description`='$description',`price`='$price',`photo`='$photo',`status_available`='$status_available' 
-WHERE `menu_item_id` = '$menuItemId'";
+$query = "UPDATE `menuitem` SET `name`='$name',`description`='$description',`price`='$price',`photo`='$photo',`status_available`='$status_available', 
+`photo`='$photo' WHERE `menu_item_id` = '$menuItemId'";
 
 if (mysqli_query($conn, $query)) {
     echo "<script type='text/javascript'> window.location='restaurant_food.php' </script>";
