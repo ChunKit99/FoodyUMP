@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/assets/css/global.css">
     <link rel="stylesheet" href="admin_add_user.css">
     <script src="/assets/js/admin.js"></script>
-    <title>Edit User Foody UMP</title>
+    <title>View User Foody UMP</title>
 </head>
 
 <!--body-->
@@ -68,7 +68,7 @@
         <div id="page-content">
             <div class="page-main-content">
 
-                <h1 class="h2">Edit User Profile</h1>
+                <h1 class="h2">View User Profile</h1>
 
                 <form method="post" action="admin_update_user.php?user_id=<?php echo $userID ?>">
                     <table>
@@ -81,110 +81,68 @@
 
                         <tr>
                             <td><label for="name">Name: </label></td>
-                            <td><input type="text" id="name" name="name" value="<?php echo $name; ?>" required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='name' value='$name' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="userEmail">Email:</label></td>
-                            <td><input type="text" id="userEmail" name="userEmail" value=<?php echo $userEmail; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='userMail' value='$userEmail' >" ?></td>
 
                         </tr>
 
                         <tr>
                             <td><label for="contactNum">Phone Number:</label></td>
-                            <td><input type="text" id="contactNum" name="contactNum" value=<?php echo $contactNum; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='contactNum' value='$contactNum' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="state">State:</label></td>
-                            <td>
-                                <select name="state" >
-                                <?php
-                                    $selectstates = array('Johor','Kedah','Kelantan','Melaka', 'Negeri Sembilan', 'Pulau Pinang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu', 'Kuala Lumpur', 'Labuan', 'Putrajaya');
-
-                                        foreach ($selectstates as $selectstate) {
-                                            if ($state == $selectstate) {
-                                                echo "<option selected value='$selectstate'>$selectstate</option>";
-                                            } else {
-                                                echo "<option value='$selectstate'>$selectstate</option>";
-                                            }
-                                        }
-                                        ?>
-                                </select>
-                            </td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='state' value='$state' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="district">District:</label></td>
-                            <td><input type="text" id="district" name="district" value=<?php echo $district; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='district' value='$district' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="postalCode">Postal Code:</label></td>
-                            <td><input type="text" id="postalCode" name="postalCode" value=<?php echo $postalCode; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='postalCode' value='$postalCode' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="detailsAdd">Details Address:</label></td>
-                            <td><input type="text" id="detailsAdd" name="detailsAdd" value=<?php echo $detailsAdd; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='detailsAdd' value='$detailsAdd' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="userName">Username:</label></td>
-                            <td><input type="text" id="userName" name="userName" value="<?php echo $userName ?>" required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='userName' value='$userName' >" ?></td>
                         </tr>
 
                         <tr>
                             <td><label for="password">Password:</label></td>
-                            <td><input type="text" id="password" name="password" value=<?php echo $password; ?> required></td>
+                            <td><?php echo "<input type='text' readonly class='form-control-plaintext' id='password' value='$password' >" ?></td>
                         </tr>
 
 
                         <tr>
                             <td><label for="userType">User Type:</label></td>
                             <td>
-                                <select name="userType" >
-                                <?php
-                                    $selectuserTypes = array('Administrator','Rider','General User','Restaurant Owner');
-
-                                        foreach ($selectuserTypes as $selectuserType) {
-                                            if ($userType == $selectuserType) {
-                                                echo "<option selected value='$selectuserType'>$selectuserType</option>";
-                                            } else {
-                                                echo "<option value='$selectuserType'>$selectuserType</option>";
-                                            }
-                                        }
-                                        ?>
-                                </select>
-                            </td>        
-                            
+                                <?php echo "<input type='select' readonly class='form-control-plaintext' id='userType' value='$userType' >" ?>      
+                            </td>                              
                         </tr>
 
                         <tr>
                             <td><label for="gender">Gender:</label></td>
                             <td>
-                                <!--<input type="radio" value="Male" name="gender" />Male
-                                <input type="radio" value="Female" name="gender" />Female-->  
-                                <select name="gender" id="gender">
-                                <?php
-                                    $selectGenders = array('Male','Female');
-
-                                        foreach ($selectGenders as $selectGender) {
-                                            if ($gender == $selectGender) {
-                                                echo "<option selected value='$selectGender'>$selectGender</option>";
-                                            } else {
-                                                echo "<option value='$selectGender'>$selectGender</option>";
-                                            }
-                                        }
-                                        ?> 
-                                </select>
+                            <?php echo "<input type='select' readonly class='form-control-plaintext' id='gender' value='$gender' >" ?>
                             </td>
                         </tr>
                     </table>
 
                     <div class="div1 ">
-                        <input type="submit" class="button2" value="Edit"></input>
-                        <a href="admin_user_list.php"><button type="button" class="button2">Cancel</button></a>
+                        <a href="admin_user_list.php"><button type="button" class="button2">Back</button></a>
                     </div>
 
                 </form>

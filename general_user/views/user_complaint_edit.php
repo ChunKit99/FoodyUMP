@@ -18,6 +18,13 @@
     <title>Complaint</title>
 </head>
 <!--body-->
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if ($_SESSION["user_type"] != "generaluser")
+    header("location:/logout.php");
+?>
 
 <body>
     <div id="logo">
@@ -26,8 +33,8 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100">
             </div>
             <div class="topright-container fr">
-                <h3>Username</h3>
-                <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -86,12 +93,12 @@
                     Application Information
                 </div>
                 <div class="card-body">
-                    <form method="post" action="complaint_update.php?cid=<?php echo $complaintid ?>">
+                    <form method="post" action="complaint_update.php">
                         <!--Complaint id-->
                         <div class="form-group row">
                             <label for="complaintID" class="col-sm-2 col-form-label">Complaint ID</label>
                             <div class="col-sm-10">
-                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='complaintID' value='$complaintid'>" ?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' name='complaintID' value='$complaintid'>" ?>
                             </div>
                         </div>
                         <!--User id-->

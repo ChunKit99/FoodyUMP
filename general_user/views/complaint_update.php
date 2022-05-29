@@ -5,8 +5,7 @@ $path .= "/dbase.php";
 include_once($path);
 
 extract($_POST);
-$cid = $_GET['cid'];
-$query = "UPDATE `complaint` SET `complaint_type`='$chooseType',`complaint_desc`='$discriptionComplaint' WHERE `complaint_id` = '$cid'";
+$query = "UPDATE `complaint` SET `complaint_type`='$chooseType',`complaint_desc`='$discriptionComplaint' WHERE `complaint_id` = '$complaintID'";
 
 if (mysqli_query($conn, $query)) {
 
