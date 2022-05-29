@@ -27,26 +27,56 @@
 
         <div id="nav-container">
             <div class="container-width nav-container">
-                <a href="restaurant_profile.html" class="" >Home</a>
-                <a href="restaurant_food.html" class="">Food</a>
-                <a href="restaurant_order.html" class="">Order</a>
-                <a href="restaurant_report.html" class="">Report</a>
+                <a href="restaurant_profile.php" class="" >Home</a>
+                <a href="restaurant_food.php" class="">Food</a>
+                <a href="restaurant_order.php" class="">Order</a>
+                <a href="restaurant_report.php" class="">Report</a>
             </div>
         </div>
+
+        <?php
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= "/dbase.php";
+        include_once($path);
+        $userid = "3";
+        $restaurantid="1";
+        $orderId=$_GET["id"];
+
+
+        $orderD = "SELECT orderlist.*, menuitem.menu_item_id, menuitem.name AS fName FROM `orderlist` JOIN `menuitem` ON 
+        orderlist.menu_item_id = menuitem.menu_item_id WHERE `order_id` = $orderId";
+        $result = mysqli_query($conn, $orderD);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $foodName=$row["fName"];
+                $orderId = $row["order_id"];
+                $userId = $row["user_id"];
+                $riderId = $row["rider_id"];
+                $restaurentId = $row["restaurant_id"];
+                $menuItemId = $row["menu_item_id"];
+                $deliveryAddress = $row["delivery_address"];
+                $quantity = $row["quantity"];
+                $orderStatus = $row["order_status"];
+                $paidStatus = $row["paid_status"];
+                $orderDate = $row["order_date"];
+                $orderTime = $row["order_time"];
+                $price = $row["price"];
+            }}
+        ?>
 
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
                 <h1>Order Details</h1>
 
-                <form action="">
+                <form action="order_update.php?id=<?php echo $orderId ?>" method="post">
                 <table class="orderDetail">
                     <tr>
                         <th>Order Number:</th>
                     </tr>
 
                         <tr>
-                           <td>AAAA11111X</td>
+                           <td><?php echo $orderId ?></td>
                         </tr>
                         
                         <tr>
@@ -55,8 +85,8 @@
                         </tr>
 
                         <tr>
-                            <td>Nasi Ayam</td>
-                            <td>2</td>
+                            <td><?php echo $foodName ?></td>
+                            <td><?php echo $quantity ?></td>
                         </tr>
 
                         <tr>
@@ -64,7 +94,7 @@
                         </tr>
 
                         <tr>
-                            <td>40,JALAN DAMAI,TAMAN DAMAI,PEKAN,PAHANG.</td>
+                            <td><?php echo $deliveryAddress ?></td>
                         </tr>
 
                     <tr>
@@ -73,22 +103,24 @@
 
                     <tr>
                         <td><select name="f_Status" id="food_status">
-                            <option value="received">Ordered</option>
-                            <option value="prepared">Prepared</option>
+                            <option value="ordered">ordered</option>
+                            <option value="prepared">prepared</option>
+                            </select>
                         </td>
                     </tr>
 
                 </table>
-                </form>
+                
 
-                <div class="three_button">
-                <button class="btn_update" onclick="orderUpdate()">Update</button>
-                <button class="btn_cancel" onclick="document.location='restaurant_order.html'">Cancel</button>
-                <button class="btn_delete" onclick="orderDelete()">Delete</button>
+                <div class="two_button">
+                <?php
+                echo "<input type='submit' class='btn_update' value='Update'>";
+                echo "<input type='submit' class='btn_delete' value='Cancel'>";
+                ?>
                 </div>
-
             </div>
         </div>
+            </form>
 
     </body>
 

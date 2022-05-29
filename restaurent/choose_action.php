@@ -77,7 +77,15 @@
                         
                         <tr>
                             <td> 
-                            <?php echo "<input type='text' readonly value='$menuCategoryId1' class='foodClass'></input>";?>
+                            <?php
+                             $menuCategory = "SELECT menuitem.*, menucategory.name AS cName FROM `menuitem` JOIN `menucategory` ON menuitem.menu_category_id = menucategory.menu_category_id WHERE
+                              `menu_item_id`=$menuItemId";
+                             $resultname = mysqli_query($conn, $menuCategory);
+                                if (mysqli_num_rows($resultname) > 0) {
+                                    while ($row = mysqli_fetch_array($resultname)) {
+                                        $menuCategoryId = $row["menu_category_id"];
+                                        $cname = $row['cName'];
+                            echo "<input type='text' readonly value='$cname' class='foodClass'></input>";}}?>
 
                              </td>
                          </tr>

@@ -34,6 +34,16 @@
             </div>
         </div>
 
+        <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = "3";
+    $restaurantid="1";
+
+    //find menuCatagory using menu id
+        ?>
+
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
@@ -46,18 +56,47 @@
                         <th>Price (RM)</th>
                         <th>Rider</th>
                     </tr>
-                    <tr>
-                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111111</td>
-                        <td>Prepared</td>
-                        <td>21.00</td>
-                        <td>Ahmad</td>
+                    
+                        <?php
+                            $riderL = "SELECT orderlist.*, rider.rider_id, user.user_id, user.name AS rName FROM `orderlist` JOIN `rider` ON 
+                            orderlist.rider_id = rider.rider_id JOIN `user` ON rider.rider_id = user.user_id WHERE `restaurant_id` = $restaurantid";
+                            $result = mysqli_query($conn, $riderL);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $riderName=$row["rName"];
+                                    $orderId = $row["order_id"];
+                                    $userId = $row["user_id"];
+                                    $riderId = $row["rider_id"];
+                                    $restaurentId = $row["restaurant_id"];
+                                    $menuItemId = $row["menu_item_id"];
+                                    $deliveryAddress = $row["delivery_address"];
+                                    $quantity = $row["quantity"];
+                                    $orderStatus = $row["order_status"];
+                                    $paidStatus = $row["paid_status"];
+                                    $orderDate = $row["order_date"];
+                                    $orderTime = $row["order_time"];
+                                    $price = $row["price"];
+                           
+                        echo "<tr>";       
+                        echo "<td>";
+                        echo "<a href='orderDetail.php?id=".$orderId."'>$orderId</a>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo $orderStatus;
+                        echo "</td>";
+                        echo "<td>";
+                        echo $price;
+                        echo "</td>";
+                        echo "<td>";
+                        echo $riderName;
+                        echo "</td>";
+                        echo "</tr>";
+                            }
+                        }
+                    
+                        ?>
                     </tr>
-                    <tr>
-                        <td onclick="document.location='orderDetail.html'" class="blue">AAAA111112</td>
-                        <td>Received</td>
-                        <td>15.00</td>
-                        <td>Joy</td>
-                    </tr>
+                   
                 </table>
                 
             </div>
