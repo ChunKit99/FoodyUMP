@@ -50,6 +50,7 @@ if($_SESSION["user_type"]!="restaurant")
     $userid = $_SESSION["user_id"];
     $restaurantid= $_SESSION["restaurant_id"];
     
+    
 
     //find menuCatagory using menu id
 
@@ -90,7 +91,20 @@ if($_SESSION["user_type"]!="restaurant")
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
-                <h1>CATAGORIES</h1><sup class="red">*Minimum 10 foods must be published</sup> <br> <sup class="red">*Minimum 3 catagories</sup>
+                <h1>CATAGORIES</h1>
+                <?php 
+                $test = "SELECT * FROM menuitem WHERE `status_available`='yes'";
+                
+                $resultTest = mysqli_query($conn,$test);
+              
+                $num_row=mysqli_num_rows($resultTest);
+               
+               if ($num_row >= 10){
+                echo "<sup class='green'>Minimum food to publish achieve</sup>";
+                } else {
+                echo "<sup class='red'>*Minimum 10 foods must be published</sup> <br> <sup class='red'>*Minimum 3 catagories</sup>";
+                }
+                ?>
 
                 <form action="" method="post">
 

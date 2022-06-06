@@ -11,6 +11,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+
         <title>Foody UMP</title>
     </head>
 
@@ -44,42 +50,231 @@ if($_SESSION["user_type"]!="restaurant")
             </div>
         </div>
 
+        <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/dbase.php";
+    include_once($path);
+    $userid = $_SESSION["user_id"];
+    $restaurantid= $_SESSION["restaurant_id"];
+    
+     //get current week start and end
+     $monday = strtotime('last monday', strtotime('tomorrow'));
+     $sunday = strtotime('+6 days', $monday);
+     $monday = date('Y-m-d', $monday);
+     $sunday = date('Y-m-d', $sunday);
+     //echo $monday;
+     //echo $sunday;
+ 
+     //get current month start and end
+     $df = new DateTime('first day of this month');
+     $df = $df->format('Y-m-d');
+     //echo $df;
+     $dl = new DateTime('last day of this month');
+     $dl = $dl->format('Y-m-d');
+     //echo $dl;
+ 
+ 
+     $query = "SELECT * FROM orderlist WHERE restaurant_id = '$restaurantid' ORDER BY `order_id` ASC;";
+     $resultList = mysqli_query($conn, $query);
+ 
+     $querymonth = "SELECT SUM(price) FROM orderlist WHERE (order_date  between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+
+
+    ?>
         <!--content-->
         <div id="page-content">
             <div class="page-main-content">
                 <h1>Report</h1>
-
-                <label for="timeframe">Timeframe: </label>
-                    <select name="timeframe" id="timeframe">
-                        <option value="daily">Day</option>
-                        <option value="weekly">Week</option>
-                        <option value="monthly">Month</option>
-                        <option value="yearly">Year</option>
-                    </select>
-                    
+                    <div class='row'>
+                        <div class='column'>
                     <table class="calculateReport">
                         <tr>
+                            <th colspan="2">Weekly(<?php echo "$monday until $sunday" ?>)</th>
+                        </tr>
+                        
+                        <tr>
                             <th>Total order receive:</th>
-                            <td>x</td>
+                            <?php 
+                                $test = "SELECT * FROM orderlist WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
+                                $resultTest = mysqli_query($conn,$test);
+                                $num_row=mysqli_num_rows($resultTest);
+               
+                            echo "<td>";
+                            echo "$num_row";
+                            echo "</td>"
+                            ?>
                         </tr>
                         <tr>
-                            <th>Total income:</th>
-                            <td>xx</td>
+                            <th>Total income (RM):</th>
+                            <?php 
+                                $test1 = "SELECT sum(price) FROM `orderlist` WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
+                                $resultTest1 = mysqli_query($conn,$test1);
+                                $totalIncome=mysqli_fetch_array($resultTest1);
+               
+                            echo "<td>";
+                            echo $totalIncome[0];
+                            echo "</td>"
+                            ?>
                         </tr>
                         <tr>
-                            <th>Total commission to rider:</th>
-                            <td>xxx</td>
+                            <th>Total commission to rider (RM):</th>
+                            <?php 
+                            $totalRider=0;
+                                $test2 = "SELECT price FROM `orderlist` WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
+                                $resultTest2 = mysqli_query($conn,$test2);
+              
+                                if (mysqli_num_rows($resultTest2) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest2)) {
+                                        $price=$row["price"];
+                                        $riderCom=$price*4/100;
+                                        $totalRider=$riderCom + $totalRider;
+                                        $totalRider2=number_format($totalRider,2);}}
+               
+                            echo "<td>";
+                            echo $totalRider2;
+                            echo "</td>"
+                            ?>
                         </tr>
                         <tr>
-                            <th>Total commission to Foody:</th>
-                            <td>xxxx</td>
+                            <th>Total commission to Foody (RM):</th>
+                            <?php 
+                                $test3 = "SELECT price FROM `orderlist` WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
+                                $resultTest3 = mysqli_query($conn,$test3);
+              
+                                if (mysqli_num_rows($resultTest3) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest3)) {
+                                        $price=$row["price"];
+                                        $foodyCom=$price*5/100;
+                                        $totalFoody=$riderCom+$totalRider;}
+                                        $totalFoody2=number_format($totalFoody,2);}
+               
+                            echo "<td>";
+                            echo $totalFoody2;
+                            echo "</td>"
+                            ?>
                         </tr>
+
+                        <tr>
+                            <th>Net Income (RM):</th>
+                                 <?php
+                                    $netIncome = $totalIncome[0] - $totalRider2 - $totalFoody2;
+                                    $netIncome2 = number_format($netIncome,2);
+                                    echo "<td>";
+                                    echo $netIncome2;
+                                    echo "</td>";
+                                    ?>
+                        </tr>
+                                
                         <tr>
                             <th>Accumulated income:</th>
-                            <td>xxxxx</td>
+                            <?php 
+                                $test4 = "SELECT sum(price) FROM `orderlist` WHERE restaurant_id = '$restaurantid'";
+                                $resultTest4 = mysqli_query($conn,$test4);
+                                $accIncome=mysqli_fetch_array($resultTest4);
+               
+                            echo "<td>";
+                            echo $accIncome[0];
+                            echo "</td>"
+                            ?>
                         </tr>
                     </table>
-                </form>
+                    </div>
+                    
+                    <div class='column'>
+
+                    <table class="calculateReport">
+                        <tr>
+                            <th colspan="2">Monthly(<?php echo "$df until $dl" ?>)</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>Total order receive:</th>
+                            <?php 
+                                $test = "SELECT * FROM orderlist WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultTest = mysqli_query($conn,$test);
+                                $num_row=mysqli_num_rows($resultTest);
+               
+                            echo "<td>";
+                            echo "$num_row";
+                            echo "</td>"
+                            ?>
+                        </tr>
+                        <tr>
+                            <th>Total income (RM):</th>
+                            <?php 
+                                $test1 = "SELECT sum(price) FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultTest1 = mysqli_query($conn,$test1);
+                                $totalIncome=mysqli_fetch_array($resultTest1);
+               
+                            echo "<td>";
+                            echo $totalIncome[0];
+                            echo "</td>"
+                            ?>
+                        </tr>
+                        <tr>
+                            <th>Total commission to rider (RM):</th>
+                            <?php 
+                            $totalRider=0;
+                                $test2 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultTest2 = mysqli_query($conn,$test2);
+              
+                                if (mysqli_num_rows($resultTest2) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest2)) {
+                                        $price=$row["price"];
+                                        $riderCom=$price*4/100;
+                                        $totalRider=$riderCom + $totalRider;
+                                        $totalRider2=number_format($totalRider,2);}}
+               
+                            echo "<td>";
+                            echo $totalRider2;
+                            echo "</td>"
+                            ?>
+                        </tr>
+                        <tr>
+                            <th>Total commission to Foody (RM):</th>
+                            <?php 
+                                $test3 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultTest3 = mysqli_query($conn,$test3);
+              
+                                if (mysqli_num_rows($resultTest3) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest3)) {
+                                        $price=$row["price"];
+                                        $foodyCom=$price*5/100;
+                                        $totalFoody=$riderCom+$totalRider;}
+                                        $totalFoody2=number_format($totalFoody,2);}
+               
+                            echo "<td>";
+                            echo $totalFoody2;
+                            echo "</td>"
+                            ?>
+                        </tr>
+
+                        <tr>
+                            <th>Net Income (RM):</th>
+                                 <?php
+                                    $netIncome = $totalIncome[0] - $totalRider2 - $totalFoody2;
+                                    $netIncome2 = number_format($netIncome,2);
+                                    echo "<td>";
+                                    echo $netIncome2;
+                                    echo "</td>";
+                                    ?>
+                        </tr>
+                                
+                        <tr>
+                            <th>Accumulated income:</th>
+                            <?php 
+                                $test4 = "SELECT sum(price) FROM `orderlist` WHERE restaurant_id = '$restaurantid'";
+                                $resultTest4 = mysqli_query($conn,$test4);
+                                $accIncome=mysqli_fetch_array($resultTest4);
+                            echo "<td>";
+                            echo $accIncome[0];
+                            echo "</td>"
+                            ?>
+                        </tr>
+                    </table>
+                                    </div>
+                                    </div>
+
 
                 <div id="highestLowest">
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
