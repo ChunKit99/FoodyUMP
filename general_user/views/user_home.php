@@ -24,7 +24,7 @@
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    $userid = "1";
+                    $userid ="1";
 
                 //find user name base on userid
                     $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";

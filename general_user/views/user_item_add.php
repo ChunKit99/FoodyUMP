@@ -92,46 +92,40 @@
                       }
                     ?></h1>
             </div>
-            <?php 
-            echo "<div class='restaurant'>";
-            echo "<form method='post'>";
-            echo "<select name='category'>";
-            echo "<option value='0' disable selected>Select Category</option>";
-            $menucat ="SELECT * FROM `menucategory` WHERE `restaurant_id`='$idshop'";
-            $result2 = mysqli_query($conn, $menucat);
+            <div class="restaurant" >
+            <?php
+            $catid=$_GET['catid'];
+            $itemid=$_GET['itemid'];
+            $cart = "SELECT * FROM `cartorder`"; 
+            $result = mysqli_query($conn, $cart);
             if (mysqli_num_rows($result) > 0) { 
-                while ($row = mysqli_fetch_array($result2)) {
-                    $catid = $row['menu_category_id'];  
-                    $catname = $row['name'];
-                    echo "<option value='$catid' selected='selected'>$catname</option>"; 
-                    }
-                echo "</select>";
-                echo  "<br><br>";
-                echo "<a href='user_cat_add.php?idshop=".$idshop."&catid=".$catid."'><input type='submit' name='CONTINUE' value='Choose options'> </a>";
+                while ($row = mysqli_fetch_array($result)) {
+                $foodquantity=$row['quantity']; 
+                echo "<form method='post' action='user_item_add.php'>";
+                echo "Quantity:<input name='quantity' type='text' value='3'>";
                 echo "</form>";
-                if(isset($_POST['submit'])){
-                    if(!empty($_POST['menu_category_id'])) {
-                        $selected = $_POST['menu_category_id']; 
-                        echo 'You have chosen: ' . $selected;
-                    } else {
-                        echo 'Please select the value.';
-                    }
-                    }
-            } 
+                }
+                echo "<br><br><br>";
+                echo "<a href='user_order.php?idshop=".$idshop."?&catid=".$catid."&itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a>";
+                echo "<a href='user_cat_add.php?idshop=".$idshop."&catid=".$catid."'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
+            }
+            ?> 
 
-            
-
-            echo "</div>";
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+             // collect value of input field
+            $foodquantity = htmlspecialchars($_REQUEST['quantity']);
+            if (empty($foodquantity)) {
+            echo "empty";
+             } else {
+            echo $foodquantity;
+            }
+            }
             ?>
-            
-            
-            
-                   
-            
+
             <!--woei chi-->
         </div>
     </div>
-
 </body>
 
 <!--footer-->

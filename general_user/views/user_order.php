@@ -105,6 +105,7 @@
                             $fooddes = $row['description']; 
                             $foodprice = $row['price']; 
                             $foodquantity=$row['quantity']; 
+                            
                             echo "<tr>";
                             echo "<td>$foodname </td>";
                             echo "<td>$fooddes </td>";

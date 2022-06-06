@@ -96,7 +96,7 @@
             <?php
             $catid=$_GET['catid'];
             $status ="yes";
-            $item ="SELECT * FROM `menuitem` WHERE menuitem.menu_category_id='$catid' AND menuitem.status_available= '$status'";
+            $item ="SELECT * FROM `menuitem` WHERE menu_category_id='$catid' AND status_available= '$status'";
             $result3 = mysqli_query($conn, $item);
             $count = 0;
             if (mysqli_num_rows($result3) > 0){
@@ -107,7 +107,6 @@
                     $itemname = $row['name'];
                     $itemdes = $row['description']; 
                     $itemprice = $row['price']; 
-                    $itemquantity = 2;
 
                     echo "<div class='cat1'>";
                     echo "<table>";
@@ -116,8 +115,8 @@
                     echo "<td>$itemname</td>";
                     echo "<td>$itemdes</td>";
                     echo "<td>$itemprice</td>";
-                    echo "<td>Quantity:<input type='number' id='quantity' value=$itemquantity></td>";
-                    echo "<td><a href='user_order.php?idshop=".$idshop."?itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a></td>";
+
+                    echo "<td><a href='user_item_add.php?idshop=".$idshop."&catid=".$catid."&itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a></td>";
                     echo "</tr>";
                     echo "</table>";
                     echo "</div>";
