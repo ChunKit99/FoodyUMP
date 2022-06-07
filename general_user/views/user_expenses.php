@@ -52,41 +52,53 @@ if($_SESSION["user_type"]!="generaluser")
     <div id="page-content">
         <div class="page-main-content">
             <!--Woeichi-->
-            <div class="exp">
-                <br><br><br>
-                <h1>Expenses</h1>
-            </div>
-            
-            <br><br>
-            <div class="expenses">
-                <table>
-                    <tr>
-                        <th>Daily Expenses: </th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Weekly Expenses:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Monthly Expenses:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Average Expenses</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>In Week:</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>In Month:</th>
-                        <td></td>
-                    </tr>
-                </table>
-                
-            </div>
+            <?php
+     //get current week start and end
+     $monday = strtotime('last monday', strtotime('tomorrow'));
+     $sunday = strtotime('+6 days', $monday);
+     $monday = date('Y-m-d', $monday);
+     $sunday = date('Y-m-d', $sunday);
+     //echo $monday;
+     //echo $sunday;
+ 
+     //get current month start and end
+     $df = new DateTime('first day of this month');
+     $df = $df->format('Y-m-d');
+     //echo $df;
+     $dl = new DateTime('last day of this month');
+     $dl = $dl->format('Y-m-d');
+     //echo $dl;
+
+            echo "<div class='exp'>";
+            echo "<br><br><br>";
+            echo "<h1>Expenses</h1>";
+            echo "</div><br><br>";
+            echo "<div class='expenses'>";
+            echo "<table>";
+
+            echo "<tr>";
+            echo "<th>Daily Expenses: </th>";
+            echo "<td></td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<th>Weekly Expenses:</th>";
+            echo "<td></td>";
+            echo "</tr><tr>";
+            echo "<th>Monthly Expenses:</th>";
+            echo "<td></td>";
+            echo "</tr><tr>";
+            echo "<th>Average Expenses</th>";
+            echo "<td></td>";
+            echo "</tr><tr>";
+            echo "<th>In Week:</th>";
+            echo "<td></td>";
+            echo "</tr><tr>";
+            echo "<th>In Month:</th>";
+            echo "<td></td>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</div>";
+        ?>
             <!--Woeichi-->
 
         </div>
