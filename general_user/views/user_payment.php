@@ -52,65 +52,80 @@ if($_SESSION["user_type"]!="generaluser")
     <div id="page-content">
         <div class="page-main-content">
             <!--woeichi-->
-            <div class="payment">
-                <br><br><br>
-                <h1>Payment</h1>
-            </div>
-            <br><br>
+            <?php
+            echo "<div class='payment'>";
+            echo "<br><br><br>";
+            echo "<h1>Payment</h1>";
+            echo "</div><br><br>";
+            echo "<div class='pay'>";
+            echo "<form method='post' action='user_paydb.php'>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<th colspan='2'>Delivery Detials</th>";
+            echo "<th colspan='2'>Order Detials</th>";
+            echo "</tr>";
 
-            <div class="pay">
-                <table>
-                    <tr>
-                        <th colspan="2">Delivery Detials</th>
-                        <th colspan="2">Order Detials</th>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td><input type="text" id="name" name="name"></td>
-                        <td>Food Name:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Phone Number:</td>
-                        <td><input type="text" id="phone" name="phone"></td>
-                        <td>Food Description:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Delivery Address:</td>
-                        <td><input type="text" id="address" name="address"></td>
-                        <td>Price Per Item:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Quantity:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Payment Method</th>
-                        <td>Delivery Price:</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="custom-select" style="width:300px;">
-                            <select>
-                              <option value="0">Select Payment Method</option>
-                              <option value="0">Cash-On-Delivery</option>
-                            </select>
-                            </div>
-                            </td>
+            $cart_id=$_GET['cart_id'];
+            $userid = $_SESSION['user_id'];
+            $username = $_SESSION['username'];
 
-                        <td>Total Price:</td>
-                        <td></td>
-                    </tr>
-                </table>
+            $pay="SELECT * FROM `cartorder` JOIN `menuitem` JOIN `menucategory` ON menuitem.menu_item_id=cartorder.menu_item_id AND menuitem.menu_category_id=menucategory.menu_category_id WHERE cartorder.cart_id =  $cart_id";
+            $result= mysqli_query($conn, $pay);
+            if (mysqli_num_rows($result) > 0){
+                while ($row = mysqli_fetch_assoc($result)) {
 
-                <br><br><br>
-               <a href="user_delivery.php"><button class="confirmbutton" onclick="payment()">CONFIRM</button></a>  
-               <a href="user_order.php"><button class="cancelbutton" onclick="payment()">CANCEL</button></a> 
-            </div>
-            
+                    $idshop = $row['restaurant_id'];
+                    $itemid = $row ['menu_item_id'];
+                    $foodname = $row['name'];
+                    $fooddes = $row['description']; 
+                    $foodprice = $row['price']; 
+                    $quantity=$row['quantity']; 
+
+                    echo "<tr>";
+                    echo "<td>Name:</td>";
+                    echo "<td>$username</td>";
+
+                    echo "<td>Food Name:</td>";
+                    echo "<td>$foodname</td>";
+                    echo "</tr><tr>";
+                    echo "<td>Phone Number:</td>";
+                    echo "<td><input type='text' id='phone' name='phone'></td>";
+                    echo "<td>Food Description:</td>";
+                    echo "<td>$fooddes</td>";
+                    echo "</tr><tr>";
+                    echo "<td>Delivery Address:</td>";
+                    echo "<td><input type='text' id='address' name='address'></td>";
+                    echo "<td>Price Per Item:</td>";
+                    echo "<td>$foodprice</td></tr><tr>";
+                    echo "<td colspan='2'></td>";
+                    echo "<td>Quantity:</td>";
+                    echo "<td>$quantity</td>";
+                    echo "</tr><tr>";
+                    echo "<th colspan='2'>Payment Method</th>";
+                    echo "<td>Delivery Price:</td>";
+                    echo "<td>4.00</td>";
+                    echo "</tr><tr>";
+                    echo "<td colspan='2'><div class='custom-select' style='width:300px;'>";
+                    echo "<select>";
+                    echo "<option value='0'>Select Payment Method</option>";
+                    echo "<option value='0'>Cash-On-Delivery</option>";
+                    echo "</select>";
+                    echo "</div></td>";
+                    echo "<td>Total Price:</td>";
+                    $price=($foodprice*$quantity)+4;
+                    $price=number_format($price,2);
+                    echo "<td>$price</td>";
+                    echo "</tr>";
+                    echo "</table>";
+                }
+            }
+            echo "<br><br><br>";
+            echo "<input type='submit' value='CONFIRM' class='confirmbutton' formaction='user_paydb.php?cart_id=".$cart_id."&idshop=".$idshop."&itemid=".$itemid."&quantity=".$quantity."&price=".$price."'>"; 
+            echo "</form>";
+            echo "<a href='user_order.php'><button class='cancelbutton'>CANCEL</button></a> ";
+            echo "</div>";
+
+            ?>     
             <script>
                 var x, i, j, l, ll, selElmnt, a, b, c;
                 /*look for any elements with the class "custom-select":*/

@@ -52,36 +52,51 @@ if($_SESSION["user_type"]!="generaluser")
     <div id="page-content">
         <div class="page-main-content">
             <!--woeichi-->
-            <div class="tracking">
-                <br><br><br>
-                <h1>Delivery Status</h1>
-            </div>
-            <br><br>
-            <div class="track">
-                <table>
-                    <tr>
-                        <th>Order Status:</th>
-                        <th>Order Number:</th>
-                        <th>Food Name:</th>
-                        <th>Food Description:</th>
-                        <th>Price Per Item:</th>
-                        <th>Quantity:</th>
-                        <th>Delivery Price:</th>
-                        <th>Total Price:</th>
-                    </tr>
-                    <tr>   
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+            <?php
+            echo "<div class='tracking'>";
+            echo "<br><br><br>";
+            echo "<h1>Delivery Status</h1>";
+            echo "</div><br><br>";
+            echo "<div class='track'>";
+            echo "<table><tr>";
+            echo "<th>Order Status:</th>";
+            echo "<th>Order Number:</th>";
+            echo "<th>Food Name:</th>";
+            echo "<th>Food Description:</th>";
+            echo "<th>Price Per Item:</th>";
+            echo "<th>Quantity:</th>";
+            echo "<th>Delivery Price:</th>";
+            echo "<th>Total Price:</th>";
+            echo "</tr>";
 
+            $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id ";
+            $result= mysqli_query($conn, $deli);
+            if (mysqli_num_rows($result) > 0){
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $status = $row['order_status'];
+                    $orderid = $row['order_id'];
+                    $foodname = $row['name'];
+                    $fooddes = $row['description']; 
+                    $foodprice = $row['price']; 
+                    $quantity = $row['quantity']; 
+                    $price = $row['totalprice'];
+                
+                    echo "<tr>";
+                    echo "<td>$status</td>";
+                    echo "<td>$orderid</td>";
+                    echo "<td>$foodname </td>";
+                    echo "<td>$fooddes </td>";
+                    echo "<td>$foodprice</td>";
+                    echo "<td>$quantity</td>";
+                    echo "<td>4.00</td>";
+                    echo "<td>$price</td>";
+                    echo "</tr>";
+
+                }
+            }
+            echo "</table>";
+            echo "</div>";
+?>
             <!--woeichi-->
         </div>
     </div>

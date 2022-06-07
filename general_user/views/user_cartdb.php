@@ -3,8 +3,16 @@
             $path .= "/dbase.php";
             include_once($path);
 
+            session_start();
+            if (!isset($_SESSION["login"]))
+            header("location:/login.php");
+            if($_SESSION["user_type"]!="generaluser")
+            header("location:/logout.php");
+
+
             extract($_POST);
-            $userid=$_SESSION['username'];
+            $userid = $_SESSION['user_id'];
+
             $idshop=$_GET['idshop'];
             $menu_category_id=$_GET['menu_category_id'];
             $itemid=$_GET['itemid'];
