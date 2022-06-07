@@ -101,7 +101,7 @@ if($_SESSION["user_type"]!="restaurant")
                
                             echo "<td>";
                             echo "$num_row";
-                            echo "</td>"
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
@@ -109,11 +109,14 @@ if($_SESSION["user_type"]!="restaurant")
                             <?php 
                                 $test1 = "SELECT sum(price) FROM `orderlist` WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
                                 $resultTest1 = mysqli_query($conn,$test1);
-                                $totalIncome=mysqli_fetch_array($resultTest1);
+                                if (mysqli_num_rows($resultTest1) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest1)) {
+                                        $totalIncome=$row["sum(price)"];
+                                        $totalIncome=number_format($totalIncome,2);}}
                
                             echo "<td>";
-                            echo $totalIncome[0];
-                            echo "</td>"
+                            echo $totalIncome;
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
@@ -128,16 +131,17 @@ if($_SESSION["user_type"]!="restaurant")
                                         $price=$row["price"];
                                         $riderCom=$price*4/100;
                                         $totalRider=$riderCom + $totalRider;
-                                        $totalRider2=number_format($totalRider,2);}}
+                                        $totalRider=number_format($totalRider,2);}}
                
                             echo "<td>";
-                            echo $totalRider2;
-                            echo "</td>"
+                            echo $totalRider;
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
                             <th>Total commission to Foody (RM):</th>
                             <?php 
+                            $totalFoody=0;
                                 $test3 = "SELECT price FROM `orderlist` WHERE (order_date between '$monday' and '$sunday') AND (restaurant_id = '$restaurantid')";
                                 $resultTest3 = mysqli_query($conn,$test3);
               
@@ -145,19 +149,19 @@ if($_SESSION["user_type"]!="restaurant")
                                     while ($row = mysqli_fetch_array($resultTest3)) {
                                         $price=$row["price"];
                                         $foodyCom=$price*5/100;
-                                        $totalFoody=$riderCom+$totalRider;}
-                                        $totalFoody2=number_format($totalFoody,2);}
+                                        $totalFoody=$foodyCom+$totalFoody;
+                                        $totalFoody=number_format($totalFoody,2);}}
                
                             echo "<td>";
-                            echo $totalFoody2;
-                            echo "</td>"
+                            echo $totalFoody;
+                            echo "</td>";
                             ?>
                         </tr>
 
                         <tr>
                             <th>Net Income (RM):</th>
                                  <?php
-                                    $netIncome = $totalIncome[0] - $totalRider2 - $totalFoody2;
+                                    $netIncome = $totalIncome[0] - $totalRider - $totalFoody;
                                     $netIncome2 = number_format($netIncome,2);
                                     echo "<td>";
                                     echo $netIncome2;
@@ -170,11 +174,14 @@ if($_SESSION["user_type"]!="restaurant")
                             <?php 
                                 $test4 = "SELECT sum(price) FROM `orderlist` WHERE restaurant_id = '$restaurantid'";
                                 $resultTest4 = mysqli_query($conn,$test4);
-                                $accIncome=mysqli_fetch_array($resultTest4);
+                                if (mysqli_num_rows($resultTest4) > 0) {
+                                    while ($row = mysqli_fetch_array($resultTest4)) {
+                                        $accIncome=$row["sum(price)"];
+                                        $accIncome=number_format($accIncome,2);}}
                
                             echo "<td>";
-                            echo $accIncome[0];
-                            echo "</td>"
+                            echo $accIncome;
+                            echo "</td>";
                             ?>
                         </tr>
                     </table>
@@ -196,66 +203,70 @@ if($_SESSION["user_type"]!="restaurant")
                
                             echo "<td>";
                             echo "$num_row";
-                            echo "</td>"
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
                             <th>Total income (RM):</th>
                             <?php 
-                                $test1 = "SELECT sum(price) FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
-                                $resultTest1 = mysqli_query($conn,$test1);
-                                $totalIncome=mysqli_fetch_array($resultTest1);
+                                $month1 = "SELECT sum(price) FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultMonth1 = mysqli_query($conn,$month1);
+                                if (mysqli_num_rows($resultMonth1) > 0) {
+                                    while ($row = mysqli_fetch_array($resultMonth1)) {
+                                        $totalIncome1=$row["sum(price)"];
+                                        $totalIncome1=number_format($totalIncome1,2);}}
                
                             echo "<td>";
-                            echo $totalIncome[0];
-                            echo "</td>"
+                            echo $totalIncome1;
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
                             <th>Total commission to rider (RM):</th>
                             <?php 
-                            $totalRider=0;
-                                $test2 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
-                                $resultTest2 = mysqli_query($conn,$test2);
+                            $totalRiderM=0;
+                                $month2 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultMonth2 = mysqli_query($conn,$month2);
               
                                 if (mysqli_num_rows($resultTest2) > 0) {
-                                    while ($row = mysqli_fetch_array($resultTest2)) {
+                                    while ($row = mysqli_fetch_array($resultMonth2)) {
                                         $price=$row["price"];
                                         $riderCom=$price*4/100;
-                                        $totalRider=$riderCom + $totalRider;
-                                        $totalRider2=number_format($totalRider,2);}}
+                                        $totalRiderM=$riderCom + $totalRiderM;
+                                        $totalRiderM=number_format($totalRiderM,2);}}
                
                             echo "<td>";
-                            echo $totalRider2;
-                            echo "</td>"
+                            echo $totalRiderM;
+                            echo "</td>";
                             ?>
                         </tr>
                         <tr>
                             <th>Total commission to Foody (RM):</th>
                             <?php 
-                                $test3 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
-                                $resultTest3 = mysqli_query($conn,$test3);
+                            $totalFoodyM=0;
+                                $month3 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
+                                $resultMonth3 = mysqli_query($conn,$month3);
               
                                 if (mysqli_num_rows($resultTest3) > 0) {
-                                    while ($row = mysqli_fetch_array($resultTest3)) {
+                                    while ($row = mysqli_fetch_array($resultMonth3)) {
                                         $price=$row["price"];
                                         $foodyCom=$price*5/100;
-                                        $totalFoody=$riderCom+$totalRider;}
-                                        $totalFoody2=number_format($totalFoody,2);}
+                                        $totalFoodyM=$foodyCom+$totalFoodyM;
+                                        $totalFoodyM=number_format($totalFoodyM,2);}}
                
                             echo "<td>";
-                            echo $totalFoody2;
-                            echo "</td>"
+                            echo $totalFoodyM;
+                            echo "</td>";
                             ?>
                         </tr>
 
                         <tr>
                             <th>Net Income (RM):</th>
                                  <?php
-                                    $netIncome = $totalIncome[0] - $totalRider2 - $totalFoody2;
-                                    $netIncome2 = number_format($netIncome,2);
+                                    $netIncomeM = $totalIncome[0] - $totalRiderM - $totalFoodyM;
+                                    $netIncomeM2 = number_format($netIncomeM,2);
                                     echo "<td>";
-                                    echo $netIncome2;
+                                    echo $netIncomeM2;
                                     echo "</td>";
                                     ?>
                         </tr>
@@ -263,11 +274,15 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Accumulated income:</th>
                             <?php 
-                                $test4 = "SELECT sum(price) FROM `orderlist` WHERE restaurant_id = '$restaurantid'";
-                                $resultTest4 = mysqli_query($conn,$test4);
-                                $accIncome=mysqli_fetch_array($resultTest4);
+                                $month4 = "SELECT sum(price) FROM `orderlist` WHERE restaurant_id = '$restaurantid'";
+                                $resultMonth4 = mysqli_query($conn,$month4);
+                                if (mysqli_num_rows($resultMonth4) > 0) {
+                                    while ($row = mysqli_fetch_array($resultMonth4)) {
+                                        $accIncomeM=$row["sum(price)"];
+                                        $accIncomeM = number_format($accIncomeM,2);}}
+
                             echo "<td>";
-                            echo $accIncome[0];
+                            echo $accIncomeM;
                             echo "</td>"
                             ?>
                         </tr>
