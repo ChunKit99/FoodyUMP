@@ -12,6 +12,13 @@
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="rider")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -19,8 +26,8 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                    <h3><?php echo $_SESSION['username'] ?></h3>
+                    <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -30,7 +37,7 @@
                 <a href="rider_home.php" class="" style="background: #11767ca6;">Home</a>
                 <a href="rider_order.php">Order</a>
                 <a href="rider_delivery_record.php" class="">Records</a>
-                <a href="rider_report.html" class="">Report</a>
+                <a href="rider_report.php" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
         </div>
@@ -40,14 +47,19 @@
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);
-            $userID = "2";
-            $riderID = "2";
+            $userID = $_SESSION["user_id"];
+            $riderID = "";
 
-            $riderProfile = "SELECT * FROM `user` WHERE `user_id` = '$userID'";
-            $result = mysqli_query($conn, $riderProfile);
+            $q = "SELECT * FROM `rider` WHERE `rider_id` = '$userID'";
+            $res = mysqli_query($conn, $q);
+            if (mysqli_num_rows($res) > 0) {
+                while ($row = mysqli_fetch_array($res)) {
+                    $riderID = $row['rider_id'];
+                    
+                }
+            } 
+             //$_SESSION["rider_id"]= $riderID;
 
-            $riderBankAccount = "SELECT * FROM `bankaccount` WHERE `rider_id` = '$riderID'";
-            $resultBankAccount = mysqli_query($conn, $riderBankAccount);
         ?>
 
         <!--content-->
@@ -58,9 +70,11 @@
                     <h1>Rider Profile</h1>
                 </div>
                 <!--order list with summary-->
-                <form>
+                <form method="post" action="rider_update_plate_no.php?rider_id=<?php echo $userID ?>">
                     <table class="rider_profile">
                         <?php
+                            $riderProfile = "SELECT * FROM `user` JOIN `rider` ON user.user_id=rider.rider_id WHERE `user_id` = '$userID'";
+                            $result = mysqli_query($conn, $riderProfile);
                             if (mysqli_num_rows($result) > 0) {
                                 // output data
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -76,11 +90,12 @@
                                     $postalCode = $row["postal_code"];
                                     $detailsAdd = $row["details_add"];
                                     $gender = $row["gender"];
+                                    $plateNo = $row["plate_no"];
                         ?>
 
                                     <tr>
                                         <th>User ID:</th>
-                                        <td><input type="text" value="<?php echo $userID; ?>" readonly class='rider_input'></td>
+                                        <td><input type="text" name="user_id" value="<?php echo $userID; ?>" readonly class='rider_input'></td>
                                     </tr>
                                     <tr>
                                         <th>Rider Name:</th>
@@ -124,20 +139,29 @@
                                         <th>Password:</th>
                                         <td><input type="text" value="<?php echo $password; ?>" readonly class='rider_input'></td>
                                     </tr>
+                                    <tr>
+                                        <th>Plate No.:</th>
+                                        <td><input type="text" name="plate_no" value="<?php echo $plateNo; ?>" class='rider_input'></td>
+                                    </tr>
                         <?php
                                 }
                             }
                         ?>
                         
                     </table>
+                    <div class="div1">
+                        <input type="submit" class="button1" value="Update"></input>
+                        <a href="rider_home.php"><button type="button" class="button1">Cancel</button></a>
+                    </div>
                     <hr>
-                    
                 </form>
                 <div>
+                    <div>
+                        <h1>Bank Account
+                        <a href="rider_add_bank_account.php"><button type="button" class="fr button1">Add</button></a>
+                        </h1>
+                    </div>
                     <table class="rider_profile">
-                        <tr>
-                            <a href="rider_add_bank_account.php"><button type="button" class="fr button1">Add</button></a>
-                        </tr>
                         <tr>
                             <th scope="col">Account ID</th>
                             <th scope="col">Account Number</th>
@@ -146,6 +170,8 @@
                         </tr>
                         <tbody>
                             <?php
+                                $riderBankAccount = "SELECT * FROM `bankaccount` WHERE `rider_id` = '$riderID'";
+                                $resultBankAccount = mysqli_query($conn, $riderBankAccount);
                                 $count = 0;
                                 if (mysqli_num_rows($resultBankAccount) > 0) {
                                     // output data of each row
