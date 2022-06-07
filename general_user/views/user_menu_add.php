@@ -109,7 +109,7 @@
             }
             echo "</select>";
             echo "<br><br><br>";
-            echo "<input type='submit' class='backbutton' class='btn btn-info btn-lg' formaction='user_cat_add.php?idshop=".$idshop."&menu_category_id=".$menu_category_id."' name='menu_category_id' value='NEXT'>";      
+            echo "<input type='submit' class='backbutton' class='btn btn-info btn-lg' formaction='user_cat_add.php?idshop=".$idshop."'>";      
             echo "</form>";
             echo "</div>";
            ?>

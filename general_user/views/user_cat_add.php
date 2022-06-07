@@ -96,8 +96,8 @@
             <?php
             echo "<div class='cat1'>";
             echo "<table>";
-            $menu_category_id=$_GET['menu_category_id'];
-            echo $menu_category_id;
+            extract($_POST);
+            //$menu_category_id=$_GET['menu_category_id'];
             $status ="yes";
             $item ="SELECT * FROM `menuitem` WHERE menu_category_id='$menu_category_id' AND status_available= '$status'";
             $result3 = mysqli_query($conn, $item);
