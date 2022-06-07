@@ -33,35 +33,28 @@
 <!--body-->
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?>
     <div id="logo">
         <div class="container-width">
             <div class="fl logo">
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p><?php
+            <h3><?php
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    $userid = "1";
-
-                //find user name base on userid
-                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
-                    $resultname = mysqli_query($conn, $sqlname);
-                    if (mysqli_num_rows($resultname) > 0) {
-                        while ($row = mysqli_fetch_array($resultname)) {
-                             $name = $row['name'];
-                            echo "$name";
-                         }
-                    } else {
-                      $name = "Undefine name, an error on database";
-                      }
-                    ?></p>
-                <button class="logout" onclick="logout()"> Logout</button>
+                    echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
-
     <div id="nav-container">
         <div class="container-width nav-container">
             <a href="user_home.php" class="" style="background: #11767ca6;">Home</a>
@@ -94,35 +87,16 @@
             </div>
             <div class="restaurant" >
             <?php
-            $catid=$_GET['catid'];
+            $menu_category_id=$_GET['menu_category_id'];
             $itemid=$_GET['itemid'];
-            $cart = "SELECT * FROM `cartorder`"; 
-            $result = mysqli_query($conn, $cart);
-            if (mysqli_num_rows($result) > 0) { 
-                while ($row = mysqli_fetch_array($result)) {
-                $foodquantity=$row['quantity']; 
-                echo "<form method='post' action='user_item_add.php'>";
-                echo "Quantity:<input name='quantity' type='text' value='3'>";
-                echo "</form>";
-                }
-                echo "<br><br><br>";
-                echo "<a href='user_order.php?idshop=".$idshop."?&catid=".$catid."&itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a>";
-                echo "<a href='user_cat_add.php?idshop=".$idshop."&catid=".$catid."'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
-            }
+            echo "<form method='post' action='user_order.php'>";
+            echo "Quantity:";
+            echo "<input type='number' min='1' id='quantity' name='quantity'>";
+            echo "<br><br><br>";
+            echo "<input type='submit' class='backbutton' class='btn btn-info btn-lg' formaction='user_cartdb.php?idshop=".$idshop."?&menu_category_id=".$menu_category_id."&itemid=".$itemid."'>"; 
+            echo "</form>";
+            echo "<a href='user_menu_add.php?idshop=".$idshop."'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
             ?> 
-
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // collect value of input field
-            $foodquantity = htmlspecialchars($_REQUEST['quantity']);
-            if (empty($foodquantity)) {
-            echo "empty";
-             } else {
-            echo $foodquantity;
-            }
-            }
-            ?>
-
             <!--woei chi-->
         </div>
     </div>

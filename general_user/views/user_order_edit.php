@@ -14,31 +14,25 @@
 <!--body-->
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?>
     <div id="logo">
         <div class="container-width">
             <div class="fl logo">
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p><?php
+            <h3><?php
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    $userid = "1";
-
-                //find user name base on userid
-                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
-                    $resultname = mysqli_query($conn, $sqlname);
-                    if (mysqli_num_rows($resultname) > 0) {
-                        while ($row = mysqli_fetch_array($resultname)) {
-                             $name = $row['name'];
-                            echo "$name";
-                         }
-                    } else {
-                      $name = "Undefine name, an error on database";
-                      }
-                    ?></p>
-                <button class="logout" onclick="logout()"> Logout</button>
+                    echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -75,24 +69,26 @@
 
                     </tr>
                     <?php
-                    //$foodquantity=$_GET['foodquantity'];
                     $cartedit="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
                     $result= mysqli_query($conn, $cartedit);
                     if (mysqli_num_rows($result) > 0){
                         $count = 0;
                         while ($row = mysqli_fetch_assoc($result)) {
                             $count++;
+                            $cart_id=$row['cart_id'];
                             $foodname = $row['name'];
                             $fooddes = $row['description']; 
                             $foodprice = $row['price']; 
-                            $foodquantity=$row['quantity']; 
+                            $quantity=$row['quantity']; 
                             echo "<tr>";
                             echo "<td>$foodname</td>";
                             echo "<td>$fooddes</td>";
                             echo "<td>$foodprice</td>";
-                            echo "<td><input type='number' id='quantity' value='$foodquantity'></td>";
-                            echo "<td><a href='user_order.php?quantity=".$foodquantity."'><button class='savebutton'>SAVE</button></a>";
-                            echo "</td>";
+                            
+                            echo "<td><form method='post' action='user_cartupdate.php'>
+                            <input type='number' min='1' id='quantity' name='quantity'></td>";
+                            echo "<td><input type='submit' class='savebutton' formaction='user_cartupdate.php?cart_id=".$cart_id."'>"; 
+                            echo "</form></td>";
                             echo "</tr>";
                         }
                     }            

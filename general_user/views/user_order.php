@@ -31,35 +31,28 @@
 <!--body-->
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?>
     <div id="logo">
         <div class="container-width">
             <div class="fl logo">
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p><?php
+            <h3><?php
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    $userid = "1";
-
-                //find user name base on userid
-                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
-                    $resultname = mysqli_query($conn, $sqlname);
-                    if (mysqli_num_rows($resultname) > 0) {
-                        while ($row = mysqli_fetch_array($resultname)) {
-                             $name = $row['name'];
-                            echo "$name";
-                         }
-                    } else {
-                      $name = "Undefine name, an error on database";
-                      }
-                    ?></p>
-                <button class="logout" onclick="logout()"> Logout</button>
+                    echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
-
     <div id="nav-container">
         <div class="container-width nav-container">
             <a href="user_home.php" class="">Home</a>
@@ -91,62 +84,34 @@
                         <th>Action</th>
 
                     </tr>
-                    <?php
-                    //$idshop=$_GET['idshop'];
-                    //$itemid=$_GET['itemid'];
-                    //$foodquantity=$_GET['foodquantity'];
-                    $cart="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
-                    $result= mysqli_query($conn, $cart);
+                    <?php 
+                    $cart2="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
+                    $result= mysqli_query($conn, $cart2);
                     if (mysqli_num_rows($result) > 0){
-                        $count = 0;
+
                         while ($row = mysqli_fetch_assoc($result)) {
-                            $count++;
+                            $cart_id=$row['cart_id'];
                             $foodname = $row['name'];
                             $fooddes = $row['description']; 
                             $foodprice = $row['price']; 
-                            $foodquantity=$row['quantity']; 
+                            $quantity=$row['quantity']; 
                             
                             echo "<tr>";
                             echo "<td>$foodname </td>";
                             echo "<td>$fooddes </td>";
                             echo "<td>$foodprice </td>";
-                            echo "<td><input type='number' readonly id='quantity' value='$foodquantity'></td>";
-                            echo "<td><a href='user_order_edit.php'><button class='editbutton'>EDIT</button></a>
-                                    <button class='deletebutton' class='btn btn-danger' data-toggle='modal'
-                                        data-target='#confirmDelete'>DELETE</button>
-                                    <a href='user_payment.php'><button class='checkbutton'>CHECK OUT</button></a>";
+                            echo "<td><input type='number' readonly id='quantity' value='$quantity'></td>";
+
+                            echo "<td>
+                                    <a href='user_order_edit.php'><button class='editbutton' class='btn btn-info btn-lg'>EDIT</button></a>
+                                    <a href='user_cartdelete.php?cart_id=".$cart_id."'><button class='deletebutton'>DELETE</button></a>
+                                    <a href='user_payment.php?cart_id=".$cart_id."'><button class='checkbutton'>CHECKOUT</button></a>";
                             echo "</td>";
                             echo "</tr>";
-
                         }
                     }
-
-                   
                     ?>
                 </table>
-            </div>
-
-            <div class="modal fade" id="confirmDelete">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Delete Order List</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete this order?</p>
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                class="confirmbtn">Confirm</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                class="cancelbtn">Cancel</button>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!--woeichi-->
         </div>

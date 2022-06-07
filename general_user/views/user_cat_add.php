@@ -33,31 +33,25 @@
 <!--body-->
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?>
     <div id="logo">
         <div class="container-width">
             <div class="fl logo">
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
             </div>
             <div class="topright-container fr">
-                <p><?php
+            <h3><?php
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    $userid = "1";
-
-                //find user name base on userid
-                    $sqlname = "SELECT `name` FROM `user` WHERE `user_id` = '$userid' ";
-                    $resultname = mysqli_query($conn, $sqlname);
-                    if (mysqli_num_rows($resultname) > 0) {
-                        while ($row = mysqli_fetch_array($resultname)) {
-                             $name = $row['name'];
-                            echo "$name";
-                         }
-                    } else {
-                      $name = "Undefine name, an error on database";
-                      }
-                    ?></p>
-                <button class="logout" onclick="logout()"> Logout</button>
+                    echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -96,6 +90,13 @@
             <?php
             echo "<div class='cat1'>";
             echo "<table>";
+            echo "<tr>";
+            echo "<th>Photo</th>";
+            echo "<th>Name</th>";
+            echo "<th>Description</th>";
+            echo "<th>Price</th>";
+            echo "<th>Action</th>";
+            echo "</tr>";
             extract($_POST);
             //$menu_category_id=$_GET['menu_category_id'];
             $status ="yes";
