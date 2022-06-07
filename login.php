@@ -23,7 +23,7 @@
       </p>
       <p>
         <select name="userType" id="userType">
-          <option value="adminstrator">Administrator</option>
+          <option value="administrator">Administrator</option>
           <option value="restaurant">Restaurant Owner</option>
           <option value="generaluser">General User</option>
           <option value="rider">Rider</option>

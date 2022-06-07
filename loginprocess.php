@@ -15,7 +15,7 @@ if (isset($_REQUEST['sub'])) {
         $_SESSION["username"] = "$a";
         $_SESSION["user_id"] = $result['user_id'];
         $_SESSION["user_type"] = $result['user_type'];
-        if ($c == "adminstrator") {
+        if ($c == "administrator") {
             header("location:adminstrator/admin_home.php");
         } else if ($c == "restaurant") {
             header("location:restaurant/restaurant_profile.php");
