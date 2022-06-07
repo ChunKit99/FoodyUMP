@@ -19,6 +19,13 @@
     <title>Complaint</title>
 </head>
 <!--body-->
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if ($_SESSION["user_type"] != "generaluser")
+    header("location:/logout.php");
+?>
 
 <body>
     <div id="logo">
@@ -27,8 +34,8 @@
                 <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100">
             </div>
             <div class="topright-container fr">
-                <h3>Username</h3>
-                <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
     </div>
@@ -98,28 +105,28 @@
                         <div class="form-group row">
                             <label for="staticUserID" class="col-sm-2 col-form-label">User ID</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticUserID' value='$userid'>" ?>
                             </div>
                         </div>
                         <!--Name-->
                         <div class="form-group row">
                             <label for="staticName" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                            <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>"?>
+                                <?php echo "<input type='text' readonly class='form-control-plaintext' id='staticName' value='$name'>" ?>
                             </div>
                         </div>
                         <!--date-->
                         <div class="form-group row">
                             <label for="staticDate" class="col-sm-2 col-form-label">Date</label>
                             <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" id="staticDate" value=<?php echo $date?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value=<?php echo $date ?>>
                             </div>
                         </div>
                         <!--time-->
                         <div class="form-group row">
                             <label for="staticTime" class="col-sm-2 col-form-label">Time</label>
                             <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" id="staticTime" value=<?php echo $time?>>
+                                <input type="text" readonly class="form-control-plaintext" id="staticTime" value=<?php echo $time ?>>
                             </div>
                         </div>
                         <!--choose Order ID-->
@@ -140,7 +147,7 @@
                         <div class="form-group row">
                             <label for="descriptionComplaint" class="col-sm-2 col-form-label">Discription</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="discriptionComplaint" readonly><?php echo $desc?></textarea>
+                                <textarea class="form-control" rows="5" id="discriptionComplaint" readonly><?php echo $desc ?></textarea>
                             </div>
                         </div>
                         <!--status complaint-->
@@ -154,7 +161,7 @@
                         <div class="form-group row">
                             <label for="commentComplaint" class="col-sm-2 col-form-label">Comment</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="commentComplaint" readonly><?php echo $comment?></textarea>
+                                <textarea class="form-control" rows="5" id="commentComplaint" readonly><?php echo $comment ?></textarea>
                             </div>
                         </div>
                         <!--button back-->

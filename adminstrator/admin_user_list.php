@@ -105,7 +105,7 @@
                                     <td>
                                         <?php echo "<a href='admin_edit_user.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>Edit</button></a>"?>
                                         <?php echo "<a href='admin_delete_user.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>Delete</button></a>"?>                        
-                                        <?php echo "<a href='admin_view_list.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>View</button></a>"?>
+                                        <?php echo "<a href='admin_view_list.php?user_id=" . $userID . "'><button type='button' class='btn btn-primary'>View</button></a>"?>    
                                     </td>
 
                                 </tr>

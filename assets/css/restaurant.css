@@ -59,8 +59,12 @@ p.under {
     font-weight: bold;
 }
 
-sup {
+.red {
     color: red;
+}
+
+.green {
+    color: green;
 }
 
 .food_frame {
@@ -127,13 +131,32 @@ sup {
 
 /*restaurant_report*/
 .calculateReport{
-    margin-left: 500px;
-    margin-right: auto;
-    width:50%;
-    
+    border: 1px solid grey;
+    border-collapse: collapse;
+    width: 100%;
+    margin-left:150px;
 }
+
+.row {
+    margin-left:-5px;
+    margin-right:-5px;
+  }
+    
+  .column {
+    float: left;
+    width: 40%;
+    padding: 5px;
+  }
+
+  /* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 .calculateReport th,td{
     text-align: left;
+    padding:16px;
 }
 

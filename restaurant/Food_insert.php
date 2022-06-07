@@ -8,8 +8,8 @@ include_once($path);
 
 extract($_POST);
 
-
-$query = "INSERT INTO menucategory(restaurant_id, name) VALUES ('$restaurant_id','$name')";
+$query = "INSERT INTO menuitem(menu_category_id,`name`,`description`,price,photo,status_available) VALUES ('$f_Catagory'
+,'$f_name','$description','$price','$photo','$status_available')";
 
 if (mysqli_query($conn, $query)) {
 
