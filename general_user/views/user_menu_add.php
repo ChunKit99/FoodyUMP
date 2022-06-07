@@ -92,42 +92,50 @@
                       }
                     ?></h1>
             </div>
+            
             <?php 
-            echo "<div class='restaurant'>";
-            echo "<form method='post'>";
-            echo "<select name='category'>";
-            echo "<option value='0' disable selected>Select Category</option>";
             $menucat ="SELECT * FROM `menucategory` WHERE `restaurant_id`='$idshop'";
             $result2 = mysqli_query($conn, $menucat);
+            echo "<div class='restaurant'>";  
+            echo "<form method='post' action='user_cat_add.php?idshop=".$idshop."'>";
+            echo "<select class='btn btn-info btn-lg' button onclick='myFunction()' class='dropbtn' name ='menu_category_id' id='menu_category_id'>";
+            echo "<option value='0' disable selected>Select Category</option>";
             if (mysqli_num_rows($result) > 0) { 
                 while ($row = mysqli_fetch_array($result2)) {
-                    $catid = $row['menu_category_id'];  
+                    $menu_category_id = $row['menu_category_id'];  
                     $catname = $row['name'];
-                    echo "<option value='$catid' selected='selected'>$catname</option>"; 
+                    echo "<option value='$menu_category_id'>$catname</option>"; 
                     }
-                echo "</select>";
-                echo  "<br><br>";
-                echo "<a href='user_cat_add.php?idshop=".$idshop."&catid=".$catid."'><input type='submit' name='CONTINUE' value='Choose options'> </a>";
-                echo "</form>";
-                if(isset($_POST['submit'])){
-                    if(!empty($_POST['menu_category_id'])) {
-                        $selected = $_POST['menu_category_id']; 
-                        echo 'You have chosen: ' . $selected;
-                    } else {
-                        echo 'Please select the value.';
-                    }
-                    }
-            } 
-
-            
-
+            }
+            echo "</select>";
+            echo "<br><br><br>";
+            echo "<input type='submit' class='backbutton' class='btn btn-info btn-lg' formaction='user_cat_add.php?idshop=".$idshop."&menu_category_id=".$menu_category_id."' name='menu_category_id' value='NEXT'>";      
+            echo "</form>";
             echo "</div>";
-            ?>
-            
-            
-            
-                   
-            
+           ?>
+
+            <script>
+                /* When the user clicks on the button, 
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                  document.getElementById("myDropdown").classList.toggle("show");
+                }
+                
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function(event) {
+                  if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                      var openDropdown = dropdowns[i];
+                      if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                      }
+                    }
+                  }
+                }
+                </script>
+
             <!--woei chi-->
         </div>
     </div>

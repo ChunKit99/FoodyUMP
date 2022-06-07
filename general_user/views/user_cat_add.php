@@ -92,37 +92,35 @@
                       }
                     ?></h1>
             </div>
-            <div class="restaurant" >
+            <div class="restaurant">
             <?php
-            $catid=$_GET['catid'];
+            echo "<div class='cat1'>";
+            echo "<table>";
+            $menu_category_id=$_GET['menu_category_id'];
+            echo $menu_category_id;
             $status ="yes";
-            $item ="SELECT * FROM `menuitem` WHERE menu_category_id='$catid' AND status_available= '$status'";
+            $item ="SELECT * FROM `menuitem` WHERE menu_category_id='$menu_category_id' AND status_available= '$status'";
             $result3 = mysqli_query($conn, $item);
-            $count = 0;
             if (mysqli_num_rows($result3) > 0){
                 while ($row = mysqli_fetch_assoc($result3)) {
-                    $count++;
                     $itemid = $row['menu_item_id'];
                     $itemphoto = $row['photo'];
                     $itemname = $row['name'];
                     $itemdes = $row['description']; 
                     $itemprice = $row['price']; 
 
-                    echo "<div class='cat1'>";
-                    echo "<table>";
                     echo "<tr>";
                     echo "<td>$itemphoto</td>";
                     echo "<td>$itemname</td>";
                     echo "<td>$itemdes</td>";
                     echo "<td>$itemprice</td>";
-
-                    echo "<td><a href='user_item_add.php?idshop=".$idshop."&catid=".$catid."&itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a></td>";
+                    echo "<td><a href='user_item_add.php?idshop=".$idshop."&menu_category_id=".$menu_category_id."&itemid=".$itemid."'><button class='button' class='btn btn-info btn-lg'>ADD</button></a></td>";
                     echo "</tr>";
-                    echo "</table>";
-                    echo "</div>";
                 }
-            echo "<a href='user_menu_add.php?idshop=".$idshop."'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
             }
+            echo "</table>";
+            echo "</div>";
+            echo "<a href='user_menu_add.php?idshop=".$idshop."'><button class='backbutton' class='btn btn-info btn-lg'>BACK</button></a>";
             ?> 
             <!--woei chi-->
         </div>
