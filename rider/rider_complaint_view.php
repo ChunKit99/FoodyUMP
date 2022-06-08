@@ -15,7 +15,7 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/admin.js"></script>
-    <title>Complaint</title>
+    <title>Rider View Complaint</title>
 </head>
 <!--body-->
 <?php
@@ -42,7 +42,7 @@ if ($_SESSION["user_type"] != "rider")
             <a href="rider_home.php" class="">Home</a>
             <a href="rider_order.php" class="">Order</a>
             <a href="rider_delivery_record.php" class="">Records</a>
-            <a href="rider_report.html" class="">Report</a>
+            <a href="rider_report.php" class="">Report</a>
             <a href="rider_complaint.php" class="" style="background: #11767ca6;">Complaint</a>
         </div>
     </div>

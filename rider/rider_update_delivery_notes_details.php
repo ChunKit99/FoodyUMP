@@ -6,7 +6,10 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/dbase.php";
 include_once($path);
 
-extract($_POST);
+$orderStatus = $_GET['order_status'];
+$paidStatus = $_GET['paid_status'];
+$orderID = $_GET['order_id'];
+
 $query = "UPDATE `orderlist` SET `order_status`='$orderStatus', `paid_status`='$paidStatus' WHERE `order_id` = '$orderID'";
 
 if (mysqli_query($conn, $query)) {

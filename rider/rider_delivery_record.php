@@ -8,10 +8,17 @@
         <link rel="stylesheet" href="/assets/css/rider.css">
         <script src="/assets/js/rider_qr.js"></script>
         <script src="/assets/js/admin.js"></script>
-        <title>Foody UMP</title>
+        <title>Rider Delivery Records</title>
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="rider")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -19,8 +26,8 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                    <h3><?php echo $_SESSION['username'] ?></h3>
+                    <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -30,7 +37,7 @@
                 <a href="rider_home.php" class="">Home</a>
                 <a href="rider_order.php" class="">Order</a>
                 <a href="rider_delivery_record.php" class="" style="background: #11767ca6;">Records</a>
-                <a href="rider_report.html" class="">Report</a>
+                <a href="rider_report.php" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
         </div>
@@ -40,11 +47,22 @@
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);
-            $orderStatus = "Completed";
+
+            $userID = $_SESSION["user_id"];
+            $riderID = "";
+
+            $q = "SELECT * FROM `rider` WHERE `rider_id` = '$userID'";
+            $res = mysqli_query($conn, $q);
+            if (mysqli_num_rows($res) > 0) {
+                while ($row = mysqli_fetch_array($res)) {
+                    $riderID = $row['rider_id'];
+                    
+                }
+            }
 
             $query = "SELECT * FROM `orderlist` 
                         JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
-                        WHERE orderlist.order_status = '$orderStatus'";
+                        WHERE orderlist.order_status = 'Completed'";
             $result = mysqli_query($conn, $query);
         ?>
 
@@ -56,7 +74,6 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Order Status</th>
-                        <th>Complaint</th>
                     </tr>
                     <?php
                         $count = 0;
@@ -70,7 +87,6 @@
                                 echo "<td scope='row'>$orderID</td>";
                                 echo "<td>$orderStatus</td>";
                                 echo "<td>";
-                                echo "<a href='rider_complaint_feedback.php?order_id=" . $orderID . "'><button type='button'>Feedback</button></a>";
                             ?>
 
                     <?php
