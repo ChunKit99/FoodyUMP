@@ -6,7 +6,7 @@ include_once($path);
 
 extract($_POST);
 $menuItemId = $_GET['id'];
-$status_available='no';
+$status_available='No';
 $query = "UPDATE `menuitem` SET `status_available`='$status_available' WHERE `menu_item_id` = '$menuItemId'";
 
 if (mysqli_query($conn, $query)) {
