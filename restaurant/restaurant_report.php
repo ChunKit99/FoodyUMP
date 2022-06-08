@@ -194,10 +194,10 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Net Income (RM):</th>
                                  <?php
-                                    $netIncome = $totalIncome[0] - $totalRider - $totalFoody;
-                                    $netIncome2 = number_format($netIncome,2);
+                                    $netIncome = $totalIncome - $totalRider - $totalFoody;
+                                    $netIncome = number_format($netIncome,2);
                                     echo "<td>";
-                                    echo $netIncome2;
+                                    echo $netIncome;
                                     echo "</td>";
                                     ?>
                         </tr>
@@ -257,7 +257,7 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to rider (RM):</th>
                             <?php 
-                            $totalRider=0;
+                            $totalRider=0.00;
                                 $test2 = "SELECT price FROM `orderlist` WHERE (order_date between '$lsunday' and '$lmonday') AND (restaurant_id = '$restaurantid')";
                                 $resultTest2 = mysqli_query($conn,$test2);
               
@@ -276,7 +276,7 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to Foody (RM):</th>
                             <?php 
-                            $totalFoody=0;
+                            $totalFoody=0.00;
                                 $test3 = "SELECT price FROM `orderlist` WHERE (order_date between '$lsunday' and '$lmonday') AND (restaurant_id = '$restaurantid')";
                                 $resultTest3 = mysqli_query($conn,$test3);
               
@@ -296,10 +296,10 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Net Income (RM):</th>
                                  <?php
-                                    $netIncome = $totalIncome[0] - $totalRider - $totalFoody;
-                                    $netIncome2 = number_format($netIncome,2);
+                                    $netIncome = $totalIncome - $totalRider - $totalFoody;
+                                    $netIncome = number_format($netIncome,2);
                                     echo "<td>";
-                                    echo $netIncome2;
+                                    echo $netIncome;
                                     echo "</td>";
                                     ?>
                         </tr>
@@ -369,11 +369,11 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to rider (RM):</th>
                             <?php 
-                            $totalRiderM=0;
+                            $totalRiderM=0.00;
                                 $month2 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
                                 $resultMonth2 = mysqli_query($conn,$month2);
               
-                                if (mysqli_num_rows($resultTest2) > 0) {
+                                if (mysqli_num_rows($resultMonth2) > 0) {
                                     while ($row = mysqli_fetch_array($resultMonth2)) {
                                         $price=$row["price"];
                                         $riderCom=$price*4/100;
@@ -388,11 +388,11 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to Foody (RM):</th>
                             <?php 
-                            $totalFoodyM=0;
+                            $totalFoodyM=0.00;
                                 $month3 = "SELECT price FROM `orderlist` WHERE (order_date between '$df' and '$dl') AND (restaurant_id = '$restaurantid')";
                                 $resultMonth3 = mysqli_query($conn,$month3);
               
-                                if (mysqli_num_rows($resultTest3) > 0) {
+                                if (mysqli_num_rows($resultMonth3) > 0) {
                                     while ($row = mysqli_fetch_array($resultMonth3)) {
                                         $price=$row["price"];
                                         $foodyCom=$price*5/100;
@@ -408,10 +408,10 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Net Income (RM):</th>
                                  <?php
-                                    $netIncomeM = $totalIncome[0] - $totalRiderM - $totalFoodyM;
-                                    $netIncomeM2 = number_format($netIncomeM,2);
+                                    $netIncomeM = $totalIncome1 - $totalRiderM - $totalFoodyM;
+                                    $netIncomeM = number_format($netIncomeM,2);
                                     echo "<td>";
-                                    echo $netIncomeM2;
+                                    echo $netIncomeM;
                                     echo "</td>";
                                     ?>
                         </tr>
@@ -471,7 +471,7 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to rider (RM):</th>
                             <?php 
-                            $totalRiderY=0;
+                            $totalRiderY=0.00;
                                 $year2 = "SELECT price FROM `orderlist` WHERE (order_date between '$yf' and '$yl') AND (restaurant_id = '$restaurantid')";
                                 $resultYear2 = mysqli_query($conn,$year2);
               
@@ -490,7 +490,7 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <th>Total commission to Foody (RM):</th>
                             <?php 
-                            $totalFoodyY=0;
+                            $totalFoodyY=0.00;
                                 $year3 = "SELECT price FROM `orderlist` WHERE (order_date between '$yf' and '$yl') AND (restaurant_id = '$restaurantid')";
                                 $resultYear3 = mysqli_query($conn,$year3);
               
