@@ -40,11 +40,12 @@ if ($_SESSION["user_type"] != "generaluser")
         </div>
     </div>
     <div id="nav-container">
-        <div class="container-width nav-container">
-            <a href="user_home.html" class="">Home</a>
-            <a href="user_order.html" class="">Order</a>
-            <a href="user_expenses.html" class="">Expenses</a>
-            <a href="user_report.html" class="">Report</a>
+    <div class="container-width nav-container">
+            <a href="user_home.php" class="">Home</a>
+            <a href="user_order.php" class="">Order</a>
+            <a href="user_delivery.php" class="">Delivery</a>
+            <a href="user_expenses.php" class="">Expenses</a>
+            <a href="user_report.php" class="">Report</a>
             <a href="user_complaint.php" class="" style="background: #11767ca6;">Complaint</a>
         </div>
     </div>
