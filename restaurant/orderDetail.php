@@ -51,7 +51,7 @@ if($_SESSION["user_type"]!="restaurant")
         $orderId=$_GET["id"];
 
 
-        $orderD = "SELECT orderlist.*, menuitem.menu_item_id, menuitem.name AS fName FROM `orderlist` JOIN `menuitem` ON 
+        $orderD = "SELECT orderlist.*, menuitem.menu_item_id, menuitem.name AS `fName` FROM `orderlist` JOIN `menuitem` ON 
         orderlist.menu_item_id = menuitem.menu_item_id WHERE `order_id` = $orderId";
         $result = mysqli_query($conn, $orderD);
         if (mysqli_num_rows($result) > 0) {
@@ -104,6 +104,27 @@ if($_SESSION["user_type"]!="restaurant")
                         <tr>
                             <td><?php echo $deliveryAddress ?></td>
                         </tr>
+
+                        <tr>
+                        <th>Rider:</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <?php
+                                echo "<select name='f_rider' id='food_catagory' >";
+                        $riderdetail = "SELECT rider.rider_id, user.name, user.user_id FROM `rider` JOIN `user` WHERE rider.rider_id=user.user_id";
+                                     $resultname = mysqli_query($conn, $riderdetail);
+                                        if (mysqli_num_rows($resultname) > 0) {
+                                            while ($row = mysqli_fetch_array($resultname)) {
+                                                $riderid = $row["rider_id"];
+                                                $ridername=$row["name"];
+                                                echo "<option value='$riderid'>$riderid</option>";
+
+                                                  }
+                                            }?>
+                        </td>
+                    </tr>
 
                     <tr>
                         <th>Status:</th>

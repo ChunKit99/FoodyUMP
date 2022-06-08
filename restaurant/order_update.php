@@ -6,7 +6,7 @@ include_once($path);
 
 extract($_POST);
 $orderId = $_GET['id'];
-$query = "UPDATE `orderlist` SET `order_status`='$f_Status' WHERE `order_id` = '$orderId'";
+$query = "UPDATE `orderlist` SET `order_status`='$f_Status', `rider_id`=$f_rider WHERE `order_id` = '$orderId'";
 
 if (mysqli_query($conn, $query)) {
     echo "<script type='text/javascript'> window.location='restaurant_order.php' </script>";
