@@ -93,16 +93,29 @@ if($_SESSION["user_type"]!="restaurant")
             <div class="page-main-content">
                 <h1>CATAGORIES</h1>
                 <?php 
-                $test = "SELECT * FROM menuitem WHERE `status_available`='yes'";
-                
+                $test = "SELECT menuitem.*, menucategory.menu_category_id, menucategory.restaurant_id FROM `menuitem` JOIN menucategory ON 
+                menuitem.menu_category_id=menucategory.menu_category_id WHERE `status_available`='Yes' AND `restaurant_id` =  '$restaurantid'";
                 $resultTest = mysqli_query($conn,$test);
-              
                 $num_row=mysqli_num_rows($resultTest);
                
                if ($num_row >= 10){
                 echo "<sup class='green'>Minimum food to publish achieve</sup>";
                 } else {
-                echo "<sup class='red'>*Minimum 10 foods must be published</sup> <br> <sup class='red'>*Minimum 3 catagories</sup>";
+                echo "<sup class='red'>*Minimum 10 foods must be published</sup>";
+                }
+                ?>
+
+                <?php 
+                $test1 = "SELECT COUNT(menuitem.menu_category_id), menucategory.menu_category_id, menucategory.restaurant_id FROM `menuitem` JOIN 
+                menucategory ON menuitem.menu_category_id=menucategory.menu_category_id WHERE `status_available`='Yes' AND `restaurant_id` = '$restaurantid' 
+                GROUP BY `menu_category_id`";
+                $resultTest1 = mysqli_query($conn,$test1);
+                $num_row=mysqli_num_rows($resultTest1);
+               
+               if ($num_row >= 3){
+                echo "<br><sup class='green'>Minimum category to publish achieve</sup>";
+                } else {
+                echo "<br><sup class='red'>*Minimum 3 catagories</sup>";
                 }
                 ?>
 
