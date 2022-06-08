@@ -8,10 +8,18 @@
         <link rel="stylesheet" href="/assets/css/rider.css">
         <script src="/assets/js/rider_qr.js"></script>
         <script src="/assets/js/admin.js"></script>
-        <title>Foody UMP</title>
+        
+        <title>Rider Order</title>
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="rider")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -19,8 +27,8 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                    <h3><?php echo $_SESSION['username'] ?></h3>
+                    <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -30,7 +38,7 @@
                 <a href="rider_home.php" class="">Home</a>
                 <a href="rider_order.php" class="" style="background: #11767ca6;">Order</a>
                 <a href="rider_delivery_record.php" class="">Records</a>
-                <a href="rider_report.html" class="">Report</a>
+                <a href="rider_report.php" class="">Report</a>
                 <a href="rider_complaint.php" class="">Complaint</a>
             </div>
         </div>
@@ -40,12 +48,21 @@
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/dbase.php";
             include_once($path);
-            $orderStatus = "Prepared";
-            //$orderStatus = "Picked Up";
+            $userID = $_SESSION["user_id"];
+            $riderID = "";
+
+            $q = "SELECT * FROM `rider` WHERE `rider_id` = '$userID'";
+            $res = mysqli_query($conn, $q);
+            if (mysqli_num_rows($res) > 0) {
+                while ($row = mysqli_fetch_array($res)) {
+                    $riderID = $row['rider_id'];
+                    
+                }
+            }
 
             $query = "SELECT * FROM `orderlist` 
                         JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
-                        WHERE orderlist.order_status = '$orderStatus'";
+                        WHERE orderlist.order_status = 'Prepared' OR orderlist.order_status = 'Picked Up'";
             $result = mysqli_query($conn, $query);
         ?>
 
@@ -63,21 +80,44 @@
                         <th>Details</th>
                     </tr>
                     <?php
+                        include('qrcode.php');
+                        $qr = new QrCode();
+                        //create text QR code
+                        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+                            $url = "https://";   
+                        else  
+                            $url = "http://";   
+                        // Append the host(domain name, ip) to the URL.   
+                        $url.= $_SERVER['HTTP_HOST'];   
+                        // Append the requested resource location to the URL
+
                         $count = 0;
                         if (mysqli_num_rows($result) > 0){
                             //output data of each row
                             while ($row = mysqli_fetch_assoc($result)){
+                               
+
                                 $count++;
                                 $orderID = $row['order_id'];
                                 $restaurantName = $row['name'];
                                 $orderStatus = $row['order_status'];
                                 $totalAmount = $row['price'];
+
+                                  //looping 1
+                                  $newirl = $url;
+                                  // order id for update
+                                  $newirl.= "/rider/rider_update_delivery_notes_details.php?order_id=$orderID&paid_status=Paid&order_status=Completed";    
+                                      
+                                  $qr->url($newirl);
+                                  //Save QR in image
+                                  $qr->qrCode(100,'./qrcode/qr_'.$orderID.'.png');
+
                                 echo "<tr>";
                                 echo "<td scope='row'>$orderID</td>";
                                 echo "<td>$restaurantName</td>";
                                 echo "<td>$orderStatus</td>";
                                 echo "<td>$totalAmount</td>";
-                                echo "<td>";
+                                echo "<td> <img src='./qrcode/qr_".$orderID.".png' width='100'></td>";
                                 echo "<td>";
                                 echo "<a href='rider_delivery_notes_details.php?order_id=" . $orderID . "'><button type='button'>View More</button></a>";
                             ?>
