@@ -11,6 +11,13 @@
     </head>
 
     <!--body-->
+    <?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+    if($_SESSION["user_type"]!="administrator")
+    header("location:/logout.php");
+?>
     <body>
         <div id="logo">
             <div class="container-width">
@@ -18,8 +25,8 @@
                     <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
-                    <p>Username</p>
-                    <button class="logout" onclick="logout()"> Logout</button>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                <a href="/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -48,7 +55,7 @@
                 $userType = "Undefine user type, an error on database";
             }
 
-            $querystatus = "SELECT SUM(CASE WHEN user_type = 'Administrator' THEN 1 ELSE 0 END) AS ad, SUM(CASE WHEN user_type = 'Restaurant Owner' THEN 1 ELSE 0 END) AS ro, SUM(CASE WHEN user_type = 'General User' THEN 1 ELSE 0 END) AS gu, SUM(CASE WHEN user_type = 'Rider' THEN 1 ELSE 0 END) AS rd FROM user ";
+            $querystatus = "SELECT SUM(CASE WHEN user_type = 'Administrator' THEN 1 ELSE 0 END) AS ad, SUM(CASE WHEN user_type = 'Restaurant' THEN 1 ELSE 0 END) AS ro, SUM(CASE WHEN user_type = 'GeneralUser' THEN 1 ELSE 0 END) AS gu, SUM(CASE WHEN user_type = 'Rider' THEN 1 ELSE 0 END) AS rd FROM user ";
             $resultstatus = mysqli_query($conn, $querystatus);
 
             $rows =  mysqli_fetch_assoc($resultstatus);

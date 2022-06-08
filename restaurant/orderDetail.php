@@ -119,7 +119,7 @@ if($_SESSION["user_type"]!="restaurant")
                                             while ($row = mysqli_fetch_array($resultname)) {
                                                 $riderid = $row["rider_id"];
                                                 $ridername=$row["name"];
-                                                echo "<option value='$riderid'>$riderid</option>";
+                                                echo "<option value='$riderid'>$ridername</option>";
 
                                                   }
                                             }?>
@@ -132,8 +132,8 @@ if($_SESSION["user_type"]!="restaurant")
 
                     <tr>
                         <td><select name="f_Status" id="food_status">
-                            <option value="ordered">ordered</option>
-                            <option value="prepared">prepared</option>
+                            <option value="Ordered">Ordered</option>
+                            <option value="Prepared" selected>Prepared</option>
                             </select>
                         </td>
                     </tr>
@@ -144,8 +144,8 @@ if($_SESSION["user_type"]!="restaurant")
                 <div class="two_button">
                 <?php
                 echo "<input type='submit' class='btn_update' value='Update'>";
-                echo "<input type='submit' class='btn_delete' value='Cancel'>";
                 ?>
+                <a href="restaurant_order.php"><button class = "btn_delete">Cancel</button></a>
                 </div>
             </div>
         </div>

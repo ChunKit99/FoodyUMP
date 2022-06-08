@@ -119,7 +119,7 @@ if ($_SESSION["user_type"] != "generaluser")
                                         <select class="custom-select mr-sm-2" id="chooseOrderID" name="chooseOrderID" required>
                                             <option value="" disabled selected hidden>Choose Order ID</option>
                                             <?php
-                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` = '$userid' ";
+                                            $sql = "SELECT * FROM `orderlist` WHERE `user_id` = '$userid' AND `order_status` = 'Completed'";
 
                                             $orderlist = mysqli_query($conn, $sql);
 

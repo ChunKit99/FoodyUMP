@@ -108,7 +108,7 @@ if($_SESSION["user_type"]!="generaluser")
                     echo "<td colspan='2'><div class='custom-select' style='width:300px;'>";
                     echo "<select>";
                     echo "<option value='0'>Select Payment Method</option>";
-                    echo "<option value='0'>Cash-On-Delivery</option>";
+                    echo "<option value='0' selected>Cash-On-Delivery</option>";
                     echo "</select>";
                     echo "</div></td>";
                     echo "<td>Total Price (RM):</td>";

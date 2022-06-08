@@ -19,7 +19,7 @@
             $date= date('Y-m-d');
             $time=date('H:i:s');
 
-            $query = "INSERT INTO orderlist (`user_id`, `rider_id`, `restaurant_id`, `menu_item_id`, `delivery_address`, `phone`, `quantity`, `order_status`, `paid_status`, `order_date`, `order_time`, `price`) VALUE ('$userid', NULL,'$idshop','$itemid','$address','$phone','$quantity','ordered','unpaid','$date','$time','$price')"; 
+            $query = "INSERT INTO orderlist (`user_id`, `restaurant_id`, `menu_item_id`, `delivery_address`, `phone`, `quantity`, `order_status`, `paid_status`, `order_date`, `order_time`, `price`) VALUE ('$userid','$idshop','$itemid','$address','$phone','$quantity','ordered','unpaid','$date','$time','$price')"; 
             if (mysqli_query($conn, $query)) {
                 //echo "<script type='text/javascript'> window.location='user_delivery.php'></script>";
                 header("location:user_delivery.php");

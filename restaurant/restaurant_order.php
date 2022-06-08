@@ -62,19 +62,15 @@ if($_SESSION["user_type"]!="restaurant")
                         <th>Order number</th>
                         <th>Status</th>
                         <th>Price (RM)</th>
-                        <th>Rider</th>
                     </tr>
                     
                         <?php
-                            $riderL = "SELECT orderlist.*, rider.rider_id, user.user_id, user.name AS rName FROM `orderlist` JOIN `rider` ON 
-                            orderlist.rider_id = rider.rider_id JOIN `user` ON rider.rider_id = user.user_id WHERE `restaurant_id` = $restaurantid";
+                            $riderL = "SELECT *FROM `orderlist` WHERE `restaurant_id` = $restaurantid";
                             $result = mysqli_query($conn, $riderL);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
-                                    $riderName=$row["rName"];
                                     $orderId = $row["order_id"];
                                     $userId = $row["user_id"];
-                                    $riderId = $row["rider_id"];
                                     $restaurentId = $row["restaurant_id"];
                                     $menuItemId = $row["menu_item_id"];
                                     $deliveryAddress = $row["delivery_address"];
@@ -94,9 +90,6 @@ if($_SESSION["user_type"]!="restaurant")
                         echo "</td>";
                         echo "<td>";
                         echo $price;
-                        echo "</td>";
-                        echo "<td>";
-                        echo $riderName;
                         echo "</td>";
                         echo "</tr>";
                             }
