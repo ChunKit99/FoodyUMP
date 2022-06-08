@@ -79,7 +79,7 @@ if($_SESSION["user_type"]!="generaluser")
                     <tr>
                         <th>Food Name</th>
                         <th>Food Description</th>
-                        <th>Price Per Item</th>
+                        <th>Price Per Item (RM)</th>
                         <th>Quantity</th>
                         <th>Action</th>
 

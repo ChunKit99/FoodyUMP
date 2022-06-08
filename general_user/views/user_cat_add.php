@@ -94,7 +94,7 @@ if($_SESSION["user_type"]!="generaluser")
             echo "<th>Photo</th>";
             echo "<th>Name</th>";
             echo "<th>Description</th>";
-            echo "<th>Price</th>";
+            echo "<th>Price (RM)</th>";
             echo "<th>Action</th>";
             echo "</tr>";
             extract($_POST);

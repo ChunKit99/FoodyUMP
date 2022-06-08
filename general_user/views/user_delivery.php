@@ -63,10 +63,10 @@ if($_SESSION["user_type"]!="generaluser")
             echo "<th>Order Number:</th>";
             echo "<th>Food Name:</th>";
             echo "<th>Food Description:</th>";
-            echo "<th>Price Per Item:</th>";
+            echo "<th>Price Per Item (RM):</th>";
             echo "<th>Quantity:</th>";
-            echo "<th>Delivery Price:</th>";
-            echo "<th>Total Price:</th>";
+            echo "<th>Delivery Price (RM):</th>";
+            echo "<th>Total Price (RM):</th>";
             echo "</tr>";
 
             $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id ";

@@ -53,21 +53,24 @@ if($_SESSION["user_type"]!="generaluser")
         <div class="page-main-content">
             <!--Woeichi-->
             <?php
-     //get current week start and end
-     $monday = strtotime('last monday', strtotime('tomorrow'));
-     $sunday = strtotime('+6 days', $monday);
-     $monday = date('Y-m-d', $monday);
-     $sunday = date('Y-m-d', $sunday);
-     //echo $monday;
-     //echo $sunday;
+            //get current week start and end
+            $monday = strtotime('last monday', strtotime('tomorrow'));
+            $tuesday = strtotime('+1 days', $monday);
+            $sunday = strtotime('+6 days', $monday);
+            $monday = date('Y-m-d', $monday);
+            $tuesday = date('Y-m-d', $tuesday);
+            $sunday = date('Y-m-d', $sunday);
+            //echo $monday;
+            //echo $tuesday;
+            //echo $sunday;
  
-     //get current month start and end
-     $df = new DateTime('first day of this month');
-     $df = $df->format('Y-m-d');
-     //echo $df;
-     $dl = new DateTime('last day of this month');
-     $dl = $dl->format('Y-m-d');
-     //echo $dl;
+            //get current month start and end
+            $df = new DateTime('first day of this month');
+            $df = $df->format('Y-m-d');
+            //echo $df;
+             $dl = new DateTime('last day of this month');
+            $dl = $dl->format('Y-m-d');
+            //echo $dl;
 
             echo "<div class='exp'>";
             echo "<br><br><br>";
@@ -75,26 +78,86 @@ if($_SESSION["user_type"]!="generaluser")
             echo "</div><br><br>";
             echo "<div class='expenses'>";
             echo "<table>";
-
             echo "<tr>";
-            echo "<th>Daily Expenses: </th>";
-            echo "<td></td>";
+            echo "<th>Daily Expenses (RM):</th>";
+
+            $userid = $_SESSION['user_id'];
+            $daily = 0 ;
+            $query = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$monday' and '$tuesday') AND (orderlist.user_id = '$userid')";
+            $resultTest1 = mysqli_query($conn,$query);
+            if (mysqli_num_rows($resultTest1) > 0) {
+                while ($row = mysqli_fetch_array($resultTest1)) {
+                    $price=$row["price"];
+                    $daily=$price+$daily;
+                    $daily=number_format($daily,2);
+                }  
+            }
+
+            echo "<td>$daily</td>";
             echo "</tr>";
             echo "<tr>";
-            echo "<th>Weekly Expenses:</th>";
-            echo "<td></td>";
+            echo "<th>Weekly Expenses (RM):</th>";
+
+            $week = 0 ;
+            $queryweek = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$monday' and '$sunday' ) AND (orderlist.user_id = '$userid')";
+            $resultTest2 = mysqli_query($conn,$queryweek);
+            if (mysqli_num_rows($resultTest2) > 0) {
+            while ($row = mysqli_fetch_array($resultTest2)) {
+                $price=$row["price"];
+                $week=$price+$week;
+                $week=number_format($week,2);
+                }  
+            }
+
+            echo "<td>$week</td>";
             echo "</tr><tr>";
-            echo "<th>Monthly Expenses:</th>";
-            echo "<td></td>";
+            echo "<th>Monthly Expenses (RM):</th>";
+
+            $month = 0 ;
+            $querymonth = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$df' and '$dl') AND (orderlist.user_id = '$userid')";
+            $resultTest3 = mysqli_query($conn,$querymonth);
+            if (mysqli_num_rows($resultTest3) > 0) {
+            while ($row = mysqli_fetch_array($resultTest3)) {
+                $price=$row["price"];
+                $month=$price+$month;
+                $month=number_format($month,2);
+                }  
+            }
+
+            echo "<td>$month</td>";
             echo "</tr><tr>";
-            echo "<th>Average Expenses</th>";
+            echo "<th>Average Expenses (RM)</th>";
             echo "<td></td>";
             echo "</tr><tr>";
             echo "<th>In Week:</th>";
-            echo "<td></td>";
+
+            $aweek = 0 ;
+            $avgweek = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$monday' and '$sunday') AND (orderlist.user_id = '$userid')";
+            $resultTest4 = mysqli_query($conn,$avgweek);
+            if (mysqli_num_rows($resultTest4) > 0) {
+            while ($row = mysqli_fetch_array($resultTest4)) {
+                $price=$row["price"];
+                $aweek=$week/7;
+                $aweek=number_format($aweek,2);
+                }  
+            }
+
+            echo "<td>$aweek</td>";
             echo "</tr><tr>";
             echo "<th>In Month:</th>";
-            echo "<td></td>";
+
+            $amonth = 0 ;
+            $avgmonth = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$monday' and '$sunday') AND (orderlist.user_id = '$userid')";
+            $resultTest5= mysqli_query($conn,$avgmonth);
+            if (mysqli_num_rows($resultTest5) > 0) {
+            while ($row = mysqli_fetch_array($resultTest5)) {
+                $price=$row["price"];
+                $amonth=$month/4;
+                $amonth=number_format($amonth,2);
+                }  
+            }
+
+            echo "<td>$amonth</td>";
             echo "</tr>";
             echo "</table>";
             echo "</div>";

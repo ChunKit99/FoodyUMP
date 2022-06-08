@@ -95,14 +95,14 @@ if($_SESSION["user_type"]!="generaluser")
                     echo "</tr><tr>";
                     echo "<td>Delivery Address:</td>";
                     echo "<td><input type='text' id='address' name='address'></td>";
-                    echo "<td>Price Per Item:</td>";
+                    echo "<td>Price Per Item (RM):</td>";
                     echo "<td>$foodprice</td></tr><tr>";
                     echo "<td colspan='2'></td>";
                     echo "<td>Quantity:</td>";
                     echo "<td>$quantity</td>";
                     echo "</tr><tr>";
                     echo "<th colspan='2'>Payment Method</th>";
-                    echo "<td>Delivery Price:</td>";
+                    echo "<td>Delivery Price (RM):</td>";
                     echo "<td>4.00</td>";
                     echo "</tr><tr>";
                     echo "<td colspan='2'><div class='custom-select' style='width:300px;'>";
@@ -111,7 +111,7 @@ if($_SESSION["user_type"]!="generaluser")
                     echo "<option value='0'>Cash-On-Delivery</option>";
                     echo "</select>";
                     echo "</div></td>";
-                    echo "<td>Total Price:</td>";
+                    echo "<td>Total Price (RM):</td>";
                     $price=($foodprice*$quantity)+4;
                     $price=number_format($price,2);
                     echo "<td>$price</td>";

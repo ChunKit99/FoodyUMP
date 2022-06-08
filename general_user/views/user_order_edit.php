@@ -86,7 +86,7 @@ if($_SESSION["user_type"]!="generaluser")
                             echo "<td>$foodprice</td>";
                             
                             echo "<td><form method='post' action='user_cartupdate.php'>
-                            <input type='number' min='1' id='quantity' name='quantity'></td>";
+                            <input type='number' min='1' max='10' id='quantity' name='quantity'></td>";
                             echo "<td><input type='submit' class='savebutton' formaction='user_cartupdate.php?cart_id=".$cart_id."'>"; 
                             echo "</form></td>";
                             echo "</tr>";

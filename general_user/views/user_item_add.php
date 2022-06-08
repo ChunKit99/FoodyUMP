@@ -91,7 +91,7 @@ if($_SESSION["user_type"]!="generaluser")
             $itemid=$_GET['itemid'];
             echo "<form method='post' action='user_order.php'>";
             echo "Quantity:";
-            echo "<input type='number' min='1' id='quantity' name='quantity'>";
+            echo "<input type='number' min='1' max='10' id='quantity' name='quantity'>";
             echo "<br><br><br>";
             echo "<input type='submit' class='backbutton' class='btn btn-info btn-lg' formaction='user_cartdb.php?idshop=".$idshop."?&menu_category_id=".$menu_category_id."&itemid=".$itemid."'>"; 
             echo "</form>";
