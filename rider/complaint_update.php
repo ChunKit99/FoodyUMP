@@ -11,4 +11,4 @@ if (mysqli_query($conn, $query)) {
     echo "<script type='text/javascript'> window.location='rider_complaint.php' </script>";
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
-}
+}?>

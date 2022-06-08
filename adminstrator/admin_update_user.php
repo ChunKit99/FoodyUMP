@@ -13,4 +13,4 @@ if (mysqli_query($conn, $query)) {
     echo "<script type='text/javascript'> window.location='admin_user_list.php' </script>";
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
-}
+}?>

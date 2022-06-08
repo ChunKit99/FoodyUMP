@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+if($_SESSION["user_type"]!="generaluser")
+    header("location:/logout.php");
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,13 +39,7 @@
 <!--body-->
 
 <body>
-<?php
-session_start();
-if (!isset($_SESSION["login"]))
-    header("location:/login.php");
-if($_SESSION["user_type"]!="generaluser")
-    header("location:/logout.php");
-?>
+
     <div id="logo">
         <div class="container-width">
             <div class="fl logo">

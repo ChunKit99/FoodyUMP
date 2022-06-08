@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION["login"]))
+    header("location:/login.php");
+    if($_SESSION["user_type"]!="administrator")
+    header("location:/logout.php");
+?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -11,13 +17,7 @@
     </head>
 
     <!--body-->
-    <?php
-session_start();
-if (!isset($_SESSION["login"]))
-    header("location:/login.php");
-    if($_SESSION["user_type"]!="administrator")
-    header("location:/logout.php");
-?>
+    
     <body>
         <div id="logo">
             <div class="container-width">

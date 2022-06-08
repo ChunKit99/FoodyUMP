@@ -29,5 +29,4 @@ if (mysqli_query($conn, $query)) {
     echo "<script type='text/javascript'> window.location='restaurant_profile.php' </script>";
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
-}
-
+}?>

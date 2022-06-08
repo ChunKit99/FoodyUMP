@@ -1,5 +1,3 @@
-<!-- complaint_insert.php -->
-<!-- To insert data of user_complaint_add.php into database. -->
 <?php
 
 $path = $_SERVER['DOCUMENT_ROOT'];
@@ -17,6 +15,4 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
-
-
 ?>

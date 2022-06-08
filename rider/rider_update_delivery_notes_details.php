@@ -1,5 +1,3 @@
-<!-- rider_update_delivery_notes_details.php -->
-<!-- To insert data of rider_update_delivery_notes_details.php into database. -->
 <?php
 
 $path = $_SERVER['DOCUMENT_ROOT'];

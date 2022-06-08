@@ -1,5 +1,3 @@
-<!-- rider_insert_bank_account.php -->
-<!-- To insert data of rider_insert_bank_account.php into database. -->
 <?php
 
 $path = $_SERVER['DOCUMENT_ROOT'];

@@ -1,5 +1,3 @@
-<!-- rider_delete_bank_account.php -->
-<!-- To insert data of rider_delete_bank_account.php into database. -->
 <?php
 
 $path = $_SERVER['DOCUMENT_ROOT'];
@@ -17,5 +15,4 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
-
 ?>
