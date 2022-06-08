@@ -69,7 +69,8 @@ if($_SESSION["user_type"]!="generaluser")
 
                     </tr>
                     <?php
-                    $cartedit="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id";
+                    $user_id=$_SESSION['user_id'];
+                    $cartedit="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id AND cartorder.user_id = $user_id";
                     $result= mysqli_query($conn, $cartedit);
                     if (mysqli_num_rows($result) > 0){
                         $count = 0;
