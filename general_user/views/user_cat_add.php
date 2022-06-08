@@ -111,7 +111,7 @@ if($_SESSION["user_type"]!="generaluser")
                     $itemprice = $row['price']; 
 
                     echo "<tr>";
-                    echo "<td>$itemphoto</td>";
+                    echo "<td><img src=$itemphoto alt=$itemname width='100' height='100'></td>";
                     echo "<td>$itemname</td>";
                     echo "<td>$itemdes</td>";
                     echo "<td>$itemprice</td>";
