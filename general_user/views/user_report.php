@@ -52,19 +52,42 @@ if($_SESSION["user_type"]!="generaluser")
     <div id="page-content">
         <div class="page-main-content">
             <!--woeichi-->
+            <?php
+            //get current week start and end
+            $monday = strtotime('last monday', strtotime('tomorrow'));
+            $tuesday = strtotime('+1 days', $monday);
+            $sunday = strtotime('+6 days', $monday);
+            $monday = date('Y-m-d', $monday);
+            $tuesday = date('Y-m-d', $tuesday);
+            $sunday = date('Y-m-d', $sunday);
+            //echo $monday;
+            //echo $tuesday;
+            //echo $sunday;
 
-            <div id="piechart">
+            $week = 0 ;
+            $userid = $_SESSION['user_id'];
+            $queryweek = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$monday' and '$sunday' ) AND (orderlist.user_id = '$userid')";
+            $resultTest2 = mysqli_query($conn,$queryweek);
+            if (mysqli_num_rows($resultTest2) > 0) {
+            while ($row = mysqli_fetch_array($resultTest2)) {
+                $price=$row["price"];
+                $week=$price+$week;
+                $week=number_format($week,2);
+                }  
+            }
+            ?>
+
+            <div id="piechart"></div>
 
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
-                    google.charts.load('current', { 'packages': ['corechart'] });
+                    google.charts.load('current', {'packages':['corechart']});
                     google.charts.setOnLoadCallback(drawChart);
 
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ['Restaurant', 'Money Spent'],
-                            ['Along Restaurant', 8],
-                            ['Farouk Maju Restaurant', 2],
+                            ['Total Expenses', 'price'],
+                            ['Total Expenses', '<?php echo "$week"?>'],
                         ]);
 
                         // Optional; add a title and set the width and height of the chart
@@ -73,29 +96,7 @@ if($_SESSION["user_type"]!="generaluser")
                         chart.draw(data, options);
                     }
                 </script>
-            </div>
 
-            <div id="piechart2">
-
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', { 'packages': ['corechart'] });
-                    google.charts.setOnLoadCallback(drawChart);
-
-                    function drawChart() {
-                        var data = google.visualization.arrayToDataTable([
-                            ['Restaurant', 'Money Spent'],
-                            ['Along Restaurant', 8],
-                            ['Farouk Maju Restaurant', 2],
-                        ]);
-
-                        // Optional; add a title and set the width and height of the chart
-                        var options = { 'title': 'Maximum Monthly Expenses', 'width': 1500, 'height': 600 };
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-                        chart.draw(data, options);
-                    }
-                </script>
-            </div>
             <!--woeichi-->
         </div>
     </div>
