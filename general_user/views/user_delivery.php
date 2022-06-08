@@ -31,7 +31,8 @@ if($_SESSION["user_type"]!="generaluser")
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    echo $_SESSION['username'] ?></h3>
+                    echo $_SESSION['username']; 
+                    $user_id = $_SESSION['user_id'];?></h3>
                 <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
@@ -69,7 +70,7 @@ if($_SESSION["user_type"]!="generaluser")
             echo "<th>Total Price (RM):</th>";
             echo "</tr>";
 
-            $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id ";
+            $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id WHERE orderlist.user_id =$user_id";
             $result= mysqli_query($conn, $deli);
             if (mysqli_num_rows($result) > 0){
                 while ($row = mysqli_fetch_assoc($result)) {

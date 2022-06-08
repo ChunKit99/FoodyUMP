@@ -11,6 +11,15 @@ $orderID = $_GET['order_id'];
 $query = "UPDATE `orderlist` SET `order_status`='$orderStatus', `paid_status`='$paidStatus' WHERE `order_id` = '$orderID'";
 
 if (mysqli_query($conn, $query)) {
+    $file_pointer = "./qrcode/qr_$orderID.png";
+  
+    // Use unlink() function to delete a file
+    if (!unlink($file_pointer)) {
+        echo ("$file_pointer cannot be deleted due to an error");
+    }
+    else {
+        echo ("$file_pointer has been deleted");
+    }
 
     echo "<script type='text/javascript'> window.location='rider_order.php' </script>";
 } else {

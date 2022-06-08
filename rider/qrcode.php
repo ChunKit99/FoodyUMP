@@ -54,10 +54,6 @@ class QrCode {
                     $filename .= ".png";
                 }
                 return file_put_contents($filename, $img);
-            } else {
-                header("Content-type: image/png");
-                print $img;
-                return true;
             }
         }
         return false;
