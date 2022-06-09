@@ -11,7 +11,7 @@ if (isset($_REQUEST['sub'])) {
     $result = mysqli_fetch_array($res);
     if ($result) {
         $_SESSION["login"] = "1";
-        $_SESSION["username"] = "$a";
+        $_SESSION["username"] = $result['name'];
         $_SESSION["user_id"] = $result['user_id'];
         $_SESSION["user_type"] = $result['user_type'];
         if ($c == "administrator") {

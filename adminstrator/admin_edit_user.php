@@ -152,7 +152,7 @@ if (!isset($_SESSION["login"]))
                             <td>
                                 <select name="userType" >
                                 <?php
-                                    $selectuserTypes = array('Administrator','Rider','General User','Restaurant Owner');
+                                    $selectuserTypes = array('administrator','rider','generaluser','restaurant');
 
                                         foreach ($selectuserTypes as $selectuserType) {
                                             if ($userType == $selectuserType) {
