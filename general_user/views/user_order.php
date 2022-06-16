@@ -48,7 +48,8 @@ if($_SESSION["user_type"]!="generaluser")
                     $path = $_SERVER['DOCUMENT_ROOT'];
                     $path .= "/dbase.php";
                     include_once($path);
-                    echo $_SESSION['username'] ?></h3>
+                    echo $_SESSION['username']; 
+                    $user_id = $_SESSION['user_id'];?></h3>
                 <a href="/logout.php"><button class="logout">Logout</button></a>
             </div>
         </div>
@@ -84,7 +85,7 @@ if($_SESSION["user_type"]!="generaluser")
                         <th>Action</th>
 
                     </tr>
-                    <?php
+                    <?php 
                     $user_id=$_SESSION['user_id'];
                     $cart2="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id AND cartorder.user_id = $user_id";
                     $result= mysqli_query($conn, $cart2);
