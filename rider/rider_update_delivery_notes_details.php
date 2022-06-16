@@ -21,7 +21,7 @@ if (mysqli_query($conn, $query)) {
         echo ("$file_pointer has been deleted");
     }
 
-    echo "<script type='text/javascript'> window.location='rider_order.php' </script>";
+    echo "<script type='text/javascript'> window.location='../thankyou.html' </script>";
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
