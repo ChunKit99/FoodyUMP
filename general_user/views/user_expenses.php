@@ -85,6 +85,7 @@ if($_SESSION["user_type"]!="generaluser")
             $daily = 0 ;
             $today = date("Y-m-d");
             $query = "SELECT * FROM `orderlist` WHERE (orderlist.order_date between '$today' and '$today') AND (orderlist.user_id = '$userid')";
+
             $resultTest1 = mysqli_query($conn,$query);
             if (mysqli_num_rows($resultTest1) > 0) {
                 while ($row = mysqli_fetch_array($resultTest1)) {

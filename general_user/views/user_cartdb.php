@@ -3,6 +3,13 @@
             $path .= "/dbase.php";
             include_once($path);
 
+            session_start();
+            if (!isset($_SESSION["login"]))
+            header("location:/login.php");
+            if($_SESSION["user_type"]!="generaluser")
+            header("location:/logout.php");
+
+
             extract($_POST);
             $userid = $_SESSION['user_id'];
 
