@@ -70,7 +70,7 @@ if($_SESSION["user_type"]!="generaluser")
             echo "<th>Total Price (RM):</th>";
             echo "</tr>";
 
-            $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id WHERE orderlist.user_id =$user_id";
+            $deli="SELECT orderlist.*, orderlist.price AS totalprice, menuitem.* FROM `orderlist` JOIN `menuitem` ON orderlist.menu_item_id = menuitem.menu_item_id WHERE orderlist.user_id =$user_id ORDER BY order_id DESC";
             $result= mysqli_query($conn, $deli);
             if (mysqli_num_rows($result) > 0){
                 while ($row = mysqli_fetch_assoc($result)) {

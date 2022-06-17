@@ -72,7 +72,7 @@ if($_SESSION["user_type"]!="generaluser")
     //echo $dl;
 
 
-    $query = "SELECT * FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE orderlist.user_id = '$userid' ORDER BY `complaint_id` ASC;";
+    $query = "SELECT * FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE orderlist.user_id = '$userid' ORDER BY `complaint_id` DESC;";
     $resultList = mysqli_query($conn, $query);
 
     $queryweek = "SELECT SUM(CASE WHEN complaint_type = 'Late Delivery' THEN 1 ELSE 0 END) AS ld, SUM(CASE WHEN complaint_type = 'Damaged Food' THEN 1 ELSE 0 END) AS df, SUM(CASE WHEN complaint_type = 'Missing Food' THEN 1 ELSE 0 END) AS mf, SUM(CASE WHEN complaint_type = 'Incorrectly Charged' THEN 1 ELSE 0 END) AS ic, SUM(CASE WHEN complaint_type = 'Other' THEN 1 ELSE 0 END) AS ot FROM complaint JOIN orderlist ON complaint.order_id=orderlist.order_id WHERE (complaint_date  between '$monday' and '$sunday') AND (orderlist.user_id = '$userid'); ";
