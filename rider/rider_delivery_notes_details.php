@@ -66,7 +66,7 @@ if($_SESSION["user_type"]!="rider")
                     $foodOrder = $row['menuName'];
                     $quantity = $row['quantity'];
                     $customerName = $row['userName'];
-                    $customerAddress = $row['details_add'];
+                    $customerAddress = $row['delivery_address'];
                     $orderStatus = $row['order_status'];
                     $totalAmount = $row['price'];
                     $paidStatus = $row['paid_status'];
@@ -127,7 +127,7 @@ if($_SESSION["user_type"]!="rider")
                                 <select class='rider_input' name="orderStatus" id="orderStatus">
                                     <option value="" disabled selected hidden>Choose Order Status</option>
                                     <?php
-                                        $orderStatusTypes = array('PickedUp');
+                                        $orderStatusTypes = array('Picked Up');
 
                                         foreach ($orderStatusTypes as $orderStatusType){
                                             if ($orderStatus == $orderStatusType) {
