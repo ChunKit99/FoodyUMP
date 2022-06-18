@@ -69,14 +69,14 @@ if($_SESSION["user_type"]!="generaluser")
             $userid = $_SESSION['user_id'];
             $username = $_SESSION['username'];
 
-            $pay="SELECT * FROM `cartorder` JOIN `menuitem` JOIN `menucategory` ON menuitem.menu_item_id=cartorder.menu_item_id AND menuitem.menu_category_id=menucategory.menu_category_id WHERE cartorder.cart_id =  $cart_id";
+            $pay="SELECT cartorder.*, menuitem.name AS fname, menuitem.*, menucategory.* FROM `cartorder` JOIN `menuitem` JOIN `menucategory` ON menuitem.menu_item_id=cartorder.menu_item_id AND menuitem.menu_category_id=menucategory.menu_category_id WHERE cartorder.cart_id =  $cart_id";
             $result= mysqli_query($conn, $pay);
             if (mysqli_num_rows($result) > 0){
                 while ($row = mysqli_fetch_assoc($result)) {
 
                     $idshop = $row['restaurant_id'];
                     $itemid = $row ['menu_item_id'];
-                    $foodname = $row['name'];
+                    $foodname = $row['fname'];
                     $fooddes = $row['description']; 
                     $foodprice = $row['price']; 
                     $quantity=$row['quantity']; 

@@ -120,7 +120,11 @@ if($_SESSION["user_type"]!="restaurant")
                 ?>
 
                 <form action="" method="post">
-
+                <?php
+                echo "<div class='one_button'>";
+                echo "<input type='submit' formaction='resAdd.php' method='post' class='btn_add' value='Add'>";
+                echo "</div>";
+                ?>
                 <?php
                     $menuCatagory = "SELECT * FROM `menucategory`  WHERE `restaurant_id` = '$restaurantid' ";
                     $resultname = mysqli_query($conn, $menuCatagory);
@@ -178,11 +182,7 @@ if($_SESSION["user_type"]!="restaurant")
                     
 <!--Stuck at how to pass array of publish-->
                 
-                <?php
-                echo "<div class='one_button'>";
-                echo "<input type='submit' formaction='resAdd.php' method='post' class='btn_add' value='Add'>";
-                echo "</div>";
-                ?>
+                
         </form>
          
     

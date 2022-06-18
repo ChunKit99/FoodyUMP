@@ -87,7 +87,7 @@ if($_SESSION["user_type"]!="generaluser")
                     </tr>
                     <?php 
                     $user_id=$_SESSION['user_id'];
-                    $cart2="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id AND cartorder.user_id = $user_id";
+                    $cart2="SELECT * FROM `cartorder` JOIN `menuitem` ON menuitem.menu_item_id=cartorder.menu_item_id AND cartorder.user_id = $user_id ORDER BY `cart_id` DESC";
                     $result= mysqli_query($conn, $cart2);
                     if (mysqli_num_rows($result) > 0){
 

@@ -79,7 +79,7 @@ if($_SESSION["user_type"]!="rider")
             <div class="page-main-content">
                 <h1>Order Details</h1>
 
-                <form method="post" action="rider_update_delivery_notes_details.php">
+                <form method="post" action="rider_update_delivery_notes_details_view_more.php">
                     <table class="orderDetail">
                         <tr>
                             <th><label for="orderID">Order ID:</label></th>
@@ -125,7 +125,6 @@ if($_SESSION["user_type"]!="rider")
                             <th>Order Status:</th>
                             <td>
                                 <select class='rider_input' name="orderStatus" id="orderStatus">
-                                    <option value="" disabled selected hidden>Choose Order Status</option>
                                     <?php
                                         $orderStatusTypes = array('Picked Up');
 

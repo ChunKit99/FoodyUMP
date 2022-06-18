@@ -65,7 +65,7 @@ if($_SESSION["user_type"]!="restaurant")
                     </tr>
                     
                         <?php
-                            $riderL = "SELECT *FROM `orderlist` WHERE `restaurant_id` = $restaurantid";
+                            $riderL = "SELECT *FROM `orderlist` WHERE `restaurant_id` = $restaurantid ORDER BY `order_id` DESC";
                             $result = mysqli_query($conn, $riderL);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
