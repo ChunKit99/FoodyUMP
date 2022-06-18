@@ -62,7 +62,7 @@ if($_SESSION["user_type"]!="rider")
 
             $query = "SELECT * FROM `orderlist` 
                         JOIN restaurant ON orderlist.restaurant_id=restaurant.restaurant_id 
-                        WHERE  orderlist.rider_id = $userID ORDER BY order_id DESC";
+                        WHERE orderlist.order_status = 'Completed' AND orderlist.rider_id = $userID ORDER BY order_id DESC";
             $result = mysqli_query($conn, $query);
         ?>
 
