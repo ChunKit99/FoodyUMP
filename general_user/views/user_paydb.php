@@ -1,13 +1,13 @@
 <?php       
             $path = $_SERVER['DOCUMENT_ROOT'];
-            $path .= "/dbase.php";
+            $path .= "/FoodyUMP/dbase.php";
             include_once($path);
 
             session_start();
             if (!isset($_SESSION["login"]))
             header("location:/login.php");
             if($_SESSION["user_type"]!="generaluser")
-            header("location:/logout.php");
+            header("location:/FoodyUMP/logout.php");
 
             extract($_POST);
 

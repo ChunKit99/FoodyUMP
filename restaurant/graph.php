@@ -10,18 +10,18 @@ if($_SESSION["user_type"]!="restaurant")
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/assets/css/global.css">
-        <link rel="stylesheet" href="/assets/css/restaurant.css">
-        <script src="/assets/js/admin.js"></script>
-        <script src="/assets/js/restaurant.js"></script>
+        <link rel="stylesheet" href="/FoodyUMP/assets/css/global.css">
+        <link rel="stylesheet" href="/FoodyUMP/assets/css/restaurant.css">
+        <script src="/FoodyUMP/assets/js/admin.js"></script>
+        <script src="/FoodyUMP/assets/js/restaurant.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
+    <script src="/FoodyUMP/assets/js/bootstrap.min.js"></script>
+    <script src="/FoodyUMP/assets/js/popper.min.js"></script>
 
     </head>
 
@@ -31,11 +31,11 @@ if($_SESSION["user_type"]!="restaurant")
         <div id="logo">
             <div class="container-width">
                 <div class="fl logo">
-                    <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
+                    <img src="/FoodyUMP/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
                 <h3><?php echo $_SESSION['username'] ?></h3>
-                <a href="/logout.php"><button class="logout">Logout</button></a>
+                <a href="/FoodyUMP/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@ if($_SESSION["user_type"]!="restaurant")
 
         <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    $path .= "/dbase.php";
+    $path .= "/FoodyUMP/dbase.php";
     include_once($path);
     $userid = $_SESSION["user_id"];
     $restaurantid= $_SESSION["restaurant_id"];

@@ -10,9 +10,9 @@ if (!isset($_SESSION["login"]))
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/assets/css/global.css">
-        <link rel="stylesheet" href="/adminstrator/admin_home.css">
-        <script src="/assets/js/admin.js"></script>
+        <link rel="stylesheet" href="/FoodyUMP/assets/css/global.css">
+        <link rel="stylesheet" href="/FoodyUMP/adminstrator/admin_home.css">
+        <script src="/FoodyUMP/assets/js/admin.js"></script>
         <title>Foody UMP</title>
     </head>
 
@@ -22,11 +22,11 @@ if (!isset($_SESSION["login"]))
         <div id="logo">
             <div class="container-width">
                 <div class="fl logo">
-                    <img src="/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
+                    <img src="/FoodyUMP/assets/img/logo_foody_ump.jpg" alt="logo" width="200" height="100" />
                 </div>
                 <div class="topright-container fr">
                 <h3><?php echo $_SESSION['username'] ?></h3>
-                <a href="/logout.php"><button class="logout">Logout</button></a>
+                <a href="/FoodyUMP/logout.php"><button class="logout">Logout</button></a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@ if (!isset($_SESSION["login"]))
         
     <?php
             $path = $_SERVER['DOCUMENT_ROOT'];
-            $path .= "/dbase.php";
+            $path .= "/FoodyUMP/dbase.php";
             include_once($path);
 
             $sqlname="SELECT `user_type` FROM `user` ";
