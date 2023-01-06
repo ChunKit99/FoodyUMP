@@ -52,6 +52,8 @@ th,td{
     margin-left: 100px;
     display: inline;
     text-align: center;
+    cursor: pointer;
+    background-color: blue;
 }
 
 p.under {
